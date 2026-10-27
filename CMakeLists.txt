@@ -22,5 +22,13 @@ FetchContent_Declare(SFML
 )
 FetchContent_MakeAvailable(SFML)
 
-add_executable(MeuJogoFinal main.cpp)
+add_executable(MeuJogoFinal 
+    main.cpp 
+    Ente.cpp 
+    Entidade.cpp 
+    GerenciadorGrafico.cpp 
+    Jogador.cpp 
+    Jogo.cpp 
+    Personagem.cpp
+)
 target_link_libraries(MeuJogoFinal PRIVATE sfml-graphics sfml-window sfml-system)
