@@ -3,22 +3,16 @@
 namespace nomeDoJogo{
     namespace Entidades{
         namespace Personagens{
-            Jogador::Jogador():Personagem(),corpo(){
+            Jogador::Jogador():Personagem(sf::Vector2f(0.0f,0.0f),sf::Vector2f(50.0f,50.0f)),pontos(0){
+               corpo.setFillColor(sf::Color::Green); 
                Inicializa();
             }
-            Jogador::Jogador(const sf::RectangleShape corpo):Personagem(),corpo(corpo){
-                Inicializa();
-            }
-            Jogador::Jogador(const sf::Vector2f pos, const sf::Vector2f tam):corpo(sf::RectangleShape(tam)){
-                corpo.setPosition(pos);
-                corpo.setFillColor(sf::Color::Green);
-                Inicializa();
-            }
+            
             Jogador::~Jogador(){
 
             }
             void Jogador::Inicializa(){
-                vel = sf::Vector2f(1.0f,1.0f);
+                vel = sf::Vector2f(VELOCIDADE_JOGADOR_X,VELOCIDADE_JOGADOR_Y);
             }
             void Jogador::mover(){
                 if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))

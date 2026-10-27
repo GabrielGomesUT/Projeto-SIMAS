@@ -7,8 +7,10 @@ namespace nomeDoJogo{
             class Personagem:public Entidade{
             protected:
                 int num_vidas;
+                sf::RectangleShape corpo;
+                sf::Vector2f vel;
             public:
-                Personagem(int X = 0,int Y = 0);
+                Personagem(const sf::Vector2f pos, const sf::Vector2f tam);
                 virtual ~Personagem();
                 void salvarDataBuffer();
                 virtual void executar() = 0;

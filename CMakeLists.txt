@@ -30,5 +30,6 @@ add_executable(MeuJogoFinal
     Jogador.cpp 
     Jogo.cpp 
     Personagem.cpp
+    Inimigo.cpp
 )
 target_link_libraries(MeuJogoFinal PRIVATE sfml-graphics sfml-window sfml-system)
