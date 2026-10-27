@@ -2,7 +2,7 @@
 using namespace nomeDoJogo;
 
 int main() {
+    srand(time(NULL));
     Jogo principal;
-    principal.executar();
     return 0;
 }

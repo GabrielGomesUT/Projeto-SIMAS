@@ -3,8 +3,8 @@
 namespace nomeDoJogo{
     namespace Entidades{
         namespace Personagens{
-            Personagem::Personagem(int X,int Y):Entidade(X,Y),num_vidas(0){
-
+            Personagem::Personagem(const sf::Vector2f pos, const sf::Vector2f tam):Entidade(0,0),num_vidas(0),corpo(sf::RectangleShape(tam)){
+                corpo.setPosition(pos);
             }
             Personagem::~Personagem(){
 

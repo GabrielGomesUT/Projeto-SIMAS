@@ -1,6 +1,6 @@
 #include "Ente.hpp"
 #include "GerenciadorGrafico.hpp"
-#include <iostream>
+
 using namespace std;
 
 namespace nomeDoJogo{
