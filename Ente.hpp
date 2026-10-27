@@ -15,10 +15,10 @@ namespace nomeDoJogo{
     public:
         Ente();
         virtual ~Ente();
-        virtual void executar();
+        //virtual void executar();
         void desenhar();
         static void setGG(Gerenciadores::Gerenciador_Grafico* pG);
         int getID();
-        virtual sf::Sprite getSprite() const = 0;
+        virtual sf::RectangleShape getSprite() const = 0;
     };
 }
