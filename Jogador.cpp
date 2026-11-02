@@ -11,18 +11,14 @@ namespace nomeDoJogo{
             Jogador::~Jogador(){
 
             }
+            
             void Jogador::Inicializa(){
                 vel = sf::Vector2f(VELOCIDADE_JOGADOR_X,VELOCIDADE_JOGADOR_Y);
             }
             void Jogador::mover(){
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-                    corpo.move(-vel.x,0.0f);
-                else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-                    corpo.move(vel.x,0.0f);
-                else if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-                    corpo.move(0.0f,-vel.y);
-                else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-                    corpo.move(0.0f,vel.y);
+                if(podeAndar)
+                    atualizaPosicao();
+                relogio.restart();
             }
             sf::RectangleShape Jogador::getSprite() const{
                 return corpo;

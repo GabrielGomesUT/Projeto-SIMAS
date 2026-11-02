@@ -6,12 +6,13 @@ namespace nomeDoJogo{
     namespace Entidades{
         class Entidade:public Ente{
         protected:
-            int x;
-            int y;
+            float x;
+            float y;
+            sf::RectangleShape corpo;
             //ostream buffer;
             void salvarDataBuffer();
         public:
-            Entidade(int X = 0,int Y = 0);
+            Entidade(const sf::Vector2f pos,const sf::Vector2f tam);
             virtual ~Entidade();
             virtual void executar() = 0;
             virtual void salvar() = 0;
