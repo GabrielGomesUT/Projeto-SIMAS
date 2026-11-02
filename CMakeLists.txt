@@ -27,9 +27,12 @@ add_executable(MeuJogoFinal
     Ente.cpp 
     Entidade.cpp 
     GerenciadorGrafico.cpp 
+    GerenciadorEventos.cpp
+    GerenciadorColisoes.cpp
     Jogador.cpp 
     Jogo.cpp 
     Personagem.cpp
     Inimigo.cpp
+    Obstaculo.cpp
 )
 target_link_libraries(MeuJogoFinal PRIVATE sfml-graphics sfml-window sfml-system)

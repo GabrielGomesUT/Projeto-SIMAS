@@ -2,8 +2,8 @@
 #include "Personagem.hpp"
 #define RAIO_PERSEGUICAO_X 100.0f
 #define RAIO_PERSEGUICAO_Y 100.0f
-#define VELOCIDADE_INIMIGO_X 1.0f
-#define VELOCIDADE_INIMIGO_Y 1.0f
+#define VELOCIDADE_INIMIGO_X 100.0f
+#define VELOCIDADE_INIMIGO_Y 100.0f
 
 namespace nomeDoJogo{
     namespace Entidades{
@@ -14,9 +14,9 @@ namespace nomeDoJogo{
             class Inimigo:public Personagem{
             protected:
                 Jogador* jogador;
-                sf::Clock relogio;
                 short moveAleatorio;
                 int nivel_maldade;
+                float tempo_acumulado;
                 void Inicializa();
             public:
                 Inimigo(const sf::Vector2f pos, const sf::Vector2f tam,Jogador* jog);

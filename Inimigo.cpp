@@ -5,7 +5,7 @@
 namespace nomeDoJogo{
     namespace Entidades{
         namespace Personagens{
-            Inimigo::Inimigo(const sf::Vector2f pos, const sf::Vector2f tam,Jogador* jog):Personagem(pos,tam),jogador(jog),moveAleatorio(rand() % 4),relogio(){
+            Inimigo::Inimigo(const sf::Vector2f pos, const sf::Vector2f tam,Jogador* jog):Personagem(pos,tam),jogador(jog),moveAleatorio(rand() % 2),tempo_acumulado(0.0){
                corpo.setFillColor(sf::Color::Red); 
                srand(time(NULL));
                Inicializa();
@@ -17,6 +17,7 @@ namespace nomeDoJogo{
 
             void Inimigo::Inicializa(){
                 vel = sf::Vector2f(VELOCIDADE_INIMIGO_X,VELOCIDADE_INIMIGO_Y);
+                podeAndar = true;
             }
 
             void Inimigo::salvarDataBuffer(){
@@ -66,21 +67,20 @@ namespace nomeDoJogo{
             }
 
             void Inimigo::moverAleatorio(){
-                if(moveAleatorio == 0)
-                    corpo.move(vel.x,0.0f);
-                else if(moveAleatorio == 1)
-                    corpo.move(-vel.x,0.0f);
-                else if(moveAleatorio == 2)
-                    corpo.move(0.0f,vel.y);
-                else
-                    corpo.move(0.0f,-vel.y);
-                
-                float dt = relogio.getElapsedTime().asSeconds(); // garante a aleatoriedade do movimento a cada segundo
-                if(dt >= 1.0f){
-                    moveAleatorio = rand() % 4;
-                    relogio.restart();
+                if(podeAndar){
+                    if(moveAleatorio == 0)
+                        andar(false);
+                    else if(moveAleatorio == 1)
+                        andar(true);
+                    atualizaPosicao();
+                    // garante a aleatoriedade do movimento a cada segundo
+                    tempo_acumulado+=dt;
+                    if(tempo_acumulado >= 1.0f){
+                        moveAleatorio = rand() % 2;
+                        tempo_acumulado = 0.0f;
+                    }
                 }
-
+                relogio.restart();
             }
 
             sf::RectangleShape Inimigo::getSprite() const{

@@ -1,8 +1,8 @@
 #pragma once
 #include "Personagem.hpp"
 
-#define VELOCIDADE_JOGADOR_X 3.0f
-#define VELOCIDADE_JOGADOR_Y 3.0f
+#define VELOCIDADE_JOGADOR_X 100.0f
+#define VELOCIDADE_JOGADOR_Y 100.0f
 
 namespace nomeDoJogo{
     namespace Entidades{
