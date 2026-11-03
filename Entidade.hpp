@@ -2,7 +2,7 @@
 #include "Ente.hpp"
 #include <ostream>
 
-namespace nomeDoJogo{
+namespace Castelos_e_ruinas{
     namespace Entidades{
         class Entidade:public Ente{
         protected:

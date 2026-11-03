@@ -1,7 +1,7 @@
 #pragma once
 #include "Entidade.hpp"
 
-namespace nomeDoJogo{
+namespace Castelos_e_ruinas{
 
     namespace Entidades{
 

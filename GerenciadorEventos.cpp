@@ -1,7 +1,7 @@
 #include "GerenciadorEventos.hpp"
 #include "Jogador.hpp"
 
-namespace nomeDoJogo{
+namespace Castelos_e_ruinas{
 
     namespace Gerenciadores{
 

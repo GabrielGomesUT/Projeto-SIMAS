@@ -1,6 +1,6 @@
 #include "Personagem.hpp"
 
-namespace nomeDoJogo{
+namespace Castelos_e_ruinas{
     namespace Entidades{
         namespace Personagens{
             Personagem::Personagem(const sf::Vector2f pos, const sf::Vector2f tam):Entidade(pos,tam),num_vidas(0),vel(sf::Vector2f(0.0f,0.0f)),podeAndar(false),paraEsquerda(false),dt(0){

@@ -2,7 +2,7 @@
 #include<iostream>
 #include <sstream>
 using namespace std;
-using namespace nomeDoJogo;
+using namespace Castelos_e_ruinas;
 using namespace Gerenciadores;
 
 float Gerenciador_Grafico::dt = 0;

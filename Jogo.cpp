@@ -1,6 +1,6 @@
 #include "Jogo.hpp"
  
-namespace nomeDoJogo{
+namespace Castelos_e_ruinas{
     Jogo::Jogo():GG(GG->getGerenciadorGrafico()),GE(GE->getGerenciadorEventos()){
         pJog1 = new Entidades::Personagens::Jogador();
         GE->setJogador(pJog1);
