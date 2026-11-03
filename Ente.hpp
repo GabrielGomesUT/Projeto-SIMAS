@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 using namespace std;
 
-namespace nomeDoJogo{
+namespace Castelos_e_ruinas{
 
     namespace Gerenciadores{
         class Gerenciador_Grafico;

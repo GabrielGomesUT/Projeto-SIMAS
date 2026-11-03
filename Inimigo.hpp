@@ -5,7 +5,7 @@
 #define VELOCIDADE_INIMIGO_X 100.0f
 #define VELOCIDADE_INIMIGO_Y 100.0f
 
-namespace nomeDoJogo{
+namespace Castelos_e_ruinas{
     namespace Entidades{
         namespace Personagens{
 

@@ -1,6 +1,6 @@
 #include "Obstaculo.hpp"
 
-namespace nomeDoJogo{
+namespace Castelos_e_ruinas{
 
     namespace Entidades{
 

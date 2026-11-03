@@ -7,7 +7,7 @@
 #include <vector>
 #include <time.h>
 
-namespace nomeDoJogo{
+namespace Castelos_e_ruinas{
     class Jogo{
     private:
         Entidades::Personagens::Jogador *pJog1;

@@ -2,7 +2,7 @@
 #include "Jogador.hpp"
 #include <cmath>
 
-namespace nomeDoJogo{
+namespace Castelos_e_ruinas{
     namespace Entidades{
         namespace Personagens{
             Inimigo::Inimigo(const sf::Vector2f pos, const sf::Vector2f tam,Jogador* jog):Personagem(pos,tam),jogador(jog),moveAleatorio(rand() % 2),tempo_acumulado(0.0){

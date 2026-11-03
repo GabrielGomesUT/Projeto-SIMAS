@@ -1,5 +1,5 @@
 #include "Jogo.hpp"
-using namespace nomeDoJogo;
+using namespace Castelos_e_ruinas;
 
 int main() {
     srand(time(NULL));

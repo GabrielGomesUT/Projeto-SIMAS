@@ -1,7 +1,7 @@
 #pragma once
 #include "GerenciadorGrafico.hpp"
 
-namespace nomeDoJogo{
+namespace Castelos_e_ruinas{
 
     namespace Entidades{
 

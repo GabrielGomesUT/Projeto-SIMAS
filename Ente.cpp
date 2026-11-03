@@ -3,7 +3,7 @@
 
 using namespace std;
 
-namespace nomeDoJogo{
+namespace Castelos_e_ruinas{
 
     Gerenciadores::Gerenciador_Grafico* Ente::pGG = NULL;
 
@@ -24,7 +24,7 @@ namespace nomeDoJogo{
             cerr<<"Erro: ponteiro para GerenciadorGrafico nulo." <<endl;
     }
 
-    void Ente::setGG(nomeDoJogo::Gerenciadores::Gerenciador_Grafico* pG){
+    void Ente::setGG(Gerenciadores::Gerenciador_Grafico* pG){
         pGG = pG;
     }
 

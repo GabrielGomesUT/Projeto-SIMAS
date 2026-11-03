@@ -3,7 +3,7 @@
 #include "Ente.hpp"
 #include <SFML/Graphics.hpp>
 
-namespace nomeDoJogo{
+namespace Castelos_e_ruinas{
     
     namespace Gerenciadores{
 
