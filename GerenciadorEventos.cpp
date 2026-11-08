@@ -22,7 +22,10 @@ namespace Castelos_e_ruinas{
         }
 
         void Gerenciador_Eventos::setJogador( Entidades::Personagens::Jogador* pJ){
-            this->pJogador = pJ;
+            if(pJ != NULL)
+                this->pJogador = pJ;
+            else
+                cerr<<"Ponteiro nulo passado por parametro"<<endl;
         }
 
         void Gerenciador_Eventos::verificaTeclaPressionada(sf::Keyboard::Key tecla){
@@ -30,13 +33,25 @@ namespace Castelos_e_ruinas{
                 pJogador->andar(true);
             else if(tecla == sf::Keyboard::D)
                 pJogador->andar(false);
+            else if(tecla == sf::Keyboard::W)
+                pJogador->pular();
             else if(tecla == sf::Keyboard::Escape)
                 pGrafico->closeWindow();
         }
 
         void Gerenciador_Eventos::verificaTeclaSolta(sf::Keyboard::Key tecla){
-            if((tecla == sf::Keyboard::A) || (tecla == sf::Keyboard::D))
-                pJogador->parar();
+            if(tecla == sf::Keyboard::A){
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+                    pJogador->andar(false);
+                else
+                    pJogador->parar();
+            }
+            else if(tecla == sf::Keyboard::D){
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+                    pJogador->andar(true);
+                else
+                    pJogador->parar();
+            }
         }
 
         void Gerenciador_Eventos::executar(){

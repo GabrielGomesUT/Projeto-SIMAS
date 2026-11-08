@@ -7,9 +7,7 @@ namespace Castelos_e_ruinas{
 
     Gerenciadores::Gerenciador_Grafico* Ente::pGG = NULL;
 
-    int Ente::cont(0); 
-
-    Ente::Ente():id(cont++){
+    Ente::Ente(IDs::ID ID):id(ID){
 
     }
 
@@ -28,7 +26,7 @@ namespace Castelos_e_ruinas{
         pGG = pG;
     }
 
-    int Ente::getID(){
+    IDs::ID Ente::getID(){
         return id;
     }
 }

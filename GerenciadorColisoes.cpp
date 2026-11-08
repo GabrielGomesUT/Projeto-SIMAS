@@ -1,25 +1,40 @@
 ////////////////////////////////Adaptação do código do monitor Geovanni, com algumas alterações para se adequar à estrutura do projeto.
 #include "GerenciadorColisoes.hpp"
-#include "Entidade.hpp"
 #include "Jogador.hpp"
 #include "Inimigo.hpp"
 #include "Obstaculo.hpp"
+#include "ListaEntidades.hpp"
+#include "ID.hpp"
 #include <cmath>
 //Nesse código, "ds" significa distância de sobreposição, representando a quantidade de sobreposição entre duas entidades em cada eixo (X e Y). 
 
 namespace Castelos_e_ruinas {
     namespace Gerenciadores {
 
-        GerenciadorColisoes::GerenciadorColisoes() :
-            pListaJogadores(NULL),
-            pListaInimigos(NULL),
-            pListaObstaculos(NULL)
-        {}
+        GerenciadorColisoes::GerenciadorColisoes()
+        {
+            pListaJogadores = new std::vector<Entidades::Personagens::Jogador*>();
+            pListaInimigos = new std::vector<Entidades::Personagens::Inimigo*>();
+            pListaObstaculos = new std::vector<Entidades::Obstaculo*>();
+        }
 
         GerenciadorColisoes::~GerenciadorColisoes() {
-            pListaJogadores = NULL;
-            pListaInimigos = NULL;
-            pListaObstaculos = NULL;
+            delete pListaJogadores;
+            delete pListaInimigos;
+            delete pListaObstaculos;
+        }
+
+        void GerenciadorColisoes::conectaEntidades(Listas::ListaEntidades* LE){
+            Entidades::Entidade* pAux;
+            for(int i = 0;i < LE->getTam();i++){
+                pAux = LE->operator[](i);
+                if(pAux->getID() == IDs::ID::jogador)
+                    pListaJogadores->push_back(dynamic_cast<Entidades::Personagens::Jogador*>(pAux));
+                else if(pAux->getID() == IDs::ID::inimigo)
+                    pListaInimigos->push_back(dynamic_cast<Entidades::Personagens::Inimigo*>(pAux));
+                else if(pAux->getID() == IDs::ID::obstaculo)
+                    pListaObstaculos->push_back(dynamic_cast<Entidades::Obstaculo*>(pAux));
+            }
         }
 
         sf::Vector2f GerenciadorColisoes::calculaColisao(Entidades::Entidade* pE1, Entidades::Entidade* pE2) {
@@ -35,7 +50,7 @@ namespace Castelos_e_ruinas {
             sf::Vector2f distanciaEntreCentros(
                 std::abs((pos1.x + tam1.x / 2.0f) - (pos2.x + tam2.x / 2.0f)),
                 std::abs((pos1.y + tam1.y / 2.0f) - (pos2.y + tam2.y / 2.0f))
-            );
+            );  
 
             sf::Vector2f somaMetadeRetangulo(
                 tam1.x / 2.0f + tam2.x / 2.0f,
@@ -64,11 +79,11 @@ namespace Castelos_e_ruinas {
             if (pListaJogadores == NULL || pListaInimigos == NULL) return;
 
             for (std::size_t i = 0; i < pListaJogadores->size(); i++) {
-                Entidades::Jogador* pJogador = (*pListaJogadores)[i];
+                Entidades::Personagens::Jogador* pJogador = (*pListaJogadores)[i];
                 if (pJogador == NULL) continue;
 
                 for (std::size_t j = 0; j < pListaInimigos->size(); j++) {
-                    Entidades::Inimigo* pInimigo = (*pListaInimigos)[j];
+                    Entidades::Personagens::Inimigo* pInimigo = (*pListaInimigos)[j];
                     if (pInimigo == NULL) continue;
 
                     sf::Vector2f ds = calculaColisao(pJogador, pInimigo);
@@ -85,7 +100,7 @@ namespace Castelos_e_ruinas {
 
             if (pListaJogadores != NULL) {
                 for (std::size_t i = 0; i < pListaJogadores->size(); i++) {
-                    Entidades::Jogador* pJogador = (*pListaJogadores)[i];
+                    Entidades::Personagens::Jogador* pJogador = (*pListaJogadores)[i];
                     
                     if (pJogador != NULL) {
                         for (std::size_t j = 0; j < pListaObstaculos->size(); j++) {
@@ -105,7 +120,7 @@ namespace Castelos_e_ruinas {
 
             if (pListaInimigos != NULL) {
                 for (std::size_t i = 0; i < pListaInimigos->size(); i++) {
-                    Entidades::Inimigo* pInimigo = (*pListaInimigos)[i];
+                    Entidades::Personagens::Inimigo* pInimigo = (*pListaInimigos)[i];
                     
                     if (pInimigo != NULL) {
                         for (std::size_t j = 0; j < pListaObstaculos->size(); j++) {
@@ -114,7 +129,7 @@ namespace Castelos_e_ruinas {
                             if (pObs != NULL) {
                                 sf::Vector2f ds = calculaColisao(pInimigo, pObs);
                                 if (ds.x < 0.0f && ds.y < 0.0f) {
-                                    pObs->colisao(pInimigo, pObs); 
+                                    pObs->colisao(pInimigo, ds); 
                                 }
                             }
                         }

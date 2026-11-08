@@ -24,7 +24,7 @@ namespace Castelos_e_ruinas{
             void setJogador( Entidades::Personagens::Jogador* pJ);
             void verificaTeclaPressionada(sf::Keyboard::Key tecla);
             void verificaTeclaSolta(sf::Keyboard::Key tecla);
-            void executar();
+            void executar();    // codigo adaptado dos videos do monitor Lucas Eduardo Bonâncio Skora
         };
     }
 }

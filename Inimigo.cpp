@@ -1,11 +1,10 @@
 #include "Inimigo.hpp"
 #include "Jogador.hpp"
-#include <cmath>
 
 namespace Castelos_e_ruinas{
     namespace Entidades{
         namespace Personagens{
-            Inimigo::Inimigo(const sf::Vector2f pos, const sf::Vector2f tam,Jogador* jog):Personagem(pos,tam),jogador(jog),moveAleatorio(rand() % 2),tempo_acumulado(0.0){
+            Inimigo::Inimigo(const sf::Vector2f pos, const sf::Vector2f tam,Jogador* jog):Personagem(pos,tam,IDs::ID::inimigo),jogador(jog),moveAleatorio(rand() % 2),tempo_acumulado(0.0){
                corpo.setFillColor(sf::Color::Red); 
                srand(time(NULL));
                Inicializa();
@@ -28,19 +27,15 @@ namespace Castelos_e_ruinas{
                 if(pJog)
                     jogador = pJog;
                 else
-                    cerr<<"Ponteiro passado eh nulo"<<endl;
+                    cerr<<"Ponteiro nulo passado por parametro"<<endl;
             }
 
             void Inimigo::persegueJogador(sf::Vector2f posJog,sf::Vector2f posInim){
                 if(posJog.x - posInim.x > 0.0f) // jogador a direita do inimigo
-                    corpo.move(vel.x,0.0f);
-                else
-                    corpo.move(-vel.x,0.0f); // jogador a esquerda do inimigo
+                    andar(false);
+                else    // jogador a esquerda do inimigo
+                    andar(true); 
 
-                if(posJog.y - posInim.y > 0.0f) // jogador em cima do inimigo
-                    corpo.move(0.0f,vel.y);
-                else
-                    corpo.move(0.0f,-vel.y); // jogador abaixo do inimigo
             }
             
             void Inimigo::executar(){
@@ -52,8 +47,10 @@ namespace Castelos_e_ruinas{
 
             }// = 0;
 
-            void  Inimigo::mover(){
+            void Inimigo::mover(){
                 if(jogador != NULL){
+                    dt = relogio.getElapsedTime().asSeconds();
+
                     sf::Vector2f posJogador = jogador->getSprite().getPosition();
                     sf::Vector2f posInimigo = corpo.getPosition();
                     
@@ -61,6 +58,10 @@ namespace Castelos_e_ruinas{
                         persegueJogador(posJogador,posInimigo);
                     else
                         moverAleatorio();
+                    if(podeAndar)
+                        atualizaPosicao();
+                    gravidade();
+                    relogio.restart();
                 }
                 else
                     cerr<<"Ponteiro para jogador não inicializado"<<endl;
@@ -72,7 +73,6 @@ namespace Castelos_e_ruinas{
                         andar(false);
                     else if(moveAleatorio == 1)
                         andar(true);
-                    atualizaPosicao();
                     // garante a aleatoriedade do movimento a cada segundo
                     tempo_acumulado+=dt;
                     if(tempo_acumulado >= 1.0f){
@@ -80,9 +80,11 @@ namespace Castelos_e_ruinas{
                         tempo_acumulado = 0.0f;
                     }
                 }
-                relogio.restart();
             }
 
+            void Inimigo::tomarDano(){
+                this->num_vidas--;
+            }
             sf::RectangleShape Inimigo::getSprite() const{
                 return corpo;
             }
