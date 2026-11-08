@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "ID.hpp"
+#include <math.h>
 using namespace std;
 
 namespace Castelos_e_ruinas{
@@ -11,16 +13,15 @@ namespace Castelos_e_ruinas{
 
     class Ente{
     protected:  
-        int id;
+        IDs::ID id;
         static Gerenciadores::Gerenciador_Grafico* pGG;
-        static int cont;
     public:
-        Ente();
+        Ente(IDs::ID ID);
         virtual ~Ente();
         //virtual void executar();
         void desenhar();
         static void setGG(Gerenciadores::Gerenciador_Grafico* pG);
-        int getID();
+        IDs::ID getID();
         virtual sf::RectangleShape getSprite() const = 0;
     };
 }

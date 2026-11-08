@@ -29,6 +29,7 @@ namespace Castelos_e_ruinas{
                 virtual void salvar();// = 0;
                 virtual void mover(); //= 0;
                 void moverAleatorio(); // codigo adaptado dos videos do monitor Lucas Eduardo Bonâncio Skora
+                void tomarDano();
                 virtual sf::RectangleShape getSprite() const;// = 0;
             };
         }

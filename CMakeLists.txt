@@ -34,5 +34,6 @@ add_executable(MeuJogoFinal
     Personagem.cpp
     Inimigo.cpp
     Obstaculo.cpp
+    ListaEntidades.cpp
 )
 target_link_libraries(MeuJogoFinal PRIVATE sfml-graphics sfml-window sfml-system)

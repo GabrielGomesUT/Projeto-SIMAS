@@ -4,7 +4,8 @@
 #include "Obstaculo.hpp"
 #include "GerenciadorGrafico.hpp"
 #include "GerenciadorEventos.hpp"
-#include <vector>
+#include "GerenciadorColisoes.hpp"
+#include "ListaEntidades.hpp"
 #include <time.h>
 
 namespace Castelos_e_ruinas{
@@ -13,8 +14,8 @@ namespace Castelos_e_ruinas{
         Entidades::Personagens::Jogador *pJog1;
         Gerenciadores::Gerenciador_Grafico *GG;
         Gerenciadores::Gerenciador_Eventos *GE;
-        vector<Entidades::Personagens::Personagem*> vetPersonagens;
-        vector<Entidades::Entidade*> vetObstaculos;
+        Gerenciadores::GerenciadorColisoes GC;
+        Listas::ListaEntidades ListaEnt;
     public:
         Jogo();
         ~Jogo();
