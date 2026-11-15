@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.16...3.28)
 set(CMAKE_POLICY_VERSION_MINIMUM 3.5 CACHE STRING "" FORCE)
 
 project(MeuJogoSFML)
@@ -35,5 +35,7 @@ add_executable(MeuJogoFinal
     Inimigo.cpp
     Obstaculo.cpp
     ListaEntidades.cpp
+    Fase.cpp
+    Piso.cpp
 )
 target_link_libraries(MeuJogoFinal PRIVATE sfml-graphics sfml-window sfml-system)

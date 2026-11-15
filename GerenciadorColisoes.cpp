@@ -15,7 +15,7 @@ namespace Castelos_e_ruinas {
         {
             pListaJogadores = new std::vector<Entidades::Personagens::Jogador*>();
             pListaInimigos = new std::vector<Entidades::Personagens::Inimigo*>();
-            pListaObstaculos = new std::vector<Entidades::Obstaculo*>();
+            pListaObstaculos = new std::vector<Entidades::Obstaculos::Obstaculo*>();
         }
 
         GerenciadorColisoes::~GerenciadorColisoes() {
@@ -32,8 +32,8 @@ namespace Castelos_e_ruinas {
                     pListaJogadores->push_back(dynamic_cast<Entidades::Personagens::Jogador*>(pAux));
                 else if(pAux->getID() == IDs::ID::inimigo)
                     pListaInimigos->push_back(dynamic_cast<Entidades::Personagens::Inimigo*>(pAux));
-                else if(pAux->getID() == IDs::ID::obstaculo)
-                    pListaObstaculos->push_back(dynamic_cast<Entidades::Obstaculo*>(pAux));
+                else if(pAux->getID() == IDs::ID::piso)
+                    pListaObstaculos->push_back(dynamic_cast<Entidades::Obstaculos::Obstaculo*>(pAux));
             }
         }
 
@@ -104,7 +104,7 @@ namespace Castelos_e_ruinas {
                     
                     if (pJogador != NULL) {
                         for (std::size_t j = 0; j < pListaObstaculos->size(); j++) {
-                            Entidades::Obstaculo* pObs = (*pListaObstaculos)[j];
+                            Entidades::Obstaculos::Obstaculo* pObs = (*pListaObstaculos)[j];
                             
                             if (pObs != NULL) {
                                 sf::Vector2f ds = calculaColisao(pJogador, pObs);
@@ -124,7 +124,7 @@ namespace Castelos_e_ruinas {
                     
                     if (pInimigo != NULL) {
                         for (std::size_t j = 0; j < pListaObstaculos->size(); j++) {
-                            Entidades::Obstaculo* pObs = (*pListaObstaculos)[j];
+                            Entidades::Obstaculos::Obstaculo* pObs = (*pListaObstaculos)[j];
                             
                             if (pObs != NULL) {
                                 sf::Vector2f ds = calculaColisao(pInimigo, pObs);

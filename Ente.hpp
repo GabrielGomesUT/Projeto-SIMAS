@@ -18,10 +18,12 @@ namespace Castelos_e_ruinas{
     public:
         Ente(IDs::ID ID);
         virtual ~Ente();
-        //virtual void executar();
+        virtual void executar() = 0;
         void desenhar();
+        sf::Texture* carregarText(const char* caminhoTextura);
         static void setGG(Gerenciadores::Gerenciador_Grafico* pG);
         IDs::ID getID();
         virtual sf::RectangleShape getSprite() const = 0;
     };
 }
+

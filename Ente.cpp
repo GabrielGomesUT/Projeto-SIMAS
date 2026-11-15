@@ -15,6 +15,10 @@ namespace Castelos_e_ruinas{
 
     }
 
+    sf::Texture* Ente::carregarText(const char* caminhoTextura){
+        return pGG->carregarTextura(caminhoTextura);
+    }
+
     void Ente::desenhar(){
         if(pGG != NULL)
             pGG->desenharEnte(this);

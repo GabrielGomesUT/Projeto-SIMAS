@@ -1,12 +1,13 @@
 #include "Jogador.hpp"
 #include "Inimigo.hpp"
-#include "ID.hpp"
+#include "GerenciadorGrafico.hpp"
 
 namespace Castelos_e_ruinas{
     namespace Entidades{
         namespace Personagens{
-            Jogador::Jogador():Personagem(sf::Vector2f(0.0f,0.0f),sf::Vector2f(50.0f,50.0f),IDs::ID::jogador),pontos(0),podePular(false){
-               corpo.setFillColor(sf::Color::Green); 
+            Jogador::Jogador(const sf::Vector2f pos, const sf::Vector2f tam):Personagem(pos,tam,IDs::ID::jogador),pontos(0),podePular(false){
+               sf::Texture* text = carregarText("../assets/jogador.png");
+               corpo.setTexture(text);
                Inicializa();
             }
             
@@ -16,6 +17,7 @@ namespace Castelos_e_ruinas{
             
             void Jogador::Inicializa(){
                 vel = sf::Vector2f(VELOCIDADE_JOGADOR_X,0.0f);
+                num_vidas = 5.0;
             }
 
             void Jogador::colisao(Inimigo* pIn,sf::Vector2f ds){
@@ -49,7 +51,8 @@ namespace Castelos_e_ruinas{
             }
 
             void Jogador::operator++(){
-                pontos++;
+                if(num_vidas < 5.0f)
+                    num_vidas++;
             }
 
             void Jogador::mover(){
@@ -67,7 +70,7 @@ namespace Castelos_e_ruinas{
 
             }
             void Jogador::executar(){
-
+                mover();
             }
         }
     }

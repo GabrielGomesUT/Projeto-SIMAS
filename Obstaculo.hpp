@@ -11,21 +11,23 @@ namespace Castelos_e_ruinas{
             class Inimigo;
         }
 
-        class Obstaculo:public Entidade{
-        protected:
-            bool danoso;
-        public:
-            Obstaculo(const sf::Vector2f pos, const sf::Vector2f tam);
-            ~Obstaculo();
-            void salvarDataBuffer();
-            virtual void executar();// = 0;
-            virtual void salvar();// = 0;
-            void atualizar();
-            void colisao(Personagens::Jogador* pJ,sf::Vector2f ds);
-            void colisao(Personagens::Inimigo* pI,sf::Vector2f ds);
-            //virtual void obstaculizar(Personagens::Jogador* p); //=0;
-            virtual sf::RectangleShape getSprite() const;// = 0;
-        };
+        namespace Obstaculos{
+
+            class Obstaculo:public Entidade{
+            protected:
+                bool danoso;
+            public:
+                Obstaculo(const sf::Vector2f pos, const sf::Vector2f tam,IDs::ID ID);
+                ~Obstaculo();
+                void salvarDataBuffer();
+                virtual void executar() = 0;
+                virtual void salvar() = 0;
+                void colisao(Personagens::Jogador* pJ,sf::Vector2f ds);
+                void colisao(Personagens::Inimigo* pI,sf::Vector2f ds);
+                virtual void obstaculizar(Personagens::Jogador* p) = 0;
+                virtual sf::RectangleShape getSprite() const = 0;
+            };
+        }
 
     }
 

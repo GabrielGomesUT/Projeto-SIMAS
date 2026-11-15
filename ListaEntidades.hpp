@@ -2,6 +2,7 @@
 #include "Lista.hpp"
 #include "Entidade.hpp"
 #include "GerenciadorGrafico.hpp"
+#include "Jogador.hpp"
 
 namespace Castelos_e_ruinas{
 
@@ -17,7 +18,9 @@ namespace Castelos_e_ruinas{
             void removerEntidades(Entidades::Entidade* pE);
             Entidades::Entidade* operator[](int pos);
             int getTam();
-            void percorrer(Gerenciadores::Gerenciador_Grafico* pGG);
+            void setJogEnt(Entidades::Personagens::Jogador* pJ);
+            void percorrer();
+            void desenhar(Gerenciadores::Gerenciador_Grafico* pGG);
         };
     }
 }

@@ -5,29 +5,14 @@ using namespace std;
 using namespace Castelos_e_ruinas;
 using namespace Gerenciadores;
 
-float Gerenciador_Grafico::dt = 0;
-
 Gerenciador_Grafico::Gerenciador_Grafico(){     //código adaptado dos alunos Marco Antônio Kochem Vendramin e Raphael Bassil Costa Geraldine do PETECO
-    window = new sf::RenderWindow(sf::VideoMode(1280,720),"nomeDoJogo");
+    window = new sf::RenderWindow(sf::VideoMode(LARGURA_TELA,ALTURA_TELA),"Castelos_e_ruinas");
     window->setFramerateLimit(144);
 
-    /*if (!fonteName.loadFromFile(FONTE))
-        cerr << "Erro de carregamento da Fonte no Menu" << endl;
-    nameType.setFont(fonteName);*/
 }
 
 Gerenciador_Grafico::~Gerenciador_Grafico(){    //código adaptado dos alunos Marco Antônio Kochem Vendramin e Raphael Bassil Costa Geraldine do PETECO
-    /*map<const char*, sf::Texture*>::iterator it;
-
-    for (it = mapaTexturas.begin(); it != mapaTexturas.end(); ++it) 
-    {
-        if((*it).second)    
-            delete ((*it).second);
-
-        ((*it).second) = NULL;
-    }
-
-    mapaTexturas.clear();*/
+   
 }
 
 Gerenciador_Grafico* Gerenciador_Grafico::pGrafico(NULL);
@@ -47,6 +32,20 @@ bool Gerenciador_Grafico::verificaWindowOpen(){
         return true;
     else
         return false;
+}
+
+sf::Texture* Gerenciador_Grafico::carregarTextura(const char* caminhoTextura){
+    sf::Texture* text = new sf::Texture();
+    if(!text->loadFromFile(caminhoTextura)){
+        cerr<<"Nao foi possivel carregar a textura"<<endl;
+        delete text;
+        text = NULL;
+    }
+    return text;
+}
+
+sf::Vector2u Gerenciador_Grafico::getWindowSize(){
+    return window->getSize();
 }
 
 void Gerenciador_Grafico::limpaWindow(){

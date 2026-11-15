@@ -1,10 +1,11 @@
 #include "ListaEntidades.hpp"
+#include "Inimigo.hpp"
 
 namespace Castelos_e_ruinas{
 
     namespace Listas{
 
-        ListaEntidades::ListaEntidades(){
+        ListaEntidades::ListaEntidades():LEs(){
 
         }
 
@@ -28,12 +29,31 @@ namespace Castelos_e_ruinas{
             return LEs.getTam();
         }
 
-        void ListaEntidades::percorrer(Gerenciadores::Gerenciador_Grafico* pGG){
+        void ListaEntidades::setJogEnt(Entidades::Personagens::Jogador* pJ){
+            Entidades::Entidade* pAux;
+            for(int i = 0; i < LEs.getTam();i++){
+                pAux = operator[](i);
+                if(pAux->getID() == IDs::ID::inimigo){
+                    Entidades::Personagens::Inimigo* pInimigo = static_cast<Entidades::Personagens::Inimigo*>(pAux);
+                    pInimigo->setJogador(pJ);
+                }
+            }
+        }
+
+        void ListaEntidades::percorrer(){
             Entidades::Entidade* pAux;
             for(int i = 0;i < LEs.getTam();i++){
                 pAux = operator[](i);
-                pAux->atualizar();
-                pGG->desenharEnte(static_cast<Ente*>(pAux)); 
+                pAux->executar();
+            }
+        }
+
+        void ListaEntidades::desenhar(Gerenciadores::Gerenciador_Grafico* pGG){
+            Entidades::Entidade* pAux;
+            for(int i = 0; i < LEs.getTam();i++){
+                pAux = operator[](i);
+                pAux->setGG(pGG);
+                pGG->desenharEnte(static_cast<Ente*>(pAux));
             }
         }
 

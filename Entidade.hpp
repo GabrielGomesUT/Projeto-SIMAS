@@ -9,6 +9,8 @@ namespace Castelos_e_ruinas{
             float x;
             float y;
             sf::RectangleShape corpo;
+            sf::Clock relogio;
+            static float dt;
             //ostream buffer;
             void salvarDataBuffer();
         public:
@@ -17,10 +19,11 @@ namespace Castelos_e_ruinas{
             sf::Vector2f getPos() const;
             void setPos(sf::Vector2f Pos);
             sf::Vector2f getTam() const;
-            virtual void atualizar() = 0;
+            void setTam(sf::Vector2f Tam);
             virtual void executar() = 0;
             virtual void salvar() = 0;
             virtual sf::RectangleShape getSprite() const = 0;
         };
     }   
 }
+
