@@ -5,7 +5,9 @@
 namespace Castelos_e_ruinas{
     namespace Entidades{
         class Entidade;
-        class Obstaculo;
+        namespace Obstaculos{
+            class Obstaculo;
+        }
         namespace Personagens{
             class Personagem;
             class Inimigo;
@@ -20,7 +22,7 @@ namespace Castelos_e_ruinas{
         private:
             std::vector<Entidades::Personagens::Jogador*>* pListaJogadores;
             std::vector<Entidades::Personagens::Inimigo*>* pListaInimigos;
-            std::vector<Entidades::Obstaculo*>* pListaObstaculos;
+            std::vector<Entidades::Obstaculos::Obstaculo*>* pListaObstaculos;
             
             sf::Vector2f calculaColisao(Entidades::Entidade* pE1, Entidades::Entidade* pE2);
             bool checaColisao(Entidades::Entidade* pE1, Entidades::Entidade* pE2);
@@ -42,3 +44,7 @@ namespace Castelos_e_ruinas{
         };
     }
 }
+
+//pListaInimigo:Vector<Inimigo*>*
+//pListaJogador:Vector<Jogador*>*
+//pListaObstaculo:Vector<Obstaculo*>*

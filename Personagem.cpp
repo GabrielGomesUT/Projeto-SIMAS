@@ -3,22 +3,22 @@
 namespace Castelos_e_ruinas{
     namespace Entidades{
         namespace Personagens{
-            Personagem::Personagem(const sf::Vector2f pos, const sf::Vector2f tam,IDs::ID ID):Entidade(pos,tam,ID),num_vidas(0),vel(sf::Vector2f(0.0f,0.0f)),podeAndar(false),paraEsquerda(false),dt(0){
+
+            Personagem::Personagem(const sf::Vector2f pos, const sf::Vector2f tam,IDs::ID ID):Entidade(pos,tam,ID),num_vidas(0),vel(sf::Vector2f(0.0f,0.0f)),podeAndar(false),paraEsquerda(false){
+
             }
+
             Personagem::~Personagem(){
 
             }
+
             void Personagem::parar(){
                 podeAndar = false;
             }
+            
             void Personagem::andar(bool paraEsq){
                 podeAndar = true;
                 this->paraEsquerda = paraEsq;
-            }
-
-            void Personagem::atualizar(){
-                mover();
-                executar();
             }
 
             void Personagem::setVelY(float VelY){

@@ -19,7 +19,7 @@ namespace Castelos_e_ruinas{
                 float tempo_acumulado;
                 void Inicializa();
             public:
-                Inimigo(const sf::Vector2f pos, const sf::Vector2f tam,Jogador* jog);
+                Inimigo(const sf::Vector2f pos, const sf::Vector2f tam);
                 ~Inimigo();
                 void salvarDataBuffer();
                 void setJogador(Jogador* pJog);

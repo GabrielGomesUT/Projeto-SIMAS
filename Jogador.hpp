@@ -13,7 +13,7 @@ namespace Castelos_e_ruinas{
                 int pontos;
                 bool podePular;
             public:
-                Jogador();
+                Jogador(const sf::Vector2f pos, const sf::Vector2f tam);
                 ~Jogador();
                 void Inicializa();
                 void colisao(Inimigo* pIn,sf::Vector2f ds);

@@ -11,8 +11,6 @@ namespace Castelos_e_ruinas{
                 sf::Vector2f vel;
                 bool podeAndar;
                 bool paraEsquerda;
-                sf::Clock relogio;
-                float dt;
             public:
                 Personagem(const sf::Vector2f pos, const sf::Vector2f tam, IDs::ID ID);
                 virtual ~Personagem();
@@ -20,7 +18,6 @@ namespace Castelos_e_ruinas{
                 virtual void executar() = 0;
                 virtual void mover() = 0;
                 virtual void salvar() = 0;
-                void atualizar();
                 void setVelY(float Vely);
                 virtual sf::RectangleShape getSprite() const = 0;
                 void andar(bool paraEsq);

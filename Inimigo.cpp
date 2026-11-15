@@ -4,8 +4,9 @@
 namespace Castelos_e_ruinas{
     namespace Entidades{
         namespace Personagens{
-            Inimigo::Inimigo(const sf::Vector2f pos, const sf::Vector2f tam,Jogador* jog):Personagem(pos,tam,IDs::ID::inimigo),jogador(jog),moveAleatorio(rand() % 2),tempo_acumulado(0.0){
-               corpo.setFillColor(sf::Color::Red); 
+            Inimigo::Inimigo(const sf::Vector2f pos, const sf::Vector2f tam):Personagem(pos,tam,IDs::ID::inimigo),jogador(NULL),moveAleatorio(rand() % 2),tempo_acumulado(0.0){
+               sf::Texture* text = carregarText("../assets/inimigo_facil.png");
+               corpo.setTexture(text);
                srand(time(NULL));
                Inicializa();
             }
@@ -39,7 +40,7 @@ namespace Castelos_e_ruinas{
             }
             
             void Inimigo::executar(){
-
+                mover();
             }// = 0;
             //virtual void danificar(Jogador* p) = 0;
 
@@ -64,7 +65,7 @@ namespace Castelos_e_ruinas{
                     relogio.restart();
                 }
                 else
-                    cerr<<"Ponteiro para jogador não inicializado"<<endl;
+                    cerr<<"Ponteiro para jogador nao inicializado"<<endl;
             }
 
             void Inimigo::moverAleatorio(){
