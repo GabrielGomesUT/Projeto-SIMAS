@@ -39,7 +39,8 @@ namespace Castelos_e_ruinas{
                     andar(true); 
 
             }
-            
+            /*Eduardo: Comentei essas funções, pois Inimigo é uma classe abstrata e não podemos instanciá-la, 
+            logo não podemos implementar essas funções aqui. Elas serão implementadas nas classes filhas de Inimigo.
             void Inimigo::executar(){
                 mover();
             }// = 0;
@@ -48,7 +49,7 @@ namespace Castelos_e_ruinas{
             void Inimigo::salvar(){
 
             }// = 0;
-
+            */
             void Inimigo::mover(){
                 if(jogador != NULL){
                     dt = relogio.getElapsedTime().asSeconds();
