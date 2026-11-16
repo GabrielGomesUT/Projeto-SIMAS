@@ -8,7 +8,7 @@ namespace Castelos_e_ruinas {
     namespace Entidades {
         namespace Personagens {
 
-            // Construtor: repassa pos e tam para Inimigo (que já carrega a textura e chama Inicializa())
+            //Repassa pos e tam para Inimigo (que já carrega a textura e chama Inicializa())
             Cavaleiro::Cavaleiro(const sf::Vector2f pos, const sf::Vector2f tam, Jogador* pJog) :
                 Inimigo(pos, tam, pJog)
             {
@@ -20,7 +20,6 @@ namespace Castelos_e_ruinas {
                 }
                 */
             }
-
             Cavaleiro::~Cavaleiro() {
             }
 
@@ -29,7 +28,7 @@ namespace Castelos_e_ruinas {
                 mover();
             }
 
-            // É chamado por Jogador::colisao() quando houver contato
+            //É chamado por Jogador::colisao() quando houver contato
             void Cavaleiro::danificar(Jogador* pJog) {
                 if(pJog != NULL) {
                     for(int i = 0; i < nivel_maldade; ++i) {
