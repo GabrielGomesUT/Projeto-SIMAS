@@ -19,13 +19,13 @@ namespace Castelos_e_ruinas{
                 void Inicializa();
             public:
                 Inimigo(const sf::Vector2f pos, const sf::Vector2f tam);
-                ~Inimigo();
+                virtual ~Inimigo(); //Eduardo: virtual, pois outras classes lidam com Inimigo
                 void salvarDataBuffer();
                 void setJogador(Jogador* pJog);
                 void persegueJogador(sf::Vector2f posJog,sf::Vector2f posInim); // codigo adaptado dos videos do monitor Lucas Eduardo Bonâncio Skora
-                virtual void executar();// = 0;
-                //virtual void danificar(Jogador* p) = 0;
-                virtual void salvar();// = 0;
+                virtual void executar() = 0; //Eduardo
+                virtual void danificar(Jogador* pJog) = 0; //Eduardo
+                virtual void salvar() = 0; //Eduardo
                 virtual void mover(); //= 0;
                 void moverAleatorio(); // codigo adaptado dos videos do monitor Lucas Eduardo Bonâncio Skora
                 void tomarDano();
