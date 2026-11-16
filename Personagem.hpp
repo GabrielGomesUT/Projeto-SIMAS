@@ -19,6 +19,8 @@ namespace Castelos_e_ruinas{
                 virtual void mover() = 0;
                 virtual void salvar() = 0;
                 void setVelY(float Vely);
+                void setVelX(float Velx);
+                sf::Vector2f getVel();
                 virtual sf::RectangleShape getSprite() const = 0;
                 void andar(bool paraEsq);
                 void gravidade();

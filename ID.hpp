@@ -7,6 +7,8 @@ namespace IDs{
         jogador,  //1
         inimigo,  //2
         piso,  //3
-        fase,   //4
+        casteloMedieval,   //4
+        plataforma,     //5
+        lama,       //6
     };
 }

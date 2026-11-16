@@ -13,6 +13,7 @@ namespace Castelos_e_ruinas{
         private:
             sf::RenderWindow *window;
             static Gerenciador_Grafico* pGrafico;
+    
         protected:
             Gerenciador_Grafico(); // padrao de projeto Singleton
         public:
@@ -23,7 +24,6 @@ namespace Castelos_e_ruinas{
             bool verificaWindowOpen();
             sf::Texture* carregarTextura(const char* caminhoTextura);
             void mostrar();
-            sf::Vector2u getWindowSize();
             void limpaWindow();
             void closeWindow();
         };

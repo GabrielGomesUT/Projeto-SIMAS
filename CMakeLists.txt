@@ -37,5 +37,8 @@ add_executable(MeuJogoFinal
     ListaEntidades.cpp
     Fase.cpp
     Piso.cpp
+    CidadeMedieval.cpp
+    Plataforma.cpp
+    Lama.cpp
 )
 target_link_libraries(MeuJogoFinal PRIVATE sfml-graphics sfml-window sfml-system)

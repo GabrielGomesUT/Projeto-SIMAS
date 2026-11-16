@@ -8,7 +8,6 @@ namespace Castelos_e_ruinas{
         protected:
             float x;
             float y;
-            sf::RectangleShape corpo;
             sf::Clock relogio;
             static float dt;
             //ostream buffer;

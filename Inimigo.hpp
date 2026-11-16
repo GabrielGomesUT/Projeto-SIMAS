@@ -1,9 +1,8 @@
 #pragma once
 #include "Personagem.hpp"
-#define RAIO_PERSEGUICAO_X 100.0f
-#define RAIO_PERSEGUICAO_Y 100.0f
+#define RAIO_PERSEGUICAO_X 200.0f
+#define RAIO_PERSEGUICAO_Y 200.0f
 #define VELOCIDADE_INIMIGO_X 100.0f
-#define VELOCIDADE_INIMIGO_Y 100.0f
 
 namespace Castelos_e_ruinas{
     namespace Entidades{

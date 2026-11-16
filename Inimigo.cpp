@@ -5,10 +5,11 @@ namespace Castelos_e_ruinas{
     namespace Entidades{
         namespace Personagens{
             Inimigo::Inimigo(const sf::Vector2f pos, const sf::Vector2f tam):Personagem(pos,tam,IDs::ID::inimigo),jogador(NULL),moveAleatorio(rand() % 2),tempo_acumulado(0.0){
-               sf::Texture* text = carregarText("../assets/inimigo_facil.png");
-               corpo.setTexture(text);
-               srand(time(NULL));
-               Inicializa();
+                sf::Texture* text = carregarText("../assets/cavaleiro.png");
+                if(text != NULL)
+                    corpo.setTexture(text);
+                srand(time(NULL));
+                Inicializa();
             }
 
             Inimigo::~Inimigo(){
@@ -16,7 +17,7 @@ namespace Castelos_e_ruinas{
             }
 
             void Inimigo::Inicializa(){
-                vel = sf::Vector2f(VELOCIDADE_INIMIGO_X,VELOCIDADE_INIMIGO_Y);
+                vel = sf::Vector2f(VELOCIDADE_INIMIGO_X,0.0f);
                 podeAndar = true;
             }
 
@@ -86,6 +87,7 @@ namespace Castelos_e_ruinas{
             void Inimigo::tomarDano(){
                 this->num_vidas--;
             }
+            
             sf::RectangleShape Inimigo::getSprite() const{
                 return corpo;
             }

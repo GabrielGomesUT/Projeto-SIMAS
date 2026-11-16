@@ -48,12 +48,11 @@ namespace Castelos_e_ruinas{
             }
         }
 
-        void ListaEntidades::desenhar(Gerenciadores::Gerenciador_Grafico* pGG){
+        void ListaEntidades::desenhar(){
             Entidades::Entidade* pAux;
             for(int i = 0; i < LEs.getTam();i++){
                 pAux = operator[](i);
-                pAux->setGG(pGG);
-                pGG->desenharEnte(static_cast<Ente*>(pAux));
+                pAux->desenhar();
             }
         }
 

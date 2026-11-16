@@ -1,5 +1,6 @@
 #pragma once
-#include "Elemento.hpp"
+#include <iostream>
+using namespace std;
 
 namespace Castelos_e_ruinas{
 
@@ -8,9 +9,24 @@ namespace Castelos_e_ruinas{
         template<class TL>
         class Lista{
         private:
+            template<class TE>
+            class Elemento{
+            private:
+                Elemento<TE>* pProx;
+                TE* pInfo;
+            public:
+                Elemento();
+                ~Elemento();
+                void incluir(TE* p);
+                void setProx(Elemento<TE>* pE);
+                Elemento<TE>* getPRoximo() const; 
+                TE* getInfo() const;
+            };
+
             Elemento<TL>* pPrimeiro;
             Elemento<TL>* pAtual;
             int tam;
+
         public:
             Lista();
             ~Lista();
@@ -21,6 +37,43 @@ namespace Castelos_e_ruinas{
             int getTam() const;
             TL* operator[](int pos);
         };
+
+        template<class TL>
+        template<class TE>
+        Lista<TL>::Elemento<TE>::Elemento(){
+            pProx = NULL;
+            pInfo = NULL;
+        }
+
+        template<class TL>
+        template<class TE>
+        Lista<TL>::Elemento<TE>::~Elemento(){
+
+        }
+
+        template<class TL>
+        template<class TE>
+        void Lista<TL>::Elemento<TE>::incluir(TE* p){
+            pInfo = p;
+        }
+
+        template<class TL>
+        template<class TE>
+        void Lista<TL>::Elemento<TE>::setProx(Elemento<TE>* pE){
+            pProx = pE;
+        }
+
+        template<class TL>
+        template<class TE>
+        Lista<TL>::Elemento<TE>* Lista<TL>::Elemento<TE>::getPRoximo() const{
+            return pProx;
+        }
+
+        template<class TL>
+        template<class TE>
+        TE* Lista<TL>::Elemento<TE>::getInfo() const{
+            return pInfo;
+        }
 
         template<class TL>
         Lista<TL>::Lista():tam(0){
