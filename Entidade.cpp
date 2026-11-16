@@ -2,8 +2,8 @@
 
 namespace Castelos_e_ruinas{
     namespace Entidades{
-        Entidade::Entidade(const sf::Vector2f pos,const sf::Vector2f tam,IDs::ID ID):Ente(ID),x(pos.x),y(pos.y),corpo(sf::RectangleShape(tam)){
-            corpo.setPosition(pos);
+        Entidade::Entidade(const sf::Vector2f pos,const sf::Vector2f tam,IDs::ID ID):Ente(pos,tam,ID),x(pos.x),y(pos.y){
+
         }
 
         float Entidade::dt(0.0f);

@@ -6,7 +6,7 @@
 #include "GerenciadorEventos.hpp"
 #include "GerenciadorColisoes.hpp"
 #include "ListaEntidades.hpp"
-#include "Fase.hpp"
+#include "CidadeMedieval.hpp"
 #include <time.h>
 
 namespace Castelos_e_ruinas{
@@ -15,7 +15,7 @@ namespace Castelos_e_ruinas{
         Entidades::Personagens::Jogador *pJog1;
         Gerenciadores::Gerenciador_Grafico *GG;
         Gerenciadores::Gerenciador_Eventos *GE;
-        Fases::Fase* pFase;
+        Fases::Cidade_Medieval* pCidade;
     public:
         Jogo();
         ~Jogo();

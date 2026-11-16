@@ -5,19 +5,15 @@
 namespace Castelos_e_ruinas{
     namespace Entidades{
         namespace Personagens{
-            Jogador::Jogador(const sf::Vector2f pos, const sf::Vector2f tam):Personagem(pos,tam,IDs::ID::jogador),pontos(0),podePular(false){
+            Jogador::Jogador(const sf::Vector2f pos, const sf::Vector2f tam):Personagem(pos,tam,IDs::ID::jogador),pontos(0),podePular(false),vel_lentidao(0.0f),lentidao(false){
                sf::Texture* text = carregarText("../assets/jogador.png");
                corpo.setTexture(text);
-               Inicializa();
+               num_vidas = 5;
+               vel = sf::Vector2f(0.0f,0.0f);
             }
             
             Jogador::~Jogador(){
 
-            }
-            
-            void Jogador::Inicializa(){
-                vel = sf::Vector2f(VELOCIDADE_JOGADOR_X,0.0f);
-                num_vidas = 5.0;
             }
 
             void Jogador::colisao(Inimigo* pIn,sf::Vector2f ds){
@@ -44,6 +40,13 @@ namespace Castelos_e_ruinas{
                 podePular = b;
             }
 
+            void Jogador::desaceleracao(float f_lent){
+                if(f_lent > 0){
+                    lentidao = true;
+                    vel_lentidao = f_lent;
+                }
+            }
+
             void Jogador::pular(){
                 if(podePular){
                     this->setVelY(VELOCIDADE_PULO);
@@ -58,6 +61,11 @@ namespace Castelos_e_ruinas{
             void Jogador::mover(){
                 dt = relogio.getElapsedTime().asSeconds();
                 setPodePular(false);
+                if(lentidao)
+                    vel.x = vel_lentidao;
+                else
+                    vel.x = VELOCIDADE_JOGADOR_X;
+                lentidao = false;
                 if(podeAndar)
                     atualizaPosicao();
                 gravidade();

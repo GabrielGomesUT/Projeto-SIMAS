@@ -8,7 +8,6 @@ using namespace Gerenciadores;
 Gerenciador_Grafico::Gerenciador_Grafico(){     //código adaptado dos alunos Marco Antônio Kochem Vendramin e Raphael Bassil Costa Geraldine do PETECO
     window = new sf::RenderWindow(sf::VideoMode(LARGURA_TELA,ALTURA_TELA),"Castelos_e_ruinas");
     window->setFramerateLimit(144);
-
 }
 
 Gerenciador_Grafico::~Gerenciador_Grafico(){    //código adaptado dos alunos Marco Antônio Kochem Vendramin e Raphael Bassil Costa Geraldine do PETECO
@@ -42,10 +41,6 @@ sf::Texture* Gerenciador_Grafico::carregarTextura(const char* caminhoTextura){
         text = NULL;
     }
     return text;
-}
-
-sf::Vector2u Gerenciador_Grafico::getWindowSize(){
-    return window->getSize();
 }
 
 void Gerenciador_Grafico::limpaWindow(){

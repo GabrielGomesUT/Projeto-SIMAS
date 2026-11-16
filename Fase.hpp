@@ -10,23 +10,21 @@ namespace Castelos_e_ruinas{
         protected:
             Listas::ListaEntidades lista_entes;
             Gerenciadores::GerenciadorColisoes GC;
-            sf::RectangleShape cenario;
-            void criarInimFaceis();
+            void criarCavaleiros();
             void criarPlataformas();
-            void criarCenario();
             void criarPiso();
-            /*virtual*/ void criarObstaculos(); //= 0;
-            /*virtual*/ void criarInimigos(); //= 0;
-        public:
-            Fase();
-            /*virtual*/ ~Fase();
-            void incluirJogador(Entidades::Personagens::Jogador* pJ);
-            void desenharEntidades(Gerenciadores::Gerenciador_Grafico* pGG);
-            /*virtual*/ void executar();
-            void atualizar();
+            virtual void criarObstaculos() = 0;
+            virtual void criarInimigos() = 0;
+            virtual void criarCenario() = 0;
             void salvar();
+            virtual sf::RectangleShape getSprite() const = 0;
+        public:
+            Fase(IDs::ID ID);
+            virtual ~Fase();
+            void desenharEntidades();
+            void incluirJogador(Entidades::Personagens::Jogador* pJ);
             void conectaEntidadesGC();
-            /*virtual*/ sf::RectangleShape getSprite() const;
+            virtual void executar();
         };
     }
 }

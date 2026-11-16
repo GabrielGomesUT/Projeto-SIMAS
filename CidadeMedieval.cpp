@@ -1,0 +1,56 @@
+#include "CidadeMedieval.hpp"
+#include "Ente.hpp"
+#include "Inimigo.hpp"
+#include "Jogador.hpp"
+#include "Lama.hpp"
+
+namespace Castelos_e_ruinas{
+
+    namespace Fases{
+
+        Cidade_Medieval::Cidade_Medieval():Fase(IDs::ID::casteloMedieval),maxZumbis(5){
+            criarCenario();
+            criarInimigos();
+            criarObstaculos();
+        }
+
+        Cidade_Medieval::~Cidade_Medieval(){
+
+        }
+
+        void Cidade_Medieval::criarInimigos(){
+            criarCavaleiros();
+            criarZumbis();
+        }
+
+        void Cidade_Medieval::criarObstaculos(){
+            criarPiso();
+            criarPlataformas();
+            criarLamas();
+        }
+
+        void Cidade_Medieval::criarZumbis(){
+
+        }
+
+        void Cidade_Medieval::criarLamas(){
+            Entidades::Obstaculos::Lama* pLama1 = new Entidades::Obstaculos::Lama(sf::Vector2f(350.0f,ALTURA_TELA - 114.9f),sf::Vector2f(300.0f,100.0f));
+            lista_entes.incluirEntidades(static_cast<Entidades::Entidade*>(pLama1));
+        }  
+
+        void Cidade_Medieval::criarCenario(){
+            sf::Texture* tex = carregarText("../assets/cenario1.png");
+            if (tex != nullptr) {
+                corpo.setTexture(tex);
+                float proporcaoJanela = LARGURA_TELA/ ALTURA_TELA;
+                int alturaTex = tex->getSize().y;
+                int larguraProporcional = static_cast<int>(alturaTex * proporcaoJanela);
+                corpo.setTextureRect(sf::IntRect(0, 0, larguraProporcional, alturaTex));
+            }
+        }
+
+        sf::RectangleShape Cidade_Medieval::getSprite() const{
+            return corpo;
+        }
+    }
+}

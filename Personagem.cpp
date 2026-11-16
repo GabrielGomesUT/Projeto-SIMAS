@@ -21,8 +21,16 @@ namespace Castelos_e_ruinas{
                 this->paraEsquerda = paraEsq;
             }
 
-            void Personagem::setVelY(float VelY){
-                vel.y = VelY;
+            void Personagem::setVelY(float Vely){
+                vel.y = Vely;
+            }
+
+            void Personagem::setVelX(float Velx){
+                vel.x = Velx;
+            }
+
+            sf::Vector2f Personagem::getVel(){
+                return vel;
             }
 
             void Personagem::atualizaPosicao(){

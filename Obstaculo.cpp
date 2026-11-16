@@ -24,7 +24,7 @@ namespace Castelos_e_ruinas{
                 if(pJ != NULL){
                     float invasaoX = fabs(ds.x);
                     float invasaoY = fabs(ds.y);
-                    if(invasaoX < invasaoY){ // colisão lateral
+                    if((invasaoX < invasaoY) && (this->getID() != IDs::ID::lama)){ // colisão lateral
                         if(pJ->getPos().x < this->getPos().x){
                             pJ->setPos(sf::Vector2f((pJ->getPos().x - invasaoX),pJ->getPos().y));
                         }
@@ -49,7 +49,7 @@ namespace Castelos_e_ruinas{
                 if(pI != NULL){
                     float invasaoX = fabs(ds.x);
                     float invasaoY = fabs(ds.y);
-                    if(invasaoX < invasaoY){ // colisão lateral
+                    if((invasaoX < invasaoY) && (this->getID() != IDs::ID::lama)){ // colisão lateral
                         if(pI->getPos().x < this->getPos().x){
                             pI->setPos(sf::Vector2f((pI->getPos().x - invasaoX),pI->getPos().y));
                         }

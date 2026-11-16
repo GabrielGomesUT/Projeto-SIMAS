@@ -20,10 +20,6 @@ namespace Castelos_e_ruinas{
 
             }
 
-            void Piso::atualizar(){
-
-            }
-
             void Piso::obstaculizar(Personagens::Jogador* p){
                 dt = relogio.getElapsedTime().asSeconds();
                 if(dt >= 5.0f){

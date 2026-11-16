@@ -20,7 +20,7 @@ namespace Castelos_e_ruinas{
             int getTam();
             void setJogEnt(Entidades::Personagens::Jogador* pJ);
             void percorrer();
-            void desenhar(Gerenciadores::Gerenciador_Grafico* pGG);
+            void desenhar();
         };
     }
 }

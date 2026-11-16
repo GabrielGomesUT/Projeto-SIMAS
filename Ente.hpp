@@ -15,8 +15,9 @@ namespace Castelos_e_ruinas{
     protected:  
         IDs::ID id;
         static Gerenciadores::Gerenciador_Grafico* pGG;
+        sf::RectangleShape corpo;
     public:
-        Ente(IDs::ID ID);
+        Ente(const sf::Vector2f pos,const sf::Vector2f tam,IDs::ID ID);
         virtual ~Ente();
         virtual void executar() = 0;
         void desenhar();
