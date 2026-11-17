@@ -10,15 +10,14 @@ namespace Castelos_e_ruinas {
 
             //Repassa pos e tam para Inimigo (que já carrega a textura e chama Inicializa())
             Cavaleiro::Cavaleiro(const sf::Vector2f pos, const sf::Vector2f tam, Jogador* pJog) :
-                Inimigo(pos, tam, pJog)
+                Inimigo(pos, tam)
             {
                 num_vidas = VIDA_CAVALEIRO;
                 nivel_maldade = NIVEL_MALDADE_CAVALEIRO;
-                /*Aparentemente não precisamos de um setJogador() aqui, pois o ponteiro do jogador já é passado para o construtor de Inimigo, que é chamado na lista de inicialização.
+
                 if(pJog != NULL) {
                     setJogador(pJog);
                 }
-                */
             }
             Cavaleiro::~Cavaleiro() {
             }
