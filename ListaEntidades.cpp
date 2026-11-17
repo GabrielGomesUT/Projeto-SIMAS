@@ -33,7 +33,7 @@ namespace Castelos_e_ruinas{
             Entidades::Entidade* pAux;
             for(int i = 0; i < LEs.getTam();i++){
                 pAux = operator[](i);
-                if(pAux->getID() == IDs::ID::inimigo){
+                if((pAux->getID() == IDs::ID::cavaleiro) || (pAux->getID() == IDs::ID::zumbi)){
                     Entidades::Personagens::Inimigo* pInimigo = static_cast<Entidades::Personagens::Inimigo*>(pAux);
                     pInimigo->setJogador(pJ);
                 }

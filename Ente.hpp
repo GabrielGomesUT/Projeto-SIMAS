@@ -24,7 +24,7 @@ namespace Castelos_e_ruinas{
         sf::Texture* carregarText(const char* caminhoTextura);
         static void setGG(Gerenciadores::Gerenciador_Grafico* pG);
         IDs::ID getID();
-        virtual sf::RectangleShape getSprite() const = 0;
+        sf::RectangleShape getSprite() const;
     };
 }
 

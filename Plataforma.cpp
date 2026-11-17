@@ -9,6 +9,7 @@ namespace Castelos_e_ruinas{
                 text->setRepeated(true);
                 corpo.setTexture(text);
                 corpo.setTextureRect(sf::IntRect(0, 0, 200, text->getSize().y));
+                danoso = false;
             }
 
             Plataforma::~Plataforma(){
@@ -29,10 +30,6 @@ namespace Castelos_e_ruinas{
 
             void Plataforma::obstaculizar(Personagens::Jogador* p){
             
-            }
-
-            sf::RectangleShape Plataforma::getSprite() const{
-                return corpo;
             }
         }
     }

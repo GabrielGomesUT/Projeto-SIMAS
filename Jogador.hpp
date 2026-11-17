@@ -16,6 +16,7 @@ namespace Castelos_e_ruinas{
                 bool lentidao;
             public:
                 Jogador(const sf::Vector2f pos, const sf::Vector2f tam);
+                Jogador();
                 ~Jogador();
                 void colisao(Inimigo* pIn,sf::Vector2f ds);
                 void setPodePular(bool b);
@@ -25,7 +26,6 @@ namespace Castelos_e_ruinas{
                 void executar();
                 void salvar();
                 void mover();   // codigo adaptado dos videos do monitor Lucas Eduardo Bonâncio Skora
-                sf::RectangleShape getSprite() const;
             };
         }
     }

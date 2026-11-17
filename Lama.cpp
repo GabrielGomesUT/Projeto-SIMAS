@@ -9,6 +9,7 @@ namespace Castelos_e_ruinas{
                 text->setRepeated(true);
                 corpo.setTexture(text);
                 corpo.setTextureRect(sf::IntRect(0, 0, 100, text->getSize().y));
+                danoso = false;
             }
             Lama::~Lama(){
 
@@ -28,10 +29,6 @@ namespace Castelos_e_ruinas{
                         p->desaceleracao(-desaceleracao); 
                     p->setPodePular(false);
                 }
-            }
-
-            sf::RectangleShape Lama::getSprite() const{
-                return corpo;
             }
         }
     }

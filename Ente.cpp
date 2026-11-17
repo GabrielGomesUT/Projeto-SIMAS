@@ -33,4 +33,8 @@ namespace Castelos_e_ruinas{
     IDs::ID Ente::getID(){
         return id;
     }
+
+    sf::RectangleShape Ente::getSprite() const{
+        return corpo;
+    }
 }
