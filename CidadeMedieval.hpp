@@ -14,7 +14,6 @@ namespace Castelos_e_ruinas{
             void criarObstaculos();
             void criarLamas();
             void criarCenario();
-            sf::RectangleShape getSprite() const;
         public:
             Cidade_Medieval();
             ~Cidade_Medieval();

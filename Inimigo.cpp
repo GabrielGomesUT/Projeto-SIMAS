@@ -4,21 +4,13 @@
 namespace Castelos_e_ruinas{
     namespace Entidades{
         namespace Personagens{
-            Inimigo::Inimigo(const sf::Vector2f pos, const sf::Vector2f tam):Personagem(pos,tam,IDs::ID::inimigo),jogador(NULL),moveAleatorio(rand() % 2),tempo_acumulado(0.0){
-                sf::Texture* text = carregarText("../assets/cavaleiro.png");
-                if(text != NULL)
-                    corpo.setTexture(text);
+            Inimigo::Inimigo(const sf::Vector2f pos, const sf::Vector2f tam,IDs::ID ID):Personagem(pos,tam,ID),jogador(NULL),moveAleatorio(rand() % 2),tempo_acumulado(0.0){
                 srand(time(NULL));
-                Inicializa();
+                podeAndar = true;
             }
 
             Inimigo::~Inimigo(){
                 jogador = NULL;
-            }
-
-            void Inimigo::Inicializa(){
-                vel = sf::Vector2f(VELOCIDADE_INIMIGO_X,0.0f);
-                podeAndar = true;
             }
 
             void Inimigo::salvarDataBuffer(){
@@ -39,15 +31,6 @@ namespace Castelos_e_ruinas{
                     andar(true); 
 
             }
-            
-            void Inimigo::executar(){
-                mover();
-            }// = 0;
-            //virtual void danificar(Jogador* p) = 0;
-
-            void Inimigo::salvar(){
-
-            }// = 0;
 
             void Inimigo::mover(){
                 if(jogador != NULL){
@@ -82,14 +65,6 @@ namespace Castelos_e_ruinas{
                         tempo_acumulado = 0.0f;
                     }
                 }
-            }
-
-            void Inimigo::tomarDano(){
-                this->num_vidas--;
-            }
-            
-            sf::RectangleShape Inimigo::getSprite() const{
-                return corpo;
             }
         }
     }

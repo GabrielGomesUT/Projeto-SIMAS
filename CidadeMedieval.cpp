@@ -1,6 +1,6 @@
 #include "CidadeMedieval.hpp"
 #include "Ente.hpp"
-#include "Inimigo.hpp"
+#include "Zumbi.hpp"
 #include "Jogador.hpp"
 #include "Lama.hpp"
 
@@ -30,7 +30,10 @@ namespace Castelos_e_ruinas{
         }
 
         void Cidade_Medieval::criarZumbis(){
-
+            Entidades::Personagens::Zumbi* pZum1 = new Entidades::Personagens::Zumbi(sf::Vector2f(1000.0f, ALTURA_TELA - 115.0F), sf::Vector2f(50, 70));
+            Entidades::Personagens::Zumbi* pZum2 = new Entidades::Personagens::Zumbi(sf::Vector2f(1200.0f, ALTURA_TELA - 115.0f), sf::Vector2f(50, 70));
+            lista_entes.incluirEntidades(static_cast<Entidades::Entidade*>(pZum1));
+            lista_entes.incluirEntidades(static_cast<Entidades::Entidade*>(pZum2));
         }
 
         void Cidade_Medieval::criarLamas(){
@@ -47,10 +50,6 @@ namespace Castelos_e_ruinas{
                 int larguraProporcional = static_cast<int>(alturaTex * proporcaoJanela);
                 corpo.setTextureRect(sf::IntRect(0, 0, larguraProporcional, alturaTex));
             }
-        }
-
-        sf::RectangleShape Cidade_Medieval::getSprite() const{
-            return corpo;
         }
     }
 }

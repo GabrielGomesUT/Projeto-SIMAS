@@ -11,6 +11,13 @@ namespace Castelos_e_ruinas{
                num_vidas = 5;
                vel = sf::Vector2f(0.0f,0.0f);
             }
+
+            Jogador::Jogador():Personagem(sf::Vector2f(0.0f,ALTURA_TELA - 145.0f),sf::Vector2f(50.0f,50.0f),IDs::ID::jogador),pontos(0),podePular(false),vel_lentidao(0.0f),lentidao(false){
+            sf::Texture* text = carregarText("../assets/jogador.png");
+               corpo.setTexture(text);
+               num_vidas = 5;
+               vel = sf::Vector2f(0.0f,0.0f);
+            }
             
             Jogador::~Jogador(){
 
@@ -70,9 +77,6 @@ namespace Castelos_e_ruinas{
                     atualizaPosicao();
                 gravidade();
                 relogio.restart();
-            }
-            sf::RectangleShape Jogador::getSprite() const{
-                return corpo;
             }
             void Jogador::salvar(){
 
