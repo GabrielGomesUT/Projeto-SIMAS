@@ -31,7 +31,7 @@ namespace Castelos_e_ruinas{
 
         void Cidade_Medieval::criarZumbis(){
             for(int i = 0 ;i < maxZumbis;i++){
-                Entidades::Personagens::Zumbi* pZum = new Entidades::Personagens::Zumbi(sf::Vector2f(500.0f + 100.0f * i, ALTURA_TELA - 115.0F), sf::Vector2f(50, 70));
+                Entidades::Personagens::Zumbi* pZum = new Entidades::Personagens::Zumbi(sf::Vector2f(500.0f + 110.0f * i, ALTURA_TELA - 115.0F), sf::Vector2f(30, 50));
                 lista_entes.incluirEntidades(static_cast<Entidades::Entidade*>(pZum));
             }
         }

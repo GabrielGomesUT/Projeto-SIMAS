@@ -11,10 +11,10 @@ namespace Castelos_e_ruinas{
         private:
             Jogo* pJogo;
             void criarBotoes();
+            void criarFundo();
         public:
             MenuPrincipal();
             ~MenuPrincipal();
-            void criarFundo();
             void selecionar();
             void executar();
         };
