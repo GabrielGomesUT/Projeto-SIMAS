@@ -4,7 +4,8 @@
 namespace Castelos_e_ruinas{
     namespace Entidades{
         namespace Obstaculos{
-            Lama::Lama(const sf::Vector2f pos, const sf::Vector2f tam):Obstaculo(pos,tam,IDs::ID::lama),desaceleracao(70.0f){
+            Lama::Lama(const sf::Vector2f pos, const sf::Vector2f tam):
+                Obstaculo(pos,tam,IDs::ID::lama),desaceleracao(70.0f){
                 sf::Texture* text = carregarText("../assets/lama.png");
                 text->setRepeated(true);
                 corpo.setTexture(text);
