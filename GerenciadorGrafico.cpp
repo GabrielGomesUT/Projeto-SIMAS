@@ -43,6 +43,15 @@ sf::Texture* Gerenciador_Grafico::carregarTextura(const char* caminhoTextura){
     return text;
 }
 
+sf::Font* Gerenciador_Grafico::carregarFonte(const char* caminhoFonte){
+    sf::Font* font = new sf::Font();
+    if(!font->loadFromFile(caminhoFonte)){
+        cerr<<"Nao foi possivel carregar a fonte"<<endl;
+        font = NULL;
+    }
+    return font;
+}
+
 void Gerenciador_Grafico::limpaWindow(){
     window->clear();
 }
@@ -61,4 +70,12 @@ void Gerenciador_Grafico::desenharEnte(Ente* pE) {
     }
     else
         cerr<<"Erro: ponteiro para Ente nulo."<<endl;
+}
+
+void Gerenciador_Grafico::desenharTexto(Botoes::Texto* pText) {
+    if (pText != NULL) {
+        window->draw(pText->getTexto()); 
+    }
+    else
+        cerr<<"Erro: ponteiro para Texto nulo."<<endl;
 }

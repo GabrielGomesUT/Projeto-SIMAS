@@ -24,10 +24,6 @@ namespace Castelos_e_ruinas{
 
             }
 
-            void Plataforma::atualizar(){
-
-            }
-
             void Plataforma::obstaculizar(Personagens::Jogador* p){
             
             }

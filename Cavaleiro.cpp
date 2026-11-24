@@ -15,6 +15,7 @@ namespace Castelos_e_ruinas {
                 nivel_maldade = NIVEL_MALDADE_CAVALEIRO;
                 vel = sf::Vector2f(VELOCIDADE_CAVALEIRO_X,0.0f);
             }
+            
             Cavaleiro::~Cavaleiro() {
             }
 

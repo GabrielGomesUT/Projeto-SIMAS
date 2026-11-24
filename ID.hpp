@@ -14,6 +14,12 @@ namespace Castelos_e_ruinas{
             lama,       //6
             cavaleiro,      //7
             zumbi,      //8
+            castelo,    //9
+            botaoTexto,  //10
+            menuPrincipal,  //11
+            menuPause,  //12
+            dragao,     //13
+            lancaChamas,    //14
         };
     }
 }

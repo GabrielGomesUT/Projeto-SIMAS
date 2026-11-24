@@ -42,5 +42,13 @@ add_executable(MeuJogoFinal
     Lama.cpp
     Cavaleiro.cpp
     Zumbi.cpp
+    Castelo.cpp
+    Botao.cpp
+    BotaoTexto.cpp
+    MenuPrincipal.cpp
+    Menu.cpp
+    Texto.cpp
+    LancaChamas.cpp
+    Dragao.cpp
 )
 target_link_libraries(MeuJogoFinal PRIVATE sfml-graphics sfml-window sfml-system)

@@ -11,12 +11,18 @@ namespace Castelos_e_ruinas{
         corpo.setPosition(pos);
     }
 
+    float Ente::dt(0.0f);
+
     Ente::~Ente(){
 
     }
 
     sf::Texture* Ente::carregarText(const char* caminhoTextura){
         return pGG->carregarTextura(caminhoTextura);
+    }
+
+    sf::Font* Ente::carregarFont(const char* caminhoFonte){
+        return pGG->carregarFonte(caminhoFonte);
     }
 
     void Ente::desenhar(){

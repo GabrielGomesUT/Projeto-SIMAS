@@ -14,6 +14,8 @@ namespace Castelos_e_ruinas{
                 bool podePular;
                 float vel_lentidao;
                 bool lentidao;
+                const int num;
+                static int cont;
             public:
                 Jogador(const sf::Vector2f pos, const sf::Vector2f tam);
                 Jogador();
@@ -21,6 +23,7 @@ namespace Castelos_e_ruinas{
                 void colisao(Inimigo* pIn,sf::Vector2f ds);
                 void setPodePular(bool b);
                 void desaceleracao(float f_lent);
+                const int getNum() const;
                 void pular();
                 void operator++();
                 void executar();

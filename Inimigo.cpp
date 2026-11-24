@@ -43,6 +43,7 @@ namespace Castelos_e_ruinas{
                         persegueJogador(posJogador,posInimigo);
                     else
                         moverAleatorio();
+
                     if(podeAndar)
                         atualizaPosicao();
                     gravidade();
