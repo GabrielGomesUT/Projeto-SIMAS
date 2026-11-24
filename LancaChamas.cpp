@@ -6,7 +6,7 @@ namespace Castelos_e_ruinas {
         namespace Obstaculos {
 
             LancaChamas::LancaChamas(const sf::Vector2f pos, const sf::Vector2f tam):
-                Obstaculo(pos, tam, IDs::ID::lanca_chamas),
+                Obstaculo(pos, tam, IDs::ID::lancaChamas),
                 desaceleracao(DESACELERACAO_CHAMAS),
                 tempoDano(TEMPO_DANO_CHAMAS)
             {/*Ainda temos de botar a textura do lança chamas

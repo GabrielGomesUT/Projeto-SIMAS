@@ -1,17 +1,16 @@
 #pragma once
-
 #include "Inimigo.hpp"
 
 namespace Castelos_e_ruinas {
     namespace Entidades {
 
-        class Projetil; //Mesma declaração antecipada que usamos para Jogador em Inimigo.hpp
+        //class Projetil; //Mesma declaração antecipada que usamos para Jogador em Inimigo.hpp
 
         namespace Personagens {
 
             class Dragao : public Inimigo {
             private:
-                Projetil* pProjetil; //Projétil do Dragão
+                //Projetil* pProjetil; //Projétil do Dragão
                 float tempo_disparo; //Pra controlar o intervalo entre tiros
 
                 void atirar();
@@ -20,7 +19,7 @@ namespace Castelos_e_ruinas {
                 Dragao(const sf::Vector2f pos, const sf::Vector2f tam, Jogador* pJog = NULL);
                 ~Dragao();
 
-                void setProjetil(Projetil* pProj);
+                //void setProjetil(Projetil* pProj);
 
                 void mover();
                 void danificar(Jogador* pJog);

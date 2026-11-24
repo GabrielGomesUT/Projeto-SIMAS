@@ -5,8 +5,6 @@ namespace Castelos_e_ruinas{
         Entidade::Entidade(const sf::Vector2f pos,const sf::Vector2f tam,IDs::ID ID):Ente(pos,tam,ID),x(pos.x),y(pos.y){
 
         }
-
-        float Entidade::dt(0.0f);
         
         Entidade::~Entidade(){
 

@@ -1,9 +1,10 @@
 #pragma once
 #include <vector>
 #include "Ente.hpp"
+#include "Texto.hpp"
 #include <SFML/Graphics.hpp>
-#define LARGURA_TELA 1500.0f
-#define ALTURA_TELA 900.0f
+#define LARGURA_TELA 1920.0f
+#define ALTURA_TELA 1080.0f
 
 namespace Castelos_e_ruinas{
     
@@ -20,9 +21,11 @@ namespace Castelos_e_ruinas{
             ~Gerenciador_Grafico();
              sf::RenderWindow* getWindow();
             void desenharEnte(Ente* pE);
+            void desenharTexto(Botoes::Texto* pText);
             static Gerenciador_Grafico* getGerenciadorGrafico();
             bool verificaWindowOpen();
             sf::Texture* carregarTextura(const char* caminhoTextura);
+            sf::Font* carregarFonte(const char* caminhoFonte);
             void mostrar();
             void limpaWindow();
             void closeWindow();

@@ -8,7 +8,7 @@ namespace Castelos_e_ruinas{
 
     namespace Fases{
 
-        Cidade_Medieval::Cidade_Medieval():Fase(IDs::ID::casteloMedieval),maxZumbis(5){
+        Cidade_Medieval::Cidade_Medieval():Fase(IDs::ID::casteloMedieval),maxZumbis((rand() % 7) + 4),maxLamas(10){
             criarCenario();
             criarInimigos();
             criarObstaculos();
@@ -30,10 +30,10 @@ namespace Castelos_e_ruinas{
         }
 
         void Cidade_Medieval::criarZumbis(){
-            Entidades::Personagens::Zumbi* pZum1 = new Entidades::Personagens::Zumbi(sf::Vector2f(1000.0f, ALTURA_TELA - 115.0F), sf::Vector2f(50, 70));
-            Entidades::Personagens::Zumbi* pZum2 = new Entidades::Personagens::Zumbi(sf::Vector2f(1200.0f, ALTURA_TELA - 115.0f), sf::Vector2f(50, 70));
-            lista_entes.incluirEntidades(static_cast<Entidades::Entidade*>(pZum1));
-            lista_entes.incluirEntidades(static_cast<Entidades::Entidade*>(pZum2));
+            for(int i = 0 ;i < maxZumbis;i++){
+                Entidades::Personagens::Zumbi* pZum = new Entidades::Personagens::Zumbi(sf::Vector2f(500.0f + 100.0f * i, ALTURA_TELA - 115.0F), sf::Vector2f(50, 70));
+                lista_entes.incluirEntidades(static_cast<Entidades::Entidade*>(pZum));
+            }
         }
 
         void Cidade_Medieval::criarLamas(){

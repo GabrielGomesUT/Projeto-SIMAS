@@ -8,6 +8,7 @@ namespace Castelos_e_ruinas{
         class Cidade_Medieval:public Fase{
         private:
             const int maxZumbis;
+            const int maxLamas;
         protected:
             void criarZumbis();
             void criarInimigos();

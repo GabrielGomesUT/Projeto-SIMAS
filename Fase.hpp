@@ -10,6 +10,7 @@ namespace Castelos_e_ruinas{
         protected:
             Listas::ListaEntidades lista_entes;
             Gerenciadores::GerenciadorColisoes GC;
+            const int maxCavaleiros;
             void criarCavaleiros();
             void criarPlataformas();
             void criarPiso();

@@ -3,6 +3,7 @@
 #include "Jogador.hpp"
 #include "Inimigo.hpp"
 #include "Obstaculo.hpp"
+#include "Piso.hpp"
 #include "ListaEntidades.hpp"
 #include "ID.hpp"
 #include <cmath>
@@ -16,12 +17,14 @@ namespace Castelos_e_ruinas {
             pListaJogadores = new std::vector<Entidades::Personagens::Jogador*>();
             pListaInimigos = new std::vector<Entidades::Personagens::Inimigo*>();
             pListaObstaculos = new std::vector<Entidades::Obstaculos::Obstaculo*>();
+            pListaPisos = new std::vector<Entidades::Piso*>();
         }
 
         GerenciadorColisoes::~GerenciadorColisoes() {
             delete pListaJogadores;
             delete pListaInimigos;
             delete pListaObstaculos;
+            delete pListaPisos;
         }
 
         void GerenciadorColisoes::conectaEntidades(Listas::ListaEntidades* LE){
@@ -30,10 +33,12 @@ namespace Castelos_e_ruinas {
                 pAux = LE->operator[](i);
                 if(pAux->getID() == IDs::ID::jogador)
                     pListaJogadores->push_back(dynamic_cast<Entidades::Personagens::Jogador*>(pAux));
-                else if((pAux->getID() == IDs::ID::cavaleiro) || (pAux->getID() == IDs::ID::zumbi))
+                else if((pAux->getID() == IDs::ID::cavaleiro) || (pAux->getID() == IDs::ID::zumbi) || (pAux->getID() == IDs::ID::dragao))
                     pListaInimigos->push_back(dynamic_cast<Entidades::Personagens::Inimigo*>(pAux));
-                else if((pAux->getID() == IDs::ID::piso) || (pAux->getID() == IDs::ID::plataforma) || (pAux->getID() == IDs::ID::lama))
+                else if((pAux->getID() == IDs::ID::plataforma) || (pAux->getID() == IDs::ID::lama) || (pAux->getID() == IDs::ID::lancaChamas))
                     pListaObstaculos->push_back(dynamic_cast<Entidades::Obstaculos::Obstaculo*>(pAux));
+                else if(pAux->getID() == IDs::ID::piso)
+                    pListaPisos->push_back(dynamic_cast<Entidades::Piso*>(pAux));
             }
         }
 
@@ -137,9 +142,53 @@ namespace Castelos_e_ruinas {
                 }
             //Funcionalidade: Colisão entre Inimigos e Obstáculos 
             }
-        }        
+        }      
+        
+        void GerenciadorColisoes::tratarColisaoPersonagemPiso(){
+            if (pListaPisos == NULL) return;
+
+            if (pListaJogadores != NULL) {
+                for (std::size_t i = 0; i < pListaJogadores->size(); i++) {
+                    Entidades::Personagens::Jogador* pJogador = (*pListaJogadores)[i];
+
+                    if (pJogador != NULL) {
+                        for (std::size_t j = 0; j < pListaPisos->size(); j++) {
+                            Entidades::Piso* pPiso = (*pListaPisos)[j];
+
+                            if (pPiso != NULL) {
+                                sf::Vector2f ds = calculaColisao(pJogador, pPiso);
+                                if (ds.x < 0.0f && ds.y < 0.0f) {
+                                    pPiso->colisao(static_cast<Entidades::Personagens::Personagem*>(pJogador), ds);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            //Funcionalidade: Colisão entre Jogadores e Obstáculos
+
+            if (pListaInimigos != NULL) {
+                for (std::size_t i = 0; i < pListaInimigos->size(); i++) {
+                    Entidades::Personagens::Inimigo* pInimigo = (*pListaInimigos)[i];
+                
+                    if (pInimigo != NULL) {
+                        for (std::size_t j = 0; j < pListaPisos->size(); j++) {
+                            Entidades::Piso* pPiso = (*pListaPisos)[j];
+                            
+                            if (pPiso != NULL) {
+                                sf::Vector2f ds = calculaColisao(pInimigo, pPiso);
+                                if (ds.x < 0.0f && ds.y < 0.0f) {
+                                    pPiso->colisao(static_cast<Entidades::Personagens::Personagem*>(pInimigo), ds); 
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         
         void GerenciadorColisoes::executar() {
+            tratarColisaoPersonagemPiso();
             colisaoJogadorInimigo();
             colisaoPersonagemObstaculo();
         }

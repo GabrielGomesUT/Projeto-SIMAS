@@ -1,5 +1,5 @@
 #include "Dragao.hpp"
-#include "Projetil.hpp" //Falta fazermos
+//#include "Projetil.hpp" //Falta fazermos
 #include "Jogador.hpp"
 #include <cmath>
 
@@ -16,8 +16,8 @@ namespace Castelos_e_ruinas {
         namespace Personagens {
 
             Dragao::Dragao(const sf::Vector2f pos, const sf::Vector2f tam, Jogador* pJog) :
-                Inimigo(pos, tam),
-                pProjetil(NULL),
+                Inimigo(pos, tam,IDs::ID::dragao),
+                //pProjetil(NULL),
                 tempo_disparo(0.0f)
             {
                 num_vidas = VIDA_DRAGAO;
@@ -34,14 +34,14 @@ namespace Castelos_e_ruinas {
             }
 
             Dragao::~Dragao() {
-                pProjetil = NULL;
+                //pProjetil = NULL;
             }
 
-            void Dragao::setProjetil(Projetil* pProj) {
-                if (pProj != NULL) {
+            /*void Dragao::setProjetil(Projetil* pProj) {
+              if (pProj != NULL) {
                     pProjetil = pProj;
                 }
-            }
+            }*/
 
             //Mover prório do dragão, pois ele voa
             void Dragao::mover() {
@@ -75,15 +75,16 @@ namespace Castelos_e_ruinas {
             }
 
             void Dragao::executar() {
+                mover();
                 tempo_disparo += dt;
 
                 if (tempo_disparo >= INTERVALO_DISPARO) {
-                    atirar();
+                    //atirar();
                     tempo_disparo = 0.0f;
                 }
             }
 
-            void Dragao::atirar() {
+            /*void Dragao::atirar() {
                 //Garanti que tem projetil para atirar, que o jogador existe e que o projetil não está ativo (ainda não foi lançado)
                 if (pProjetil != NULL && jogador != NULL && !pProjetil->getAtivo()) {
                     sf::Vector2f posBoca(
@@ -93,7 +94,7 @@ namespace Castelos_e_ruinas {
 
                     pProjetil->lancar(posBoca, jogador);
                 }
-            }
+            }*/
 
             void Dragao::danificar(Jogador* pJog) {
                 if (pJog != NULL) {

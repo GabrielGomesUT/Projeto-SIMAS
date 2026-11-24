@@ -16,7 +16,6 @@ namespace Castelos_e_ruinas{
                 ~Plataforma();
                 void executar();
                 void salvar();
-                void atualizar();
                 void obstaculizar(Personagens::Jogador* p);              
             }; 
         }
