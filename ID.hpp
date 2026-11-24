@@ -14,6 +14,8 @@ namespace Castelos_e_ruinas{
             lama,       //6
             cavaleiro,      //7
             zumbi,      //8
+            lanca_chamas,   //9
+            dragao,     //10
         };
     }
 }
