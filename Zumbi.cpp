@@ -1,25 +1,16 @@
 #include "Zumbi.hpp"
 #include "Jogador.hpp"
 
-#define VIDA_ZUMBIE 5
-#define NIVEL_MALDADE_ZUMBIE 1
-#define VELOCIDADE_ZUMBIE_X 40.0f
-
 namespace Castelos_e_ruinas {
     namespace Entidades {
         namespace Personagens {
 
-            Zumbi::Zumbi(const sf::Vector2f pos, const sf::Vector2f tam, Jogador* pJog) :
-                Inimigo(pos, tam)
+            Zumbi::Zumbi(const sf::Vector2f pos, const sf::Vector2f tam):
+                Inimigo(pos, tam,IDs::ID::zumbi)
             {
-                if (pJog != NULL) {
-                    setJogador(pJog);
-                }
                 num_vidas = VIDA_ZUMBIE;
                 nivel_maldade = NIVEL_MALDADE_ZUMBIE;
-                vel.x = VELOCIDADE_ZUMBIE_X;
-
-                //Ajuste de cor para diferenciar do Cavaleiro
+                vel = sf::Vector2f(VELOCIDADE_ZUMBIE_X,0.0f);
                 corpo.setFillColor(sf::Color::Blue);
             }
 

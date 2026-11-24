@@ -30,7 +30,7 @@ namespace Castelos_e_ruinas {
                 pAux = LE->operator[](i);
                 if(pAux->getID() == IDs::ID::jogador)
                     pListaJogadores->push_back(dynamic_cast<Entidades::Personagens::Jogador*>(pAux));
-                else if(pAux->getID() == IDs::ID::inimigo)
+                else if((pAux->getID() == IDs::ID::cavaleiro) || (pAux->getID() == IDs::ID::zumbi))
                     pListaInimigos->push_back(dynamic_cast<Entidades::Personagens::Inimigo*>(pAux));
                 else if((pAux->getID() == IDs::ID::piso) || (pAux->getID() == IDs::ID::plataforma) || (pAux->getID() == IDs::ID::lama))
                     pListaObstaculos->push_back(dynamic_cast<Entidades::Obstaculos::Obstaculo*>(pAux));

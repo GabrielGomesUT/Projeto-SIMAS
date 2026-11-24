@@ -1,5 +1,5 @@
 #include "Fase.hpp"
-#include "Inimigo.hpp"
+#include "Cavaleiro.hpp"
 #include "Jogador.hpp"
 #include "Piso.hpp"
 #include "Plataforma.hpp"
@@ -16,10 +16,10 @@ namespace Castelos_e_ruinas{
         }
 
         void Fase::criarCavaleiros(){
-            Entidades::Personagens::Inimigo* pIni1 = new Entidades::Personagens::Inimigo(sf::Vector2f(400.0f, 500.0f), sf::Vector2f(50, 70));
-            Entidades::Personagens::Inimigo* pIni2 = new Entidades::Personagens::Inimigo(sf::Vector2f(820.0f, 410.0f), sf::Vector2f(50, 70));
-            lista_entes.incluirEntidades(static_cast<Entidades::Entidade*>(pIni1));
-            lista_entes.incluirEntidades(static_cast<Entidades::Entidade*>(pIni2));
+            Entidades::Personagens::Cavaleiro* pCav1 = new Entidades::Personagens::Cavaleiro(sf::Vector2f(400.0f, 500.0f), sf::Vector2f(50, 70));
+            Entidades::Personagens::Cavaleiro* pCav2 = new Entidades::Personagens::Cavaleiro(sf::Vector2f(820.0f, 410.0f), sf::Vector2f(50, 70));
+            lista_entes.incluirEntidades(static_cast<Entidades::Entidade*>(pCav1));
+            lista_entes.incluirEntidades(static_cast<Entidades::Entidade*>(pCav2));
         }
 
         void Fase::criarPlataformas(){

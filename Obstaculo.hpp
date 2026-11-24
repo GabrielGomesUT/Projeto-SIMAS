@@ -25,7 +25,6 @@ namespace Castelos_e_ruinas{
                 void colisao(Personagens::Jogador* pJ,sf::Vector2f ds);
                 void colisao(Personagens::Inimigo* pI,sf::Vector2f ds);
                 virtual void obstaculizar(Personagens::Jogador* p) = 0;
-                virtual sf::RectangleShape getSprite() const = 0;
             };
         }
 

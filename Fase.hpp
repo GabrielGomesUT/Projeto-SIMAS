@@ -17,7 +17,6 @@ namespace Castelos_e_ruinas{
             virtual void criarInimigos() = 0;
             virtual void criarCenario() = 0;
             void salvar();
-            virtual sf::RectangleShape getSprite() const = 0;
         public:
             Fase(IDs::ID ID);
             virtual ~Fase();

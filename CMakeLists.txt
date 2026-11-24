@@ -40,5 +40,7 @@ add_executable(MeuJogoFinal
     CidadeMedieval.cpp
     Plataforma.cpp
     Lama.cpp
+    Cavaleiro.cpp
+    Zumbi.cpp
 )
 target_link_libraries(MeuJogoFinal PRIVATE sfml-graphics sfml-window sfml-system)

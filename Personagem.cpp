@@ -33,6 +33,10 @@ namespace Castelos_e_ruinas{
                 return vel;
             }
 
+            void Personagem::operator--(){
+                num_vidas--;
+            }
+
             void Personagem::atualizaPosicao(){
                 float dx = 0; //elemento de deslocamento
                 dx = vel.x * dt; // Velocidade instantanea

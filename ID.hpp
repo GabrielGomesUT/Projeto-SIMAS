@@ -1,14 +1,19 @@
 #pragma once
 
-namespace IDs{
+namespace Castelos_e_ruinas{
 
-    enum class ID{   // codigo adaptado dos videos do monitor Lucas Eduardo Bonâncio Skora
-        vazio = 0,
-        jogador,  //1
-        inimigo,  //2
-        piso,  //3
-        casteloMedieval,   //4
-        plataforma,     //5
-        lama,       //6
-    };
+    namespace IDs{
+
+        enum class ID{   // codigo adaptado dos videos do monitor Lucas Eduardo Bonâncio Skora
+            vazio = 0,
+            jogador,  //1
+            inimigo,  //2
+            piso,  //3
+            casteloMedieval,   //4
+            plataforma,     //5
+            lama,       //6
+            cavaleiro,      //7
+            zumbi,      //8
+        };
+    }
 }

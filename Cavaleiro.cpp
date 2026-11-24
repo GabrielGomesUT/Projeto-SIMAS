@@ -1,23 +1,19 @@
 #include "Cavaleiro.hpp"
 #include "Jogador.hpp"
-//Esses próximos defines ainda temos de ajustar os valores
-#define VIDA_CAVALEIRO 3
-#define NIVEL_MALDADE_CAVALEIRO 1 
 
 namespace Castelos_e_ruinas {
     namespace Entidades {
         namespace Personagens {
 
-            //Repassa pos e tam para Inimigo (que já carrega a textura e chama Inicializa())
-            Cavaleiro::Cavaleiro(const sf::Vector2f pos, const sf::Vector2f tam, Jogador* pJog) :
-                Inimigo(pos, tam)
+            Cavaleiro::Cavaleiro(const sf::Vector2f pos, const sf::Vector2f tam):
+                Inimigo(pos,tam,IDs::ID::cavaleiro),raio(0.0f)
             {
+                sf::Texture* text = carregarText("../assets/cavaleiro.png");
+                if(text != NULL)
+                    corpo.setTexture(text);
                 num_vidas = VIDA_CAVALEIRO;
                 nivel_maldade = NIVEL_MALDADE_CAVALEIRO;
-
-                if(pJog != NULL) {
-                    setJogador(pJog);
-                }
+                vel = sf::Vector2f(VELOCIDADE_CAVALEIRO_X,0.0f);
             }
             Cavaleiro::~Cavaleiro() {
             }
@@ -39,7 +35,6 @@ namespace Castelos_e_ruinas {
             void Cavaleiro::salvar() {
 
             }
-
         }
     }
 }

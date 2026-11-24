@@ -11,8 +11,8 @@ namespace Castelos_e_ruinas {
 
             class Dragao : public Inimigo {
             private:
-                Projetil* pProjetil;   //Projétil (Bola de Fogo) associado ao Dragão
-                float tempo_disparo;   //Para controlar o intervalo entre tiros
+                Projetil* pProjetil; //Projétil do Dragão
+                float tempo_disparo; //Pra controlar o intervalo entre tiros
 
                 void atirar();
 

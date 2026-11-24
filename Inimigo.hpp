@@ -2,7 +2,6 @@
 #include "Personagem.hpp"
 #define RAIO_PERSEGUICAO_X 200.0f
 #define RAIO_PERSEGUICAO_Y 200.0f
-#define VELOCIDADE_INIMIGO_X 100.0f
 
 namespace Castelos_e_ruinas{
     namespace Entidades{
@@ -16,9 +15,8 @@ namespace Castelos_e_ruinas{
                 short moveAleatorio;
                 int nivel_maldade;
                 float tempo_acumulado;
-                void Inicializa();
             public:
-                Inimigo(const sf::Vector2f pos, const sf::Vector2f tam);
+                Inimigo(const sf::Vector2f pos, const sf::Vector2f tam,IDs::ID ID);
                 virtual ~Inimigo(); //Eduardo: virtual, pois outras classes lidam com Inimigo
                 void salvarDataBuffer();
                 void setJogador(Jogador* pJog);
@@ -26,10 +24,8 @@ namespace Castelos_e_ruinas{
                 virtual void executar() = 0; //Eduardo
                 virtual void danificar(Jogador* pJog) = 0; //Eduardo
                 virtual void salvar() = 0; //Eduardo
-                virtual void mover(); //= 0;
+                virtual void mover();
                 void moverAleatorio(); // codigo adaptado dos videos do monitor Lucas Eduardo Bonâncio Skora
-                void tomarDano();
-                virtual sf::RectangleShape getSprite() const;// = 0;
             };
         }
     }

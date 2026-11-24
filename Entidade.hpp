@@ -21,7 +21,6 @@ namespace Castelos_e_ruinas{
             void setTam(sf::Vector2f Tam);
             virtual void executar() = 0;
             virtual void salvar() = 0;
-            virtual sf::RectangleShape getSprite() const = 0;
         };
     }   
 }

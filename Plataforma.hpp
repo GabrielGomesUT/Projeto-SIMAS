@@ -17,8 +17,7 @@ namespace Castelos_e_ruinas{
                 void executar();
                 void salvar();
                 void atualizar();
-                void obstaculizar(Personagens::Jogador* p);
-                sf::RectangleShape getSprite() const;
+                void obstaculizar(Personagens::Jogador* p);              
             }; 
         }
     }
