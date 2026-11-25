@@ -50,5 +50,10 @@ add_executable(MeuJogoFinal
     Texto.cpp
     LancaChamas.cpp
     Dragao.cpp
+    GerenciadorEstados.cpp
+    Estado.cpp
+    EstadoJogar.cpp
+    EstadoMenu.cpp
+    MenuPause.cpp
 )
 target_link_libraries(MeuJogoFinal PRIVATE sfml-graphics sfml-window sfml-system)

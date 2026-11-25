@@ -11,7 +11,7 @@ namespace Castelos_e_ruinas{
                if(cont == 0){
                 corpo.setFillColor(sf::Color::Green);
                }
-               num_vidas = 5;
+               num_vidas = 20;
                vel = sf::Vector2f(0.0f,0.0f);
             }
 

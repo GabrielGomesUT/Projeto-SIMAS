@@ -21,6 +21,7 @@ namespace Castelos_e_ruinas{
                 void setVelY(float Vely);
                 void setVelX(float Velx);
                 sf::Vector2f getVel();
+                int getNumVida();
                 void operator--();
                 void andar(bool paraEsq);
                 void gravidade();

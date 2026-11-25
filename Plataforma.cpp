@@ -17,7 +17,10 @@ namespace Castelos_e_ruinas{
             }
 
             void Plataforma::executar(){
-
+                danoso = false;
+                float aleatorio = rand() % 10*altura;
+                if(aleatorio > 1000)
+                    danoso = true;
             }
 
             void Plataforma::salvar(){
@@ -25,7 +28,8 @@ namespace Castelos_e_ruinas{
             }
 
             void Plataforma::obstaculizar(Personagens::Jogador* p){
-            
+                if(danoso)
+                    p->operator--();
             }
         }
     }

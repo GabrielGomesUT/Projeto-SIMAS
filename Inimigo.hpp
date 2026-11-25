@@ -25,7 +25,7 @@ namespace Castelos_e_ruinas{
                 virtual void danificar(Jogador* pJog) = 0; //Eduardo
                 virtual void salvar() = 0; //Eduardo
                 virtual void mover();
-                void moverAleatorio(); // codigo adaptado dos videos do monitor Lucas Eduardo Bonâncio Skora
+                void moverAleatorio(); // codigo adaptado dos videos do monitor Giovane Limas Salvi
             };
         }
     }

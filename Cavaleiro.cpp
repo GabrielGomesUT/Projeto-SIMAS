@@ -6,7 +6,7 @@ namespace Castelos_e_ruinas {
         namespace Personagens {
 
             Cavaleiro::Cavaleiro(const sf::Vector2f pos, const sf::Vector2f tam):
-                Inimigo(pos,tam,IDs::ID::cavaleiro),raio(0.0f)
+                Inimigo(pos,tam,IDs::ID::cavaleiro),raio()
             {
                 sf::Texture* text = carregarText("../assets/cavaleiro.png");
                 if(text != NULL)
@@ -22,6 +22,7 @@ namespace Castelos_e_ruinas {
             //Usa a movimentação criada na classe Inimigo
             void Cavaleiro::executar() {
                 mover();
+
             }
 
             //É chamado por Jogador::colisao() quando houver contato

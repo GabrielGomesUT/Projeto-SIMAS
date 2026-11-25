@@ -6,7 +6,7 @@ namespace Castelos_e_ruinas{
 
     namespace Botoes{
 
-        class Botao:public Ente{
+        class Botao:public Ente{    // codigo adaptado dos videos do monitor Giovane Limas Salvi
         protected:
             bool selecionado;
             float tempoAcumulado;

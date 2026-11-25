@@ -2,6 +2,8 @@
 #include "Jogador.hpp"
 #include "Menu.hpp"
 #include "Jogo.hpp"
+#include "EstadoJogar.hpp"
+#include "EstadoMenu.hpp"
 
 namespace Castelos_e_ruinas{
 
@@ -9,7 +11,7 @@ namespace Castelos_e_ruinas{
 
         Gerenciador_Eventos* Gerenciador_Eventos::pEvento(NULL);
 
-        Gerenciador_Eventos::Gerenciador_Eventos():pGrafico(pGrafico->getGerenciadorGrafico()),pJogador(NULL),pMenu(NULL),pJogo(NULL){
+        Gerenciador_Eventos::Gerenciador_Eventos():pGrafico(pGrafico->getGerenciadorGrafico()),pEstado(pEstado->getGerenciadorEstados()){
             
         }
     
@@ -23,61 +25,70 @@ namespace Castelos_e_ruinas{
             return pEvento;
         }
 
-        void Gerenciador_Eventos::setJogador( Entidades::Personagens::Jogador* pJ){
-            pJogador = pJ;
-        }
-
-        void Gerenciador_Eventos::setMenu(Menus::Menu* pM){
-            pMenu = pM;
-        }
-
-        void Gerenciador_Eventos::setJogo(Jogo* pJo){
-            pJogo = pJo;
-        }
-
         void Gerenciador_Eventos::verificaTeclaPressionada(sf::Keyboard::Key tecla){
-            if(pMenu != NULL){
-                if (tecla == sf::Keyboard::Up || tecla == sf::Keyboard::W) {
-                    pMenu->selecionaPCima();
-                }
-                else if (tecla == sf::Keyboard::Down || tecla == sf::Keyboard::S) {
-                    pMenu->selecionaPBaixo();
-                }
-                else if (tecla == sf::Keyboard::Enter) {
-                    pMenu->selecionar();
-                }
-                else if (tecla == sf::Keyboard::Escape) {
-                    pGrafico->closeWindow();
+            if((pEstado->getEstadoAtual()->getID() == IDs::ID::cidadeMedieval) || (pEstado->getEstadoAtual()->getID() == IDs::ID::castelo)){
+                Estados::EstadoJogar* pEst = dynamic_cast<Estados::EstadoJogar*>(pEstado->getEstadoAtual());
+                if(pEst != NULL){
+                    if (tecla == sf::Keyboard::Escape) {
+                        pEstado->adicionarEstado(IDs::ID::menuPause);
+                        return;
+                    }
+                    Entidades::Personagens::Jogador* pJogador = pEst->getJogadores();
+                    if (pJogador != NULL) {
+                        if (tecla == sf::Keyboard::A)
+                            pJogador->andar(true);
+                        else if (tecla == sf::Keyboard::D)
+                            pJogador->andar(false);
+                        else if (tecla == sf::Keyboard::W || tecla == sf::Keyboard::Space)
+                            pJogador->pular();
+                    }
                 }
             }
-            else{
-                if((pJogo != NULL) && (tecla == sf::Keyboard::Escape)){
-                    pJogo->pausar();
-                }
-                else if(pJogador != NULL){
-                    if(tecla == sf::Keyboard::A)
-                        pJogador->andar(true);
-                    else if(tecla == sf::Keyboard::D)
-                        pJogador->andar(false);
-                    else if(tecla == sf::Keyboard::W)
-                        pJogador->pular();
+
+            else if ((pEstado->getEstadoAtual()->getID() == IDs::ID::menuPrincipal) || (pEstado->getEstadoAtual()->getID() == IDs::ID::menuPause) || (pEstado->getEstadoAtual()->getID()== IDs::ID::menuFim)){
+                Estados::EstadoMenu* pEstM = dynamic_cast<Estados::EstadoMenu*>(pEstado->getEstadoAtual());
+                if (pEstM != NULL) {
+                    Menus::Menu* pMenu = pEstM->getMenu();
+                    if (pMenu != NULL) {
+                        if (tecla == sf::Keyboard::Up || tecla == sf::Keyboard::W) {
+                            pMenu->selecionaPCima();
+                        }
+                        else if (tecla == sf::Keyboard::Down || tecla == sf::Keyboard::S) {
+                            pMenu->selecionaPBaixo();
+                        }
+                        else if (tecla == sf::Keyboard::Enter) {
+                            pMenu->selecionar();
+                        }
+                        else if (tecla == sf::Keyboard::Escape) {
+                            if (pEstado->getEstadoAtual()->getID() == IDs::ID::menuPause)
+                                pEstado->removerEstado();
+                            else
+                                pGrafico->closeWindow();
+                        }
+                    }
                 }
             }
         }
 
         void Gerenciador_Eventos::verificaTeclaSolta(sf::Keyboard::Key tecla){
-            if((pJogador != NULL) && pMenu == NULL){
-                if(tecla == sf::Keyboard::A){
-                    if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-                        pJogador->andar(false);
-                    else
-                        pJogador->parar();
-                }
-                else if(tecla == sf::Keyboard::D){
-                    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-                        pJogador->andar(true);
-                    else
-                        pJogador->parar();
+            if ((pEstado->getEstadoAtual()->getID() == IDs::ID::cidadeMedieval) || (pEstado->getEstadoAtual()->getID() == IDs::ID::castelo)) {
+                Estados::EstadoJogar* pEst = dynamic_cast<Estados::EstadoJogar*>(pEstado->getEstadoAtual());
+                if (pEst != NULL) {
+                    Entidades::Personagens::Jogador* pJogador = pEst->getJogadores();
+                    if (pJogador != NULL) {
+                        if (tecla == sf::Keyboard::A) {
+                            if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+                                pJogador->andar(false);
+                            else
+                                pJogador->parar();
+                        }
+                        else if (tecla == sf::Keyboard::D) {
+                            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+                                pJogador->andar(true);
+                            else
+                                pJogador->parar();
+                        }
+                    }
                 }
             }
         }

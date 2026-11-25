@@ -1,5 +1,6 @@
 ////////////////////////////////Adaptação do código do monitor Geovanni, com algumas alterações para se adequar à estrutura do projeto.
 #include "GerenciadorColisoes.hpp"
+#include "GerenciadorGrafico.hpp"
 #include "Jogador.hpp"
 #include "Inimigo.hpp"
 #include "Obstaculo.hpp"
@@ -186,11 +187,24 @@ namespace Castelos_e_ruinas {
                 }
             }
         }
+
+        void GerenciadorColisoes::tratarColisaoBordas(){
+            if (pListaJogadores != NULL) {
+                for (std::size_t i = 0; i < pListaJogadores->size(); i++) {
+                    Entidades::Personagens::Jogador* pJogador = (*pListaJogadores)[i];
+                    if(pJogador->getPos().x < 0)
+                        pJogador->setPos(sf::Vector2f(0.0f,pJogador->getPos().y));
+                    else if((pJogador->getPos().x + pJogador->getTam().x) > LARGURA_TELA)
+                        pJogador->setPos(sf::Vector2f(LARGURA_TELA - pJogador->getTam().x,pJogador->getPos().y));               
+                }
+            }
+        }
         
         void GerenciadorColisoes::executar() {
             tratarColisaoPersonagemPiso();
             colisaoJogadorInimigo();
             colisaoPersonagemObstaculo();
+            tratarColisaoBordas();
         }
 
     }

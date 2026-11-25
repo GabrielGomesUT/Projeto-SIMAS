@@ -6,6 +6,8 @@
 #include "Texto.hpp"
 #define TAM_TITULO_X 500.0f
 #define TAM_TITULO_Y 300.0f
+#define TAM_BOTAO_X 280.0f
+#define TAM_BOTAO_Y 60.0f
 
 namespace Castelos_e_ruinas{
 
@@ -20,11 +22,11 @@ namespace Castelos_e_ruinas{
             Menu(const sf::Vector2f pos, const sf::Vector2f tam,IDs::ID ID);
             virtual ~Menu();
             void adicionaBotao(Botoes::Botao* bot);
-            virtual void selecionar() = 0;
             void inicializaIterador();
             void selecionaPCima();
             void selecionaPBaixo();
             void desenharBotoes();
+            virtual void selecionar() = 0;
             virtual void executar() = 0;
         };
     }

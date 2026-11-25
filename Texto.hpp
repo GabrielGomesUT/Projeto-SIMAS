@@ -6,7 +6,7 @@ namespace Castelos_e_ruinas{
 
     namespace Botoes{
 
-        class Texto{
+        class Texto{    // codigo adaptado dos videos do monitor Giovane Limas Salvi
         private:
             sf::Font fonte;
             std::string info;

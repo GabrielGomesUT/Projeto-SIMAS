@@ -35,6 +35,9 @@ namespace Castelos_e_ruinas{
             void Inimigo::mover(){
                 if(jogador != NULL){
                     dt = relogio.getElapsedTime().asSeconds();
+                    if (dt > 0.05f) {
+                        dt = 0.05f;
+                    }
 
                     sf::Vector2f posJogador = jogador->getSprite().getPosition();
                     sf::Vector2f posInimigo = corpo.getPosition();

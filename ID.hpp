@@ -4,12 +4,12 @@ namespace Castelos_e_ruinas{
 
     namespace IDs{
 
-        enum class ID{   // codigo adaptado dos videos do monitor Lucas Eduardo Bonâncio Skora
+        enum class ID{   // codigo adaptado dos videos do monitor Giovane Limas Salvi
             vazio = 0,
             jogador,  //1
             inimigo,  //2
             piso,  //3
-            casteloMedieval,   //4
+            cidadeMedieval,   //4
             plataforma,     //5
             lama,       //6
             cavaleiro,      //7
@@ -20,6 +20,7 @@ namespace Castelos_e_ruinas{
             menuPause,  //12
             dragao,     //13
             lancaChamas,    //14
+            menuFim,    //15
         };
     }
 }
