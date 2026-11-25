@@ -33,6 +33,10 @@ namespace Castelos_e_ruinas{
                 return vel;
             }
 
+            int Personagem::getNumVida(){
+                return num_vidas;
+            }
+
             void Personagem::operator--(){
                 num_vidas--;
             }

@@ -11,7 +11,7 @@ namespace Castelos_e_ruinas{
             // Centraliza o texto no botão
             sf::Vector2f tamTexto = texto.getTam();
             texto.setPos(sf::Vector2f(pos.x + (tam.x - tamTexto.x) / 2.0f, pos.y + (tam.y - tamTexto.y) / 2.0f));
-            corpo.setFillColor(sf::Color::Black);
+            corpo.setFillColor(sf::Color::Transparent);
         }
 
         BotaoTexto::~BotaoTexto(){

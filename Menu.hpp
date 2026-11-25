@@ -6,6 +6,8 @@
 #include "Texto.hpp"
 #define TAM_TITULO_X 500.0f
 #define TAM_TITULO_Y 300.0f
+#define TAM_BOTAO_X 280.0f
+#define TAM_BOTAO_Y 60.0f
 
 namespace Castelos_e_ruinas{
 

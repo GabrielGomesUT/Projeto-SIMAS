@@ -31,6 +31,7 @@ namespace Castelos_e_ruinas{
             void colisaoJogadorInimigo();
             void colisaoPersonagemObstaculo();
             void tratarColisaoPersonagemPiso();
+            void tratarColisaoBordas();
         
         public:
             GerenciadorColisoes();

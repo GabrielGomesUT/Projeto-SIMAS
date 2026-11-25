@@ -1,19 +1,16 @@
 #include "MenuPrincipal.hpp"
 #include "BotaoTexto.hpp"
-#include "Jogo.hpp"
-#define TAM_BOTAO_X 280.0f
-#define TAM_BOTAO_Y 60.0f
+#include "GerenciadorEstados.hpp"
+#include "GerenciadorGrafico.hpp"
 
 namespace Castelos_e_ruinas{
 
     namespace Menus{
 
         MenuPrincipal::MenuPrincipal():
-        Menu(sf::Vector2f(0.0f,0.0f),sf::Vector2f(LARGURA_TELA,ALTURA_TELA),IDs::ID::menuPrincipal),pJogo(NULL){
+        Menu(sf::Vector2f(0.0f,0.0f),sf::Vector2f(LARGURA_TELA,ALTURA_TELA),IDs::ID::menuPrincipal){
             criarFundo();
             criarBotoes();
-            pJogo = new Jogo(this);
-            pJogo->executar();
         }
 
 
@@ -54,10 +51,13 @@ namespace Castelos_e_ruinas{
         void MenuPrincipal::selecionar() {
             if (listaBotao.empty()) return;
 
+            Gerenciadores::Gerenciador_Estados* pGEstados = Gerenciadores::Gerenciador_Estados::getGerenciadorEstados();
+            if (pGEstados == NULL) return;
+
             int indice = std::distance(listaBotao.begin(), it);
             switch (indice) {
                 case 0: // Novo Jogo
-                    pJogo->criarFase(1);
+                pGEstados->adicionarEstado(IDs::ID::cidadeMedieval);
                     break;
                 case 1: // Carregar Jogo
                     break;
@@ -66,12 +66,13 @@ namespace Castelos_e_ruinas{
                 case 3: // Opcoes
                     break;
                 case 4: // Sair
-                    pJogo->setSair(true);
+                    pGEstados->removerEstado();
                     break;
             }
         }
 
         void MenuPrincipal::executar(){
+            Gerenciadores::Gerenciador_Grafico* pGG = pGG->getGerenciadorGrafico();
             this->desenhar();
             pGG->getWindow()->draw(titulo);
             this->desenharBotoes();

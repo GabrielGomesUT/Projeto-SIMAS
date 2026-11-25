@@ -6,7 +6,7 @@ namespace Castelos_e_ruinas {
         namespace Personagens {
 
             Zumbi::Zumbi(const sf::Vector2f pos, const sf::Vector2f tam):
-                Inimigo(pos, tam,IDs::ID::zumbi)
+                Inimigo(pos, tam,IDs::ID::zumbi),tamanho(tam.y)
             {
                 num_vidas = VIDA_ZUMBIE;
                 nivel_maldade = NIVEL_MALDADE_ZUMBIE;
@@ -20,6 +20,7 @@ namespace Castelos_e_ruinas {
             void Zumbi::executar() {
                 //Reaproveita mover de Inimigo
                 mover();
+                nivel_maldade+= tamanho/10;
             }
 
             void Zumbi::danificar(Jogador* pJog) {

@@ -2,6 +2,7 @@
 #include "Ente.hpp"
 #include "ListaEntidades.hpp"
 #include "GerenciadorColisoes.hpp"
+#include "Jogador.hpp"
 
 namespace Castelos_e_ruinas{
 
@@ -10,7 +11,9 @@ namespace Castelos_e_ruinas{
         protected:
             Listas::ListaEntidades lista_entes;
             Gerenciadores::GerenciadorColisoes GC;
+            Entidades::Personagens::Jogador* pJog1;
             const int maxCavaleiros;
+            const int maxPlataformas;
             void criarCavaleiros();
             void criarPlataformas();
             void criarPiso();
@@ -23,6 +26,7 @@ namespace Castelos_e_ruinas{
             virtual ~Fase();
             void desenharEntidades();
             void incluirJogador(Entidades::Personagens::Jogador* pJ);
+            Entidades::Personagens::Jogador* getJogador();
             void conectaEntidadesGC();
             virtual void executar();
         };

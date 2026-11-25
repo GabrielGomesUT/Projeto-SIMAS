@@ -1,7 +1,7 @@
 #pragma once
 #include "Botao.hpp"
 #include "Texto.hpp"
-#define TAM_FONTE 20
+#define TAM_FONTE 40
 
 namespace Castelos_e_ruinas{
 

@@ -28,7 +28,7 @@ namespace Castelos_e_ruinas{
                 void operator++();
                 void executar();
                 void salvar();
-                void mover();   // codigo adaptado dos videos do monitor Lucas Eduardo Bonâncio Skora
+                void mover();   // codigo adaptado dos videos do monitor Giovane Limas Salvi
             };
         }
     }

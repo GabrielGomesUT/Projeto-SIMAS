@@ -4,70 +4,33 @@
 #include "MenuPrincipal.hpp"
  
 namespace Castelos_e_ruinas{
-    Jogo::Jogo(Menus::MenuPrincipal* pMP):
-    GG(GG->getGerenciadorGrafico()),GE(GE->getGerenciadorEventos()),pFase(NULL),pJog1(NULL),pJog2(NULL),pMenuPrincipal(pMP),
-    pausado(false),sair(false){
+    Jogo::Jogo():
+    GG(GG->getGerenciadorGrafico()),GE(GE->getGerenciadorEventos()),GEs(GEs->getGerenciadorEstados()),pJog1(NULL),pJog2(NULL)
+    {
         pJog1 = new Entidades::Personagens::Jogador(sf::Vector2f(0.0f,ALTURA_TELA - 111.0f),sf::Vector2f(50.0f,50.0f));
         //pJog2 = new Entidades::Personagens::Jogador(sf::Vector2f(10.0f,ALTURA_TELA - 145.0f),sf::Vector2f(50.0f,50.0f));
-        GE->setJogador(pJog1);
-        GE->setMenu(static_cast<Menus::Menu*>(pMenuPrincipal));
-        GE->setJogo(this);
+        GEs->setJogadores(pJog1);
+        if(GEs != NULL){
+            GEs->adicionarEstado(IDs::ID::menuPrincipal);
+        }
+
+        executar();
     }
     Jogo::~Jogo(){
-        
+        if(pJog1 != NULL){
+            delete pJog1;
+            pJog1 = NULL;
+        }    
     }
 
-    void Jogo::criarFase(int nFase){
-        if(pFase != NULL){
-            delete pFase;
-            pFase = NULL;
-        }
-        pausado = false;
-        GE->setMenu(NULL);
-        if(nFase == 1){
-            pFase = new Fases::Cidade_Medieval();
-        }
-        else if(nFase == 2){
-            pFase = new Fases::Castelo();
-        }
-        pFase->incluirJogador(pJog1);
-        //pFase->incluirJogador(pJog2);
-        pFase->conectaEntidadesGC();
-    }
-
-    void Jogo::pausar() {
-        if ((pFase != NULL) && (!pausado) && (pMenuPrincipal != NULL)) {
-            pausado = true;
-            //pMenuPrincipal->ativarMenuPausa();
-        }
-    }
-
-    void Jogo::continuar() {
-        if (pFase != NULL && pausado) {
-            pausado = false;
-            GE->setMenu(NULL);
-        }
-    }
-
-    void Jogo::setSair(bool s){
-        sair = s;
-    }
-    
     void Jogo::executar(){
         while(GG->verificaWindowOpen()){
-            if(sair)
-                GG->closeWindow();
             GE->executar();
+
             GG->limpaWindow();
-            if (pFase == NULL) {
-                pMenuPrincipal->executar();
-            }
-            else if(pausado){
-                //pMenuPrincipal->criarMenuPausado();
-            }
-            else {
-                pFase->executar();
-            }
+
+            GEs->executar();
+            
             GG->mostrar();
         }
     }
