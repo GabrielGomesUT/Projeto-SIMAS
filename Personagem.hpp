@@ -27,6 +27,7 @@ namespace Castelos_e_ruinas{
                 void gravidade();
                 void parar();
                 void atualizaPosicao(); // codigo adaptado dos videos do monitor Lucas Eduardo Bonâncio Skora
+                void operator--();
             };
         }
     }

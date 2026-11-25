@@ -54,6 +54,10 @@ namespace Castelos_e_ruinas{
                 dy = vel.y * dt;
                 corpo.move(0.0f,dy);
             }
+
+            void Personagem::operator--() {
+                num_vidas--;
+            }
         }
     }
 }
