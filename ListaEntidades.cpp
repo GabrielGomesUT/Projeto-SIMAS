@@ -44,21 +44,33 @@ namespace Castelos_e_ruinas{
             Entidades::Entidade* pAux;
             for(int i = 0;i < LEs.getTam();i++){
                 pAux = operator[](i);
-                if((pAux != NULL) && (pAux->getID() != IDs::ID::jogador)){
+                if(pAux != NULL){
                     Entidades::Personagens::Personagem* pPers = dynamic_cast<Entidades::Personagens::Personagem*>(pAux);
-                    if((pPers != NULL) && (pPers->getNumVida() <= 0)){
-                        this->removerEntidades(pAux);
-                        i--;
+                    if((pPers != NULL) && (pPers->getNumVida() <= 0) && (pPers->getAtivo())){
+                        pPers->setAtivo(false);
                     }
                 }
             }
+        }
+
+        int ListaEntidades::getInimigosAtivos(){
+            int cont = 0;
+            for(int i = 0; i < LEs.getTam();i++){
+                Entidades::Entidade* pAux = operator[](i);
+                if((pAux->getID() == IDs::ID::cavaleiro) || (pAux->getID() == IDs::ID::zumbi) || (pAux->getID() == IDs::ID::dragao)){
+                    if(pAux->getAtivo())
+                        cont++;
+                }
+            }
+            return cont;
         }
 
         void ListaEntidades::percorrer(){
             Entidades::Entidade* pAux;
             for(int i = 0;i < LEs.getTam();i++){
                 pAux = operator[](i);
-                pAux->executar();
+                if((pAux != NULL) && (pAux->getAtivo()))
+                    pAux->executar();
             }
         }
 
@@ -66,7 +78,8 @@ namespace Castelos_e_ruinas{
             Entidades::Entidade* pAux;
             for(int i = 0; i < LEs.getTam();i++){
                 pAux = operator[](i);
-                pAux->desenhar();
+                if((pAux != NULL) && (pAux->getAtivo()))
+                    pAux->desenhar();
             }
         }
 

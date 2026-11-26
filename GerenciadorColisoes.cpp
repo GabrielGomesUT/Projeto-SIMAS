@@ -90,7 +90,7 @@ namespace Castelos_e_ruinas {
 
                 for (std::size_t j = 0; j < pListaInimigos->size(); j++) {
                     Entidades::Personagens::Inimigo* pInimigo = (*pListaInimigos)[j];
-                    if (pInimigo == NULL) continue;
+                    if (pInimigo == NULL || !pInimigo->getAtivo()) continue;
 
                     sf::Vector2f ds = calculaColisao(pJogador, pInimigo);
                     if (ds.x < 0.0f && ds.y < 0.0f) {
@@ -196,6 +196,15 @@ namespace Castelos_e_ruinas {
                         pJogador->setPos(sf::Vector2f(0.0f,pJogador->getPos().y));
                     else if((pJogador->getPos().x + pJogador->getTam().x) > LARGURA_TELA)
                         pJogador->setPos(sf::Vector2f(LARGURA_TELA - pJogador->getTam().x,pJogador->getPos().y));               
+                }
+            }
+             if (pListaInimigos != NULL) {
+                for (std::size_t i = 0; i < pListaInimigos->size(); i++) {
+                    Entidades::Personagens::Inimigo* pInimigo = (*pListaInimigos)[i];
+                    if(pInimigo->getPos().x < 0)
+                        pInimigo->setPos(sf::Vector2f(0.0f,pInimigo->getPos().y));
+                    else if((pInimigo->getPos().x + pInimigo->getTam().x) > LARGURA_TELA)
+                        pInimigo->setPos(sf::Vector2f(LARGURA_TELA - pInimigo->getTam().x,pInimigo->getPos().y)); 
                 }
             }
         }

@@ -12,7 +12,7 @@ namespace Castelos_e_ruinas{
         Gerenciador_Estados* Gerenciador_Estados::pEstado = NULL;
 
         Gerenciador_Estados::Gerenciador_Estados():
-        pilhaEstados()
+        pilhaEstados(),pJog1(NULL),pJog2(NULL)
         {
 
         }
@@ -38,7 +38,13 @@ namespace Castelos_e_ruinas{
         void Gerenciador_Estados::adicionarEstado(IDs::ID ID){
             if((ID == IDs::ID::cidadeMedieval) || (ID == IDs::ID::castelo)){
                 Estados::EstadoJogar* pEJ = new Estados::EstadoJogar(ID);
-                pEJ->setJogadores(pJog1);
+                if(ID == IDs::ID::cidadeMedieval){
+                    if(pJog1 != NULL)
+                        pJog1->inicializa();
+                    if(pJog2 != NULL)
+                        pJog2->inicializa();
+                }
+                pEJ->setJogadores(pJog1,pJog2);
                 pilhaEstados.push(static_cast<Estados::Estado*>(pEJ));
             }
             else if((ID == IDs::ID::menuPrincipal) || (ID == IDs::ID::menuPause) || (ID == IDs::ID::menuFim)){
@@ -49,8 +55,9 @@ namespace Castelos_e_ruinas{
                 cerr<<"Nao foi possivel criar Estado"<<endl;
         }
 
-        void Gerenciador_Estados::setJogadores(Entidades::Personagens::Jogador* pJ1){
+        void Gerenciador_Estados::setJogadores(Entidades::Personagens::Jogador* pJ1,Entidades::Personagens::Jogador* pJ2){
             pJog1 = pJ1;
+            pJog2 = pJ2;
         }
 
         void Gerenciador_Estados::removerEstado(){
@@ -67,6 +74,11 @@ namespace Castelos_e_ruinas{
                 Gerenciador_Grafico* pG = pG->getGerenciadorGrafico();
                 pG->closeWindow();
             }
+        }
+
+        void Gerenciador_Estados::trocarEstado(IDs::ID ID){
+            removerEstado();
+            adicionarEstado(ID);
         }
 
         Estados::Estado* Gerenciador_Estados::getEstadoAtual(){

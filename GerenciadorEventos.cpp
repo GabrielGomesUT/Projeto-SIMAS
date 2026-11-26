@@ -33,14 +33,23 @@ namespace Castelos_e_ruinas{
                         pEstado->adicionarEstado(IDs::ID::menuPause);
                         return;
                     }
-                    Entidades::Personagens::Jogador* pJogador = pEst->getJogadores();
-                    if (pJogador != NULL) {
+                    Entidades::Personagens::Jogador* pJogador1 = pEst->getJogador1();
+                    Entidades::Personagens::Jogador* pJogador2 = pEst->getJogador2();
+                    if (pJogador1 != NULL) {
                         if (tecla == sf::Keyboard::A)
-                            pJogador->andar(true);
+                            pJogador1->andar(true);
                         else if (tecla == sf::Keyboard::D)
-                            pJogador->andar(false);
+                            pJogador1->andar(false);
                         else if (tecla == sf::Keyboard::W || tecla == sf::Keyboard::Space)
-                            pJogador->pular();
+                            pJogador1->pular();
+                    }
+                    if (pJogador2 != NULL) {
+                        if (tecla == sf::Keyboard::Left)
+                            pJogador2->andar(true);
+                        else if (tecla == sf::Keyboard::Right)
+                            pJogador2->andar(false);
+                        else if (tecla == sf::Keyboard::Up)
+                            pJogador2->pular();
                     }
                 }
             }
@@ -74,19 +83,34 @@ namespace Castelos_e_ruinas{
             if ((pEstado->getEstadoAtual()->getID() == IDs::ID::cidadeMedieval) || (pEstado->getEstadoAtual()->getID() == IDs::ID::castelo)) {
                 Estados::EstadoJogar* pEst = dynamic_cast<Estados::EstadoJogar*>(pEstado->getEstadoAtual());
                 if (pEst != NULL) {
-                    Entidades::Personagens::Jogador* pJogador = pEst->getJogadores();
-                    if (pJogador != NULL) {
+                    Entidades::Personagens::Jogador* pJogador1 = pEst->getJogador1();
+                    Entidades::Personagens::Jogador* pJogador2 = pEst->getJogador2();
+                    if (pJogador1 != NULL) {
                         if (tecla == sf::Keyboard::A) {
                             if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-                                pJogador->andar(false);
+                                pJogador1->andar(false);
                             else
-                                pJogador->parar();
+                                pJogador1->parar();
                         }
                         else if (tecla == sf::Keyboard::D) {
                             if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-                                pJogador->andar(true);
+                                pJogador1->andar(true);
                             else
-                                pJogador->parar();
+                                pJogador1->parar();
+                        }
+                    }
+                    if (pJogador2 != NULL) {
+                        if (tecla == sf::Keyboard::Left) {
+                            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+                                pJogador2->andar(false);
+                            else
+                                pJogador2->parar();
+                        }
+                        else if (tecla == sf::Keyboard::Right) {
+                            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+                                pJogador2->andar(true);
+                            else
+                                pJogador2->parar();
                         }
                     }
                 }

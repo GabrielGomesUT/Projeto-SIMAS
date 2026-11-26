@@ -24,13 +24,15 @@ namespace Castelos_e_ruinas{
             std::stack<Estados::Estado*> pilhaEstados;
             static Gerenciador_Estados* pEstado;
             Entidades::Personagens::Jogador* pJog1;
+            Entidades::Personagens::Jogador* pJog2;
             Gerenciador_Estados(); // Padrao Singleton para garantir unicidade do gerenciador de eventos
         public:
             ~Gerenciador_Estados();
             static Gerenciador_Estados* getGerenciadorEstados();
             void adicionarEstado(const IDs::ID ID);
-            void setJogadores(Entidades::Personagens::Jogador* pJ1);
+            void setJogadores(Entidades::Personagens::Jogador* pJ1,Entidades::Personagens::Jogador* pJ2);
             void removerEstado();
+            void trocarEstado(IDs::ID ID);
             Estados::Estado* getEstadoAtual();
             void executar(); 
         };

@@ -19,30 +19,60 @@ namespace Castelos_e_ruinas{
         }
 
         void Castelo::criarInimigos(){
-            criarCavaleiros();
-            criarDragoes();
+            std::ifstream arquivo;
+            std::string linha;
+            arquivo.open("../arquivo/castelo.txt");
+            if(arquivo.is_open()){
+                int j = 0;
+                while(std::getline(arquivo,linha)){
+                    for(int i = 0;i < linha.size();i++){
+                        if(linha[i] == 'C'){
+                            criarCavaleiros(sf::Vector2i(i,j));
+                        }
+                        else if(linha[i] == 'D')
+                            criarDragoes(sf::Vector2i(i,j));
+                    }
+                    j++;
+                }
+            }
+            arquivo.close();
         }
 
         void Castelo::criarObstaculos(){
-            criarPiso();
-            criarPlataformas();
-            criarChamas();
-        }
-
-        void Castelo::criarDragoes(){
-            for(int i = 0;i < maxDragoes;i++){
-                Entidades::Personagens::Dragao* pDrag = new Entidades::Personagens::Dragao(sf::Vector2f(1500.0f + 100.0f * i, 300.0F), sf::Vector2f(120, 100));
-                lista_entes.incluirEntidades(static_cast<Entidades::Entidade*>(pDrag));
+            std::ifstream arquivo("../arquivo/castelo.txt");
+            std::string linha;
+            if (arquivo.is_open()) {
+                int j = 0;
+                while (std::getline(arquivo, linha)) {
+                    for (int i = 0; i < static_cast<int>(linha.size()); i++) {
+                        if (linha[i] == '#') {
+                            criarPiso(sf::Vector2i(i, j));
+                        }
+                        else if (linha[i] == 'P') {
+                            criarPlataformas(sf::Vector2i(i, j));
+                        }
+                        else if (linha[i] == 'F') {
+                            criarChamas(sf::Vector2i(i, j));
+                        }
+                    }
+                    j++;
+                }
+                arquivo.close();
             }
         }
 
-        void Castelo::criarChamas(){
-            Entidades::Obstaculos::LancaChamas* pLC = new Entidades::Obstaculos::LancaChamas(sf::Vector2f(350.0f,ALTURA_TELA - 114.9f),sf::Vector2f(300.0f,100.0f));
+        void Castelo::criarDragoes(sf::Vector2i pos){
+            Entidades::Personagens::Dragao* pDrag = new Entidades::Personagens::Dragao(sf::Vector2f(pos.x * TAM_TILE, pos.y * TAM_TILE), sf::Vector2f(120.0f, 100.0f));
+            lista_entes.incluirEntidades(static_cast<Entidades::Entidade*>(pDrag));
+        }
+
+        void Castelo::criarChamas(sf::Vector2i pos){
+            Entidades::Obstaculos::LancaChamas* pLC = new Entidades::Obstaculos::LancaChamas(sf::Vector2f(pos.x * TAM_TILE,pos.y * TAM_TILE),sf::Vector2f(160.0f,35.0f));
             lista_entes.incluirEntidades(static_cast<Entidades::Entidade*>(pLC));
         } 
 
         void Castelo::criarCenario(){
-            sf::Texture* tex = carregarText("../assets/cenario1.png");
+            sf::Texture* tex = carregarText("../assets/castelo.png");
             if (tex != nullptr) {
                 corpo.setTexture(tex);
                 float proporcaoJanela = LARGURA_TELA/ ALTURA_TELA;

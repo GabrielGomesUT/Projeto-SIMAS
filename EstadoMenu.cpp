@@ -2,7 +2,7 @@
 #include "MenuPrincipal.hpp"
 #include "MenuPause.hpp"
 #include "EstadoJogar.hpp"
-// #include "MenuFim.hpp"
+#include "MenuFim.hpp"
 
 namespace Castelos_e_ruinas {
 
@@ -65,7 +65,7 @@ namespace Castelos_e_ruinas {
                     delete pMenu;
                     pMenu = NULL;
                 }
-                // pMenu = new Menus::MenuFim();
+                pMenu = new Menus::MenuFim();
             }
         }
 

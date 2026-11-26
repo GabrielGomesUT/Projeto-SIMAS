@@ -74,7 +74,7 @@ namespace Castelos_e_ruinas{
         void MenuPrincipal::executar(){
             Gerenciadores::Gerenciador_Grafico* pGG = pGG->getGerenciadorGrafico();
             this->desenhar();
-            pGG->getWindow()->draw(titulo);
+            pGG->desenharTitulo(titulo);
             this->desenharBotoes();
         }
     }

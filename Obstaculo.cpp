@@ -8,7 +8,7 @@ namespace Castelos_e_ruinas{
 
         namespace Obstaculos{
 
-            Obstaculo::Obstaculo(const sf::Vector2f pos, const sf::Vector2f tam,IDs::ID ID):Entidade(pos,tam,ID),danoso(false){
+            Obstaculo::Obstaculo(const sf::Vector2f pos, const sf::Vector2f tam,IDs::ID ID):Entidade(pos,tam,ID),danoso(false),coolDown(0){
             }
 
             Obstaculo::~Obstaculo(){
@@ -67,7 +67,13 @@ namespace Castelos_e_ruinas{
                     }
                 }
             }
+
+            void Obstaculo::antigravidade(){
+                vel.y -= GRAVIDADE*dt;
+                float dy = 0;
+                dy = vel.y * dt;
+                corpo.move(0.0f,dy);
+            }
         }
     }
-
 }

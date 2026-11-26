@@ -16,6 +16,7 @@ namespace Castelos_e_ruinas{
             class Obstaculo:public Entidade{
             protected:
                 bool danoso;
+                int coolDown;
             public:
                 Obstaculo(const sf::Vector2f pos, const sf::Vector2f tam,IDs::ID ID);
                 ~Obstaculo();
@@ -24,6 +25,7 @@ namespace Castelos_e_ruinas{
                 virtual void salvar() = 0;
                 void colisao(Personagens::Jogador* pJ,sf::Vector2f ds);
                 void colisao(Personagens::Inimigo* pI,sf::Vector2f ds);
+                void antigravidade();
                 virtual void obstaculizar(Personagens::Jogador* p) = 0;
             };
         }

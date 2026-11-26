@@ -79,3 +79,7 @@ void Gerenciador_Grafico::desenharTexto(Botoes::Texto* pText) {
     else
         cerr<<"Erro: ponteiro para Texto nulo."<<endl;
 }
+
+void Gerenciador_Grafico::desenharTitulo(sf::RectangleShape titulo){
+    window->draw(titulo);
+}

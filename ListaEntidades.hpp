@@ -20,6 +20,7 @@ namespace Castelos_e_ruinas{
             int getTam();
             void setJogEnt(Entidades::Personagens::Jogador* pJ);
             void verificarMortos();
+            int getInimigosAtivos();
             void percorrer();
             void desenhar();
         };

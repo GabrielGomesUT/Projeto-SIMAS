@@ -55,5 +55,6 @@ add_executable(MeuJogoFinal
     EstadoJogar.cpp
     EstadoMenu.cpp
     MenuPause.cpp
+    MenuFim.cpp
 )
 target_link_libraries(MeuJogoFinal PRIVATE sfml-graphics sfml-window sfml-system)

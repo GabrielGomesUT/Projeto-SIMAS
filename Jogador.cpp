@@ -5,28 +5,38 @@
 namespace Castelos_e_ruinas{
     namespace Entidades{
         namespace Personagens{                                                                                                                                                                                                                                                                     
-            Jogador::Jogador(const sf::Vector2f pos, const sf::Vector2f tam):Personagem(pos,tam,IDs::ID::jogador),pontos(0),podePular(false),vel_lentidao(0.0f),lentidao(false),num(cont++){
+            Jogador::Jogador(const sf::Vector2f pos, const sf::Vector2f tam,sf::Color cor):
+            Personagem(pos,tam,IDs::ID::jogador),pontos(0),podePular(false),vel_lentidao(0.0f),lentidao(false)
+            {
                sf::Texture* text = carregarText("../assets/jogador.png");
                corpo.setTexture(text);
-               if(cont == 0){
-                corpo.setFillColor(sf::Color::Green);
-               }
-               num_vidas = 20;
-               vel = sf::Vector2f(0.0f,0.0f);
+               corpo.setFillColor(cor);
+               inicializa();
+               inicializaBarraVida(sf::Vector2f(220.0f,22.0f));
             }
 
-            Jogador::Jogador():Personagem(sf::Vector2f(0.0f,ALTURA_TELA - 145.0f),sf::Vector2f(50.0f,50.0f),IDs::ID::jogador),pontos(0),podePular(false),vel_lentidao(0.0f),lentidao(false),num(cont++){
+            Jogador::Jogador():
+            Personagem(sf::Vector2f(0.0f,ALTURA_TELA - 145.0f),sf::Vector2f(50.0f,50.0f),IDs::ID::jogador),pontos(0),podePular(false),vel_lentidao(0.0f),lentidao(false)
+            {
             sf::Texture* text = carregarText("../assets/jogador.png");
                corpo.setTexture(text);
-               num_vidas = 5;
-               vel = sf::Vector2f(0.0f,0.0f);
+               inicializa();
             }
             
             Jogador::~Jogador(){
-                cont--;
+
             }
 
-            int Jogador::cont = 0; 
+            void Jogador::inicializa(){
+                num_vidas = VIDA_JOGADOR;
+                vida_max = VIDA_JOGADOR;
+                ativo = true;
+                pontos = 0;
+                vel = sf::Vector2f(0.0f,0.0f);
+                podePular = false;
+                lentidao = false;
+                podeAndar =false;
+            }
 
             void Jogador::colisao(Inimigo* pIn,sf::Vector2f ds){
                 float invasaoX = fabs(ds.x);
@@ -38,12 +48,14 @@ namespace Castelos_e_ruinas{
                     else{
                         this->setPos(sf::Vector2f((this->getPos().x + invasaoX),this->getPos().y));
                     }
+                    this->operator--();
                 }
                 else{    //colisao vertical
                     if(this->getPos().y < pIn->getPos().y){  //piso
                         this->setPos(sf::Vector2f(this->getPos().x,(this->getPos().y - invasaoY)));
                         this->setPodePular(true);
                         this->setVelY(0.0f);
+                        pIn->operator--();
                     }
                 }
             }
@@ -57,10 +69,6 @@ namespace Castelos_e_ruinas{
                     lentidao = true;
                     vel_lentidao = f_lent;
                 }
-            }
-
-            const int Jogador::getNum() const{
-                return num;
             }
 
             void Jogador::pular(){
@@ -94,6 +102,7 @@ namespace Castelos_e_ruinas{
             }
             void Jogador::executar(){
                 mover();
+                //atualizaBarraVida();
             }
         }
     }

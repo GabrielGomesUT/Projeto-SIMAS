@@ -9,11 +9,11 @@ namespace Castelos_e_ruinas {
                 Obstaculo(pos, tam, IDs::ID::lancaChamas),
                 desaceleracao(DESACELERACAO_CHAMAS),
                 tempoDano(TEMPO_DANO_CHAMAS)
-            {/*Ainda temos de botar a textura do lança chamas
-                sf::Texture* text = carregarText("../assets/lanca_chamas.png");
-                text->setRepeated(true);
+            {
+                sf::Texture* text = carregarText("../assets/lancaChamas.png");
+                //text->setRepeated(true);
                 corpo.setTexture(text);
-                corpo.setTextureRect(sf::IntRect(0, 0, static_cast<int>(tam.x), text->getSize().y));*/
+                //corpo.setTextureRect(sf::IntRect(0, 0, static_cast<int>(tam.x), text->getSize().y));
                 danoso = true;
             }
 
