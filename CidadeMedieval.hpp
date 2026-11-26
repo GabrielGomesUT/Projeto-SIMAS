@@ -10,11 +10,11 @@ namespace Castelos_e_ruinas{
             const int maxZumbis;
             const int maxLamas;
         protected:
-            void criarZumbis();
             void criarInimigos();
             void criarObstaculos();
-            void criarLamas();
             void criarCenario();
+            void criarZumbis(sf::Vector2i pos);
+            void criarLamas(sf::Vector2i pos);
         public:
             Cidade_Medieval();
             ~Cidade_Medieval();

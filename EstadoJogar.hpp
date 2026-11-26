@@ -15,8 +15,9 @@ namespace Castelos_e_ruinas{
         public:
             EstadoJogar(const IDs::ID ID);
             ~EstadoJogar();
-            void setJogadores(Entidades::Personagens::Jogador* pJ);
-            Entidades::Personagens::Jogador* getJogadores();
+            void setJogadores(Entidades::Personagens::Jogador* pJ,Entidades::Personagens::Jogador* pJ2);
+            Entidades::Personagens::Jogador* getJogador1();
+            Entidades::Personagens::Jogador* getJogador2();
             Fases::Fase* getFase();
             void executar();
             //void mudarEstadoObserver();

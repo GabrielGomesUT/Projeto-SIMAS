@@ -1,6 +1,5 @@
 #pragma once
 #include "Entidade.hpp"
-#define GRAVIDADE 980.0f
 
 namespace Castelos_e_ruinas{
     namespace Entidades{
@@ -8,9 +7,12 @@ namespace Castelos_e_ruinas{
             class Personagem:public Entidade{
             protected:
                 int num_vidas;
-                sf::Vector2f vel;
+                int vida_max;
                 bool podeAndar;
                 bool paraEsquerda;
+                sf::RectangleShape barraVida;
+                sf::RectangleShape barraFundo;
+                
             public:
                 Personagem(const sf::Vector2f pos, const sf::Vector2f tam, IDs::ID ID);
                 virtual ~Personagem();
@@ -18,13 +20,11 @@ namespace Castelos_e_ruinas{
                 virtual void executar() = 0;
                 virtual void mover() = 0;
                 virtual void salvar() = 0;
-                void setVelY(float Vely);
-                void setVelX(float Velx);
-                sf::Vector2f getVel();
                 int getNumVida();
+                void inicializaBarraVida(sf::Vector2f Tam);
+                void atualizaBarraVida();
                 void operator--();
                 void andar(bool paraEsq);
-                void gravidade();
                 void parar();
                 void atualizaPosicao(); // codigo adaptado dos videos do monitor Lucas Eduardo Bonâncio Skora
             };

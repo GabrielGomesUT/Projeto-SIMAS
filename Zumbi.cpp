@@ -11,7 +11,8 @@ namespace Castelos_e_ruinas {
                 num_vidas = VIDA_ZUMBIE;
                 nivel_maldade = NIVEL_MALDADE_ZUMBIE;
                 vel = sf::Vector2f(VELOCIDADE_ZUMBIE_X,0.0f);
-                corpo.setFillColor(sf::Color::Blue);
+                sf::Texture* text = carregarText("../assets/Zombie.png");
+                corpo.setTexture(text);
             }
 
             Zumbi::~Zumbi() {

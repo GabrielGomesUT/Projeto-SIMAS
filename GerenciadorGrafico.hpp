@@ -22,6 +22,7 @@ namespace Castelos_e_ruinas{
              sf::RenderWindow* getWindow();
             void desenharEnte(Ente* pE);
             void desenharTexto(Botoes::Texto* pText);
+            void desenharTitulo(sf::RectangleShape titulo);
             static Gerenciador_Grafico* getGerenciadorGrafico();
             bool verificaWindowOpen();
             sf::Texture* carregarTextura(const char* caminhoTextura);

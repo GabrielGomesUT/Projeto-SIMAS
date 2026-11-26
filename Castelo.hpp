@@ -10,11 +10,11 @@ namespace Castelos_e_ruinas{
             const int maxDragoes;
             const int maxChamas;
         protected:
-            void criarDragoes();
             void criarInimigos();
             void criarObstaculos();
-            void criarChamas();
             void criarCenario();
+            void criarDragoes(sf::Vector2i pos);
+            void criarChamas(sf::Vector2i pos);
         public:
             Castelo();
             ~Castelo();

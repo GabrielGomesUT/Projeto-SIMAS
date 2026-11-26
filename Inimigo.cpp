@@ -5,7 +5,6 @@ namespace Castelos_e_ruinas{
     namespace Entidades{
         namespace Personagens{
             Inimigo::Inimigo(const sf::Vector2f pos, const sf::Vector2f tam,IDs::ID ID):Personagem(pos,tam,ID),jogador(NULL),moveAleatorio(rand() % 2),tempo_acumulado(0.0){
-                srand(time(NULL));
                 podeAndar = true;
             }
 

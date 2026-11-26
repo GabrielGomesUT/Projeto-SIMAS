@@ -20,7 +20,7 @@ namespace Castelos_e_ruinas{
                 virtual ~Inimigo(); //Eduardo: virtual, pois outras classes lidam com Inimigo
                 void salvarDataBuffer();
                 void setJogador(Jogador* pJog);
-                void persegueJogador(sf::Vector2f posJog,sf::Vector2f posInim); // codigo adaptado dos videos do monitor Lucas Eduardo Bonâncio Skora
+                void persegueJogador(sf::Vector2f posJog,sf::Vector2f posInim); // codigo adaptado dos videos do monitor Giovane Limas Salvi
                 virtual void executar() = 0; //Eduardo
                 virtual void danificar(Jogador* pJog) = 0; //Eduardo
                 virtual void salvar() = 0; //Eduardo

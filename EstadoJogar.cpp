@@ -1,6 +1,7 @@
 #include "EstadoJogar.hpp"
 #include "CidadeMedieval.hpp"
 #include "Castelo.hpp"
+#include "GerenciadorEstados.hpp"
 
 namespace Castelos_e_ruinas{
 
@@ -35,13 +36,17 @@ namespace Castelos_e_ruinas{
             pFase = new Fases::Castelo();
         }
 
-        void EstadoJogar::setJogadores(Entidades::Personagens::Jogador* pJ){
-            pFase->incluirJogador(pJ);
+        void EstadoJogar::setJogadores(Entidades::Personagens::Jogador* pJ,Entidades::Personagens::Jogador* pJ2){
+            pFase->incluirJogador(pJ,pJ2);
             pFase->conectaEntidadesGC();
         }
 
-        Entidades::Personagens::Jogador* EstadoJogar::getJogadores(){
-            return pFase->getJogador();
+        Entidades::Personagens::Jogador* EstadoJogar::getJogador1(){
+            return pFase->getJogador1();
+        }
+
+        Entidades::Personagens::Jogador* EstadoJogar::getJogador2(){
+            return pFase->getJogador2();
         }
 
         Fases::Fase* EstadoJogar::getFase(){
@@ -50,6 +55,17 @@ namespace Castelos_e_ruinas{
 
         void EstadoJogar::executar(){
             pFase->executar();
+
+            if(pFase->getConclusao()){
+                Gerenciadores::Gerenciador_Estados* pGEstados = Gerenciadores::Gerenciador_Estados::getGerenciadorEstados();
+                IDs::ID IDatual = this->getID();
+                if(IDatual == IDs::ID::cidadeMedieval){
+                    pGEstados->trocarEstado(IDs::ID::castelo);
+                }
+                else if(IDatual == IDs::ID::castelo){
+                    pGEstados->trocarEstado(IDs::ID::menuFim);
+                }
+            }
         }
     }
 }

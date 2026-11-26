@@ -6,10 +6,9 @@ namespace Castelos_e_ruinas{
         namespace Obstaculos{
             Plataforma::Plataforma(const sf::Vector2f pos, const sf::Vector2f tam):Obstaculo(pos,tam,IDs::ID::plataforma),altura(pos.y){
                 sf::Texture* text = carregarText("../assets/piso.png");
-                text->setRepeated(true);
                 corpo.setTexture(text);
-                corpo.setTextureRect(sf::IntRect(0, 0, 200, text->getSize().y));
                 danoso = false;
+                coolDown = 600;
             }
 
             Plataforma::~Plataforma(){
@@ -17,10 +16,13 @@ namespace Castelos_e_ruinas{
             }
 
             void Plataforma::executar(){
-                danoso = false;
-                float aleatorio = rand() % 10*altura;
-                if(aleatorio > 1000)
-                    danoso = true;
+                if(coolDown < 0){
+                    float aleatorio = rand() % 1000 * altura;
+                    if(aleatorio < 1)
+                        danoso = true;
+                }
+                //gravidade();
+                //antigravidade();
             }
 
             void Plataforma::salvar(){
@@ -30,6 +32,8 @@ namespace Castelos_e_ruinas{
             void Plataforma::obstaculizar(Personagens::Jogador* p){
                 if(danoso)
                     p->operator--();
+                danoso = false;
+                coolDown = 600;
             }
         }
     }

@@ -6,10 +6,9 @@ namespace Castelos_e_ruinas{
         namespace Obstaculos{
             Lama::Lama(const sf::Vector2f pos, const sf::Vector2f tam):Obstaculo(pos,tam,IDs::ID::lama),desaceleracao(70.0f),largura(pos.x){
                 sf::Texture* text = carregarText("../assets/lama.png");
-                text->setRepeated(true);
                 corpo.setTexture(text);
-                corpo.setTextureRect(sf::IntRect(0, 0, 100, text->getSize().y));
                 danoso = false;
+                coolDown = 400;
             }
 
             Lama::~Lama(){
@@ -18,9 +17,13 @@ namespace Castelos_e_ruinas{
             
             void Lama::executar(){
                 danoso = false;
-                int aleatorio = rand() % 8*largura;
-                if(aleatorio < 2000)
-                    danoso = true;
+                if(coolDown < 0){
+                    int aleatorio = rand() % 8*largura;
+                    if(aleatorio < 2000)
+                        danoso = true;
+                    coolDown = 400;
+                }
+                coolDown--;
             }
 
             void Lama::salvar(){

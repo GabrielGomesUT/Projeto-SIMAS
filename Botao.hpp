@@ -9,11 +9,9 @@ namespace Castelos_e_ruinas{
         class Botao:public Ente{    // codigo adaptado dos videos do monitor Giovane Limas Salvi
         protected:
             bool selecionado;
-            float tempoAcumulado;
         public:
             Botao(const sf::Vector2f pos,const sf::Vector2f tam,IDs::ID ID);
             virtual ~Botao();
-            //void atualizarTexto();
             void setSelecionado(const bool selec);
             bool getSelecionado();
             virtual void executar() = 0;

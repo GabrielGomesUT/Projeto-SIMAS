@@ -1,6 +1,7 @@
 #pragma once
 #include "Personagem.hpp"
 
+#define VIDA_JOGADOR 20
 #define VELOCIDADE_JOGADOR_X 140.0f
 #define VELOCIDADE_PULO -630.0f
 
@@ -14,16 +15,14 @@ namespace Castelos_e_ruinas{
                 bool podePular;
                 float vel_lentidao;
                 bool lentidao;
-                const int num;
-                static int cont;
             public:
-                Jogador(const sf::Vector2f pos, const sf::Vector2f tam);
+                Jogador(const sf::Vector2f pos, const sf::Vector2f tam,sf::Color cor);
                 Jogador();
                 ~Jogador();
+                void inicializa();
                 void colisao(Inimigo* pIn,sf::Vector2f ds);
                 void setPodePular(bool b);
                 void desaceleracao(float f_lent);
-                const int getNum() const;
                 void pular();
                 void operator++();
                 void executar();

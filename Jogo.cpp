@@ -7,9 +7,9 @@ namespace Castelos_e_ruinas{
     Jogo::Jogo():
     GG(GG->getGerenciadorGrafico()),GE(GE->getGerenciadorEventos()),GEs(GEs->getGerenciadorEstados()),pJog1(NULL),pJog2(NULL)
     {
-        pJog1 = new Entidades::Personagens::Jogador(sf::Vector2f(0.0f,ALTURA_TELA - 111.0f),sf::Vector2f(50.0f,50.0f));
-        //pJog2 = new Entidades::Personagens::Jogador(sf::Vector2f(10.0f,ALTURA_TELA - 145.0f),sf::Vector2f(50.0f,50.0f));
-        GEs->setJogadores(pJog1);
+        pJog1 = new Entidades::Personagens::Jogador();
+        pJog2 = new Entidades::Personagens::Jogador(sf::Vector2f(10.0f,ALTURA_TELA - 145.0f),sf::Vector2f(50.0f,50.0f),sf::Color::Green);
+        GEs->setJogadores(pJog1,pJog2);
         if(GEs != NULL){
             GEs->adicionarEstado(IDs::ID::menuPrincipal);
         }
@@ -20,7 +20,11 @@ namespace Castelos_e_ruinas{
         if(pJog1 != NULL){
             delete pJog1;
             pJog1 = NULL;
-        }    
+        }
+        if(pJog2 != NULL){
+            delete pJog2;
+            pJog2 = NULL;
+        }        
     }
 
     void Jogo::executar(){

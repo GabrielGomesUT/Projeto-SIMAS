@@ -8,7 +8,7 @@ namespace Castelos_e_ruinas{
 
     namespace Fases{
 
-        Cidade_Medieval::Cidade_Medieval():Fase(IDs::ID::cidadeMedieval),maxZumbis((rand() % 7) + 4),maxLamas(10){
+        Cidade_Medieval::Cidade_Medieval():Fase(IDs::ID::cidadeMedieval),maxZumbis(6),maxLamas(5){
             criarCenario();
             criarInimigos();
             criarObstaculos();
@@ -19,26 +19,77 @@ namespace Castelos_e_ruinas{
         }
 
         void Cidade_Medieval::criarInimigos(){
-            criarCavaleiros();
-            criarZumbis();
+            std::ifstream arquivo;
+            std::string linha;
+            int contCav = 0;
+            int contZum = 0;
+            arquivo.open("../arquivo/cidade_medieval.txt");
+            if(arquivo.is_open()){
+                int j = 0;
+                while(std::getline(arquivo,linha)){
+                    for(int i = 0;i < linha.size();i++){
+                        if(linha[i] == 'C'){
+                            criarCavaleiros(sf::Vector2i(i,j));
+                        }
+                        else if(linha[i] == 'Z'){
+                            criarZumbis(sf::Vector2i(i,j));
+                        }
+                        else if (linha[i] == 'c' && contCav < maxCavaleiros && (rand() % 2 == 0)) {
+                            criarCavaleiros(sf::Vector2i(i, j));
+                            contCav++;
+                        }
+                        else if (linha[i] == 'z' && contZum < maxZumbis && (rand() % 2 == 0)) {
+                            criarZumbis(sf::Vector2i(i, j));
+                            contZum++;
+                        }
+                    }
+                    j++;
+                }
+            }
+            arquivo.close();
         }
 
         void Cidade_Medieval::criarObstaculos(){
-            criarPiso();
-            criarPlataformas();
-            criarLamas();
-        }
-
-        void Cidade_Medieval::criarZumbis(){
-            for(int i = 0 ;i < maxZumbis;i++){
-                Entidades::Personagens::Zumbi* pZum = new Entidades::Personagens::Zumbi(sf::Vector2f(500.0f + 110.0f * i, ALTURA_TELA - 115.0F), sf::Vector2f(50, 70));
-                lista_entes.incluirEntidades(static_cast<Entidades::Entidade*>(pZum));
+            std::ifstream arquivo("../arquivo/cidade_medieval.txt");
+            std::string linha;
+            int contPlat = 0;
+            int contLama = 0;
+            if (arquivo.is_open()) {
+                int j = 0;
+                while (std::getline(arquivo, linha)) {
+                    for (int i = 0; i < static_cast<int>(linha.size()); i++) {
+                        if (linha[i] == '#') {
+                            criarPiso(sf::Vector2i(i, j));
+                        }
+                        else if (linha[i] == 'P') {
+                            criarPlataformas(sf::Vector2i(i, j));
+                        }
+                        else if (linha[i] == 'L') {
+                            criarLamas(sf::Vector2i(i, j));
+                        }
+                        else if (linha[i] == 'p' && contPlat < maxPlataformas && (rand() % 2 == 0)) {
+                            criarPlataformas(sf::Vector2i(i, j));
+                            contPlat++;
+                        }
+                        else if (linha[i] == 'l' && contLama < maxLamas && (rand() % 2 == 0)) {
+                            criarLamas(sf::Vector2i(i, j));
+                            contLama++;
+                        }
+                    }
+                    j++;
+                }
+                arquivo.close();
             }
         }
 
-        void Cidade_Medieval::criarLamas(){
-            Entidades::Obstaculos::Lama* pLama1 = new Entidades::Obstaculos::Lama(sf::Vector2f(350.0f,ALTURA_TELA - 114.9f),sf::Vector2f(300.0f,100.0f));
-            lista_entes.incluirEntidades(static_cast<Entidades::Entidade*>(pLama1));
+        void Cidade_Medieval::criarZumbis(sf::Vector2i pos){
+            Entidades::Personagens::Zumbi* pZum = new Entidades::Personagens::Zumbi(sf::Vector2f(pos.x * TAM_TILE, pos.y * TAM_TILE), sf::Vector2f(50.0f, 70.0f));
+            lista_entes.incluirEntidades(static_cast<Entidades::Entidade*>(pZum));
+        }
+
+        void Cidade_Medieval::criarLamas(sf::Vector2i pos){
+            Entidades::Obstaculos::Lama* pLama = new Entidades::Obstaculos::Lama(sf::Vector2f(pos.x * TAM_TILE,pos.y * TAM_TILE),sf::Vector2f(2 * TAM_TILE,TAM_TILE));
+            lista_entes.incluirEntidades(static_cast<Entidades::Entidade*>(pLama));
         }  
 
         void Cidade_Medieval::criarCenario(){
@@ -51,5 +102,6 @@ namespace Castelos_e_ruinas{
                 corpo.setTextureRect(sf::IntRect(0, 0, larguraProporcional, alturaTex));
             }
         }
+
     }
 }

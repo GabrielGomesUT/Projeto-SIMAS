@@ -1,6 +1,7 @@
 #pragma once
 #include "Ente.hpp"
 #include <ostream>
+#define GRAVIDADE 980.0f
 
 namespace Castelos_e_ruinas{
     namespace Entidades{
@@ -8,6 +9,8 @@ namespace Castelos_e_ruinas{
         protected:
             float x;
             float y;
+            bool ativo;
+            sf::Vector2f vel;
             //ostream buffer;
             void salvarDataBuffer();
         public:
@@ -17,6 +20,12 @@ namespace Castelos_e_ruinas{
             void setPos(sf::Vector2f Pos);
             sf::Vector2f getTam() const;
             void setTam(sf::Vector2f Tam);
+            void setAtivo(const bool Ativo);
+            void setVelY(float Vely);
+            void setVelX(float Velx);
+            sf::Vector2f getVel();
+            bool getAtivo();
+            void gravidade();
             virtual void executar() = 0;
             virtual void salvar() = 0;
         };
