@@ -8,7 +8,7 @@ namespace Castelos_e_ruinas{
 
     namespace Fases{
 
-        Cidade_Medieval::Cidade_Medieval():Fase(IDs::ID::cidadeMedieval),maxZumbis(6),maxLamas(5){
+        Cidade_Medieval::Cidade_Medieval():Fase(IDs::ID::cidadeMedieval),maxZumbis(5),maxLamas(5){
             criarCenario();
             criarInimigos();
             criarObstaculos();
@@ -21,8 +21,8 @@ namespace Castelos_e_ruinas{
         void Cidade_Medieval::criarInimigos(){
             std::ifstream arquivo;
             std::string linha;
-            int contCav = 0;
-            int contZum = 0;
+            int contCav = 3;
+            int contZum = 3;
             arquivo.open("../arquivo/cidade_medieval.txt");
             if(arquivo.is_open()){
                 int j = 0;
@@ -52,8 +52,8 @@ namespace Castelos_e_ruinas{
         void Cidade_Medieval::criarObstaculos(){
             std::ifstream arquivo("../arquivo/cidade_medieval.txt");
             std::string linha;
-            int contPlat = 0;
-            int contLama = 0;
+            int contPlat = 3;
+            int contLama = 3;
             if (arquivo.is_open()) {
                 int j = 0;
                 while (std::getline(arquivo, linha)) {
@@ -67,11 +67,11 @@ namespace Castelos_e_ruinas{
                         else if (linha[i] == 'L') {
                             criarLamas(sf::Vector2i(i, j));
                         }
-                        else if (linha[i] == 'p' && contPlat < maxPlataformas && (rand() % 2 == 0)) {
+                        else if (linha[i] == 'p' && contPlat <= maxPlataformas && (rand() % 2 == 0)) {
                             criarPlataformas(sf::Vector2i(i, j));
                             contPlat++;
                         }
-                        else if (linha[i] == 'l' && contLama < maxLamas && (rand() % 2 == 0)) {
+                        else if (linha[i] == 'l' && contLama <= maxLamas && (rand() % 2 == 0)) {
                             criarLamas(sf::Vector2i(i, j));
                             contLama++;
                         }

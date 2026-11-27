@@ -32,5 +32,14 @@ namespace Castelos_e_ruinas{
         sf::Vector2f Texto::getTam() const{
             return sf::Vector2f(texto.getGlobalBounds().width,texto.getGlobalBounds().height);
         }
+
+        void Texto::setInfo(std::string Info){
+            info = Info;
+            texto.setString(Info);
+        }
+
+        std::string Texto::getInfo(){
+            return info;
+        }
     }
 }

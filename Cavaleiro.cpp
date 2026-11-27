@@ -11,9 +11,12 @@ namespace Castelos_e_ruinas {
                 sf::Texture* text = carregarText("../assets/cavaleiro.png");
                 if(text != NULL)
                     corpo.setTexture(text);
+                vida_max = VIDA_CAVALEIRO;
                 num_vidas = VIDA_CAVALEIRO;
                 nivel_maldade = NIVEL_MALDADE_CAVALEIRO;
                 vel = sf::Vector2f(VELOCIDADE_CAVALEIRO_X,0.0f);
+                coolDown = 60;
+                inicializaBarraVida();
             }
             
             Cavaleiro::~Cavaleiro() {
@@ -21,16 +24,18 @@ namespace Castelos_e_ruinas {
 
             //Usa a movimentação criada na classe Inimigo
             void Cavaleiro::executar() {
+                if(coolDown > 0)
+                    coolDown--; 
                 mover();
-
+                atualizaBarraVida();
             }
 
-            //É chamado por Jogador::colisao() quando houver contato
             void Cavaleiro::danificar(Jogador* pJog) {
-                if(pJog != NULL) {
+                if((pJog != NULL) && (coolDown == 0)) {
                     for(int i = 0; i < nivel_maldade; ++i) {
-                            pJog->operator--();
+                        pJog->operator--();
                     }
+                    coolDown = 60;
                 }
             }
 

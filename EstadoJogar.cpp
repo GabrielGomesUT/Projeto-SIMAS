@@ -1,7 +1,6 @@
 #include "EstadoJogar.hpp"
 #include "CidadeMedieval.hpp"
 #include "Castelo.hpp"
-#include "GerenciadorEstados.hpp"
 
 namespace Castelos_e_ruinas{
 
@@ -57,13 +56,13 @@ namespace Castelos_e_ruinas{
             pFase->executar();
 
             if(pFase->getConclusao()){
-                Gerenciadores::Gerenciador_Estados* pGEstados = Gerenciadores::Gerenciador_Estados::getGerenciadorEstados();
                 IDs::ID IDatual = this->getID();
-                if(IDatual == IDs::ID::cidadeMedieval){
-                    pGEstados->trocarEstado(IDs::ID::castelo);
+                if((IDatual == IDs::ID::cidadeMedieval) && ((pFase->getJogador1()->getAtivo()) || (pFase->getJogador2()->getAtivo()))){
+                    pGEstado->setTransicao(true);
+                    pGEstado->trocarEstado(IDs::ID::castelo);
                 }
-                else if(IDatual == IDs::ID::castelo){
-                    pGEstados->trocarEstado(IDs::ID::menuFim);
+                else{
+                    pGEstado->trocarEstado(IDs::ID::menuFim);
                 }
             }
         }

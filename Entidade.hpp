@@ -1,7 +1,7 @@
 #pragma once
 #include "Ente.hpp"
 #include <ostream>
-#define GRAVIDADE 980.0f
+#define GRAVIDADE 0.25f
 
 namespace Castelos_e_ruinas{
     namespace Entidades{
@@ -10,6 +10,7 @@ namespace Castelos_e_ruinas{
             float x;
             float y;
             bool ativo;
+            int coolDown;
             sf::Vector2f vel;
             //ostream buffer;
             void salvarDataBuffer();

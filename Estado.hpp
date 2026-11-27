@@ -1,13 +1,14 @@
 #pragma once
 #include "Ente.hpp"
+#include "GerenciadorEstados.hpp"
 
 namespace Castelos_e_ruinas{
 
     namespace Estados{
 
         class Estado:public Ente{
-        private:
-            bool remover;
+        protected:
+            static Gerenciadores::Gerenciador_Estados* pGEstado;
         public:
             Estado(const IDs::ID ID);
             virtual ~Estado();

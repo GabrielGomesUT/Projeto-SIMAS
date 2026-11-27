@@ -21,8 +21,9 @@ namespace Castelos_e_ruinas{
                 virtual void mover() = 0;
                 virtual void salvar() = 0;
                 int getNumVida();
-                void inicializaBarraVida(sf::Vector2f Tam);
+                void inicializaBarraVida();
                 void atualizaBarraVida();
+                void operator++();
                 void operator--();
                 void andar(bool paraEsq);
                 void parar();

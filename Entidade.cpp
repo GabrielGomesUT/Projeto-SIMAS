@@ -3,7 +3,7 @@
 namespace Castelos_e_ruinas{
     namespace Entidades{
         Entidade::Entidade(const sf::Vector2f pos,const sf::Vector2f tam,IDs::ID ID):
-        Ente(pos,tam,ID),x(pos.x),y(pos.y),ativo(true),vel(sf::Vector2f(0.0f,0.0f))
+        Ente(pos,tam,ID),x(pos.x),y(pos.y),ativo(true),vel(sf::Vector2f(0.0f,0.0f)),coolDown(0)
         {
 
         }
@@ -52,10 +52,9 @@ namespace Castelos_e_ruinas{
         }
 
         void Entidade::gravidade(){
-            vel.y += GRAVIDADE*dt;
-            float dy = 0;
-            dy = vel.y * dt;
-            corpo.move(0.0f,dy);
+            vel.y += GRAVIDADE;
+            y += vel.y;
+            corpo.setPosition(x,y);
         }
     }
 }

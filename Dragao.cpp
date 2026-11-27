@@ -3,11 +3,7 @@
 #include "Jogador.hpp"
 #include <cmath>
 
-#define VIDA_DRAGAO 10
-#define NIVEL_MALDADE_DRAGAO 2
-#define VELOCIDADE_DRAGAO_X 140.0f
-#define INTERVALO_DISPARO 2.5f
-#define LARGURA_TELA 1280.0f
+
 
 //To pensando em usar "força" como uma resistencia do dragão, que o cavaleiro da menos dano dele
 
@@ -20,17 +16,19 @@ namespace Castelos_e_ruinas {
                 //pProjetil(NULL),
                 tempo_disparo(0.0f)
             {
+                sf::Texture* text = carregarText("../assets/dragao.png");
+                corpo.setTexture(text);
+                vida_max = VIDA_DRAGAO;
                 num_vidas = VIDA_DRAGAO;
                 nivel_maldade = NIVEL_MALDADE_DRAGAO;
                 vel.x = VELOCIDADE_DRAGAO_X;
                 vel.y = 0.0f;
+                coolDown = 60;
 
                 if (pJog != NULL) {
                     setJogador(pJog);
                 }
-
-                //Cor provisoria pra diferenciar
-                corpo.setFillColor(sf::Color::Magenta);
+                inicializaBarraVida();
             }
 
             Dragao::~Dragao() {
@@ -46,10 +44,6 @@ namespace Castelos_e_ruinas {
             //Mover prório do dragão, pois ele voa
             void Dragao::mover() {
                 if (jogador != NULL) {
-                    dt = relogio.getElapsedTime().asSeconds();
-                    if(dt > 0.05f) {
-                        dt = 0.05f;
-                    }
 
                     sf::Vector2f posJogador = jogador->getSprite().getPosition();
                     sf::Vector2f posDragao = corpo.getPosition();
@@ -61,30 +55,24 @@ namespace Castelos_e_ruinas {
                         moverAleatorio();
                     }
 
-                    //Impede que o Dragão saia pelas bordas laterais da janela
-                    if (posDragao.x <= 0.0f) {
-                        paraEsquerda = false;
-                    } else if (posDragao.x + corpo.getSize().x >= LARGURA_TELA) {
-                        paraEsquerda = true;
-                    }
-
                     if (podeAndar) {
                         atualizaPosicao();
                     }
 
                     //Não tem a chamada da gravidade(), assim o Dragão permanece voando na altura inicial
-                    relogio.restart();
                 }
             }
 
             void Dragao::executar() {
                 mover();
+                if(coolDown > 0)
+                    coolDown--;
                 tempo_disparo += dt;
-
                 if (tempo_disparo >= INTERVALO_DISPARO) {
                     //atirar();
                     tempo_disparo = 0.0f;
                 }
+                atualizaBarraVida();
             }
 
             /*void Dragao::atirar() {
@@ -100,10 +88,11 @@ namespace Castelos_e_ruinas {
             }*/
 
             void Dragao::danificar(Jogador* pJog) {
-                if (pJog != NULL) {
+                 if ((pJog != NULL) && (coolDown == 0)) {
                     for (int i = 0; i < nivel_maldade; ++i) {
                         pJog->operator--();
                     }
+                    coolDown = 60;
                 }
             }
 

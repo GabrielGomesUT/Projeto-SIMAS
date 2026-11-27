@@ -23,14 +23,14 @@ namespace Castelos_e_ruinas{
             float posBotaoX = LARGURA_TELA/2.0f - TAM_BOTAO_X/2.0f;
             float espacamento = 90.0f;
             Botoes::BotaoTexto* novoJogo = new Botoes::BotaoTexto("Novo Jogo",sf::Vector2f(posBotaoX,ALTURA_TELA/2.0f),sf::Vector2f(TAM_BOTAO_X,TAM_BOTAO_Y),sf::Color::Yellow);
-            Botoes::BotaoTexto* carregarJogo = new Botoes::BotaoTexto("Carregar Jogo",sf::Vector2f(posBotaoX,ALTURA_TELA/2.0f + espacamento),sf::Vector2f(TAM_BOTAO_X,TAM_BOTAO_Y),sf::Color::Yellow);
-            Botoes::BotaoTexto* colocacao = new Botoes::BotaoTexto("Colocacao",sf::Vector2f(posBotaoX,ALTURA_TELA/2.0f + espacamento*2),sf::Vector2f(TAM_BOTAO_X,TAM_BOTAO_Y),sf::Color::Yellow);
-            Botoes::BotaoTexto* opcoes = new Botoes::BotaoTexto("Opcoes",sf::Vector2f(posBotaoX,ALTURA_TELA/2.0f + espacamento*3),sf::Vector2f(TAM_BOTAO_X,TAM_BOTAO_Y),sf::Color::Yellow);
+            Botoes::BotaoTexto* castelo = new Botoes::BotaoTexto("Comecar Jogo: Castelo",sf::Vector2f(posBotaoX,ALTURA_TELA/2.0f + espacamento),sf::Vector2f(TAM_BOTAO_X,TAM_BOTAO_Y),sf::Color::Yellow);
+            Botoes::BotaoTexto* carregarJogo = new Botoes::BotaoTexto("Carregar Jogo",sf::Vector2f(posBotaoX,ALTURA_TELA/2.0f + espacamento*2),sf::Vector2f(TAM_BOTAO_X,TAM_BOTAO_Y),sf::Color::Yellow);
+            Botoes::BotaoTexto* colocacao = new Botoes::BotaoTexto("Colocacao",sf::Vector2f(posBotaoX,ALTURA_TELA/2.0f + espacamento*3),sf::Vector2f(TAM_BOTAO_X,TAM_BOTAO_Y),sf::Color::Yellow);
             Botoes::BotaoTexto* sair = new Botoes::BotaoTexto("Sair",sf::Vector2f(posBotaoX,ALTURA_TELA/2.0f + espacamento*4),sf::Vector2f(TAM_BOTAO_X,TAM_BOTAO_Y),sf::Color::Yellow);
             adicionaBotao(static_cast<Botoes::Botao*>(novoJogo));
+            adicionaBotao(static_cast<Botoes::Botao*>(castelo));
             adicionaBotao(static_cast<Botoes::Botao*>(carregarJogo));
             adicionaBotao(static_cast<Botoes::Botao*>(colocacao));
-            adicionaBotao(static_cast<Botoes::Botao*>(opcoes));
             adicionaBotao(static_cast<Botoes::Botao*>(sair));
             inicializaIterador();
         }
@@ -57,13 +57,16 @@ namespace Castelos_e_ruinas{
             int indice = std::distance(listaBotao.begin(), it);
             switch (indice) {
                 case 0: // Novo Jogo
-                pGEstados->adicionarEstado(IDs::ID::cidadeMedieval);
+                    pGEstados->setNFase(IDs::ID::cidadeMedieval);
+                    pGEstados->adicionarEstado(IDs::ID::menuJogador);
                     break;
-                case 1: // Carregar Jogo
+                case 1:
+                    pGEstados->setNFase(IDs::ID::castelo);
+                    pGEstados->adicionarEstado(IDs::ID::menuJogador);
                     break;
-                case 2: // Colocacao
+                case 2:
                     break;
-                case 3: // Opcoes
+                case 3:
                     break;
                 case 4: // Sair
                     pGEstados->removerEstado();

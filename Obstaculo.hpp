@@ -16,7 +16,6 @@ namespace Castelos_e_ruinas{
             class Obstaculo:public Entidade{
             protected:
                 bool danoso;
-                int coolDown;
             public:
                 Obstaculo(const sf::Vector2f pos, const sf::Vector2f tam,IDs::ID ID);
                 ~Obstaculo();

@@ -21,6 +21,8 @@ namespace Castelos_e_ruinas {
             }
 
             void LancaChamas::executar() {
+                gravidade();
+                antigravidade();
             }
 
             void LancaChamas::salvar() {

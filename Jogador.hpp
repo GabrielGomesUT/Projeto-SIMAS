@@ -1,9 +1,9 @@
 #pragma once
 #include "Personagem.hpp"
 
-#define VIDA_JOGADOR 20
-#define VELOCIDADE_JOGADOR_X 140.0f
-#define VELOCIDADE_PULO -630.0f
+#define VIDA_JOGADOR 15
+#define VELOCIDADE_JOGADOR_X 1.3f
+#define VELOCIDADE_PULO -9.8f
 
 namespace Castelos_e_ruinas{
     namespace Entidades{
@@ -20,11 +20,12 @@ namespace Castelos_e_ruinas{
                 Jogador();
                 ~Jogador();
                 void inicializa();
+                void recuperaAtributos();
                 void colisao(Inimigo* pIn,sf::Vector2f ds);
                 void setPodePular(bool b);
                 void desaceleracao(float f_lent);
+                int getPontos();
                 void pular();
-                void operator++();
                 void executar();
                 void salvar();
                 void mover();   // codigo adaptado dos videos do monitor Giovane Limas Salvi

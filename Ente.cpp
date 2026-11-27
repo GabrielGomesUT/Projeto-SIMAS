@@ -5,7 +5,7 @@ using namespace std;
 
 namespace Castelos_e_ruinas{
 
-    Gerenciadores::Gerenciador_Grafico* Ente::pGG(pGG->getGerenciadorGrafico());
+    Gerenciadores::Gerenciador_Grafico* Ente::pGG(Gerenciadores::Gerenciador_Grafico::getGerenciadorGrafico());
 
     Ente::Ente(const sf::Vector2f pos,const sf::Vector2f tam,IDs::ID ID):id(ID),corpo(sf::RectangleShape(tam)){
         corpo.setPosition(pos);

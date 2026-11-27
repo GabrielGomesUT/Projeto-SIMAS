@@ -3,12 +3,11 @@
 #include "MenuPause.hpp"
 #include "EstadoJogar.hpp"
 #include "MenuFim.hpp"
+#include "MenuJogador.hpp"
 
 namespace Castelos_e_ruinas {
 
     namespace Estados{
-
-        Gerenciadores::Gerenciador_Estados* EstadoMenu::pGEstado = Gerenciadores::Gerenciador_Estados::getGerenciadorEstados();
 
         EstadoMenu::EstadoMenu(const IDs::ID ID) :
             Estado(ID),pMenu(NULL)
@@ -65,7 +64,15 @@ namespace Castelos_e_ruinas {
                     delete pMenu;
                     pMenu = NULL;
                 }
-                pMenu = new Menus::MenuFim();
+                pMenu = new Menus::MenuFim(pFase);
+            }
+
+            else if (this->getID() == IDs::ID::menuJogador){
+                if(pMenu != NULL){
+                    delete pMenu;
+                    pMenu = NULL;
+                }
+                pMenu = new Menus::MenuJogador(); 
             }
         }
 
