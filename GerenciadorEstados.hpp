@@ -38,6 +38,8 @@ namespace Castelos_e_ruinas{
             void setTransicao(bool Transicao);
             IDs::ID getNFase();
             void setJogadores(Entidades::Personagens::Jogador* pJ1,Entidades::Personagens::Jogador* pJ2);
+            Entidades::Personagens::Jogador* getJogador1();
+            Entidades::Personagens::Jogador* getJogador2();
             void removerEstado();
             void trocarEstado(IDs::ID ID);
             Estados::Estado* getEstadoAtual();

@@ -24,6 +24,7 @@ namespace Castelos_e_ruinas{
                 void colisao(Inimigo* pIn,sf::Vector2f ds);
                 void setPodePular(bool b);
                 void desaceleracao(float f_lent);
+                void setPontos(int pTs);
                 int getPontos();
                 void pular();
                 void executar();

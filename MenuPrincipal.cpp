@@ -67,6 +67,7 @@ namespace Castelos_e_ruinas{
                 case 2:
                     break;
                 case 3:
+                    pGEstados->adicionarEstado(IDs::ID::menuColocacao);
                     break;
                 case 4: // Sair
                     pGEstados->removerEstado();

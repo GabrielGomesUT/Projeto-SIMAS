@@ -45,14 +45,14 @@ namespace Castelos_e_ruinas{
                         pJog2->inicializa();
                 }
                 else if(ID == IDs::ID::castelo){
-                    if((pJog1 != NULL) && (!transicao))
+                    if((pJog1 != NULL) && (transicao))
                         pJog1->recuperaAtributos();
-                    else if(transicao)
+                    else if(!transicao)
                         pJog1->inicializa();
 
-                    if((!solo) && (pJog2 != NULL) && (!transicao))
+                    if((!solo) && (pJog2 != NULL) && (transicao))
                         pJog2->recuperaAtributos();
-                    else if(transicao)
+                    else if(!transicao)
                         pJog2->inicializa();
                 }
                 if(solo)
@@ -60,7 +60,7 @@ namespace Castelos_e_ruinas{
                 pEJ->setJogadores(pJog1,pJog2);
                 pilhaEstados.push(static_cast<Estados::Estado*>(pEJ));
             }
-            else if((ID == IDs::ID::menuPrincipal) || (ID == IDs::ID::menuPause) || (ID == IDs::ID::menuFim) || (ID == IDs::ID::menuJogador)){
+            else if((ID == IDs::ID::menuPrincipal) || (ID == IDs::ID::menuPause) || (ID == IDs::ID::menuFim) || (ID == IDs::ID::menuJogador) || (ID == IDs::ID::menuColocacao)){
                 Estados::EstadoMenu* pEM = new Estados::EstadoMenu(ID);
                 pilhaEstados.push(static_cast<Estados::Estado*>(pEM));
             }
@@ -87,6 +87,13 @@ namespace Castelos_e_ruinas{
         void Gerenciador_Estados::setJogadores(Entidades::Personagens::Jogador* pJ1,Entidades::Personagens::Jogador* pJ2){
             pJog1 = pJ1;
             pJog2 = pJ2;
+        }
+
+        Entidades::Personagens::Jogador* Gerenciador_Estados::getJogador1(){
+            return pJog1;
+        }
+        Entidades::Personagens::Jogador* Gerenciador_Estados::getJogador2(){
+            return pJog2;
         }
 
         void Gerenciador_Estados::removerEstado(){

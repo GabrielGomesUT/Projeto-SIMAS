@@ -22,6 +22,7 @@ namespace Castelos_e_ruinas{
             lancaChamas,    //14
             menuFim,    //15
             menuJogador,    //16
+            menuColocacao,  //17
         };
     }
 }
