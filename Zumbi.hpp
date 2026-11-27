@@ -1,8 +1,8 @@
 #pragma once
 #include "Inimigo.hpp"
 #define VIDA_ZUMBIE 5
-#define NIVEL_MALDADE_ZUMBIE 1
-#define VELOCIDADE_ZUMBIE_X 40.0f
+#define NIVEL_MALDADE_ZUMBIE 3
+#define VELOCIDADE_ZUMBIE_X 0.4f
 
 namespace Castelos_e_ruinas {
     namespace Entidades {
@@ -12,7 +12,7 @@ namespace Castelos_e_ruinas {
 
             class Zumbi : public Inimigo {
             private:
-                int tamanho;
+                bool faminto;
 
             public:
                 Zumbi(const sf::Vector2f pos, const sf::Vector2f tam);

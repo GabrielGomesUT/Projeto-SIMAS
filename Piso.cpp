@@ -6,9 +6,11 @@ namespace Castelos_e_ruinas{
 
     namespace Entidades{
         
-        Piso::Piso(const sf::Vector2f pos, const sf::Vector2f tam):Entidade(pos,tam,IDs::ID::piso),tempo_acumulado(0.0f){
+        Piso::Piso(const sf::Vector2f pos, const sf::Vector2f tam):
+        Entidade(pos,tam,IDs::ID::piso),ajuda(false){
             sf::Texture* text = carregarText("../assets/piso.png");
             corpo.setTexture(text);
+            coolDown = 300;
         }
 
         Piso::~Piso(){
@@ -33,6 +35,7 @@ namespace Castelos_e_ruinas{
                         if(pPer->getID() == IDs::ID::jogador){
                             Personagens::Jogador* pJog = dynamic_cast<Personagens::Jogador*>(pPer);
                             pJog->setPodePular(true);
+                            ajudar(pJog);
                         }
                     }
                 pPer->setVelY(0.0f);
@@ -40,13 +43,18 @@ namespace Castelos_e_ruinas{
             }
         }
 
+        void Piso::ajudar(Entidades::Personagens::Jogador* pJ){
+            if((ajuda) && (pJ->getNumVida() < VIDA_JOGADOR))
+                pJ->operator++();
+        }
+
         void Piso::executar(){
-            /*dt = relogio.getElapsedTime().asSeconds();
-            tempo_acumulado += dt;
-            if(tempo_acumulado >= 5.0f){
-                p->operator++();
-                tempo_acumulado = 0.0;
-            }*/
+            ajuda = false;
+            if(coolDown < 0){
+                ajuda = true;
+                coolDown = 300;
+            }
+            coolDown--;
         }
 
         void Piso::salvar(){

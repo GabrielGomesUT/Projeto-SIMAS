@@ -1,6 +1,6 @@
 #pragma once
 #include "Obstaculo.hpp"
-#define DESACELERACAO_CHAMAS 70.0f
+#define DESACELERACAO_CHAMAS 0.5f
 #define TEMPO_DANO_CHAMAS 1.0f
 
 namespace Castelos_e_ruinas {

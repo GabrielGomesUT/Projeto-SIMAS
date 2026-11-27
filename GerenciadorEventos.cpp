@@ -4,6 +4,7 @@
 #include "Jogo.hpp"
 #include "EstadoJogar.hpp"
 #include "EstadoMenu.hpp"
+#include "MenuFim.hpp"
 
 namespace Castelos_e_ruinas{
 
@@ -54,15 +55,15 @@ namespace Castelos_e_ruinas{
                 }
             }
 
-            else if ((pEstado->getEstadoAtual()->getID() == IDs::ID::menuPrincipal) || (pEstado->getEstadoAtual()->getID() == IDs::ID::menuPause) || (pEstado->getEstadoAtual()->getID()== IDs::ID::menuFim)){
+            else if ((pEstado->getEstadoAtual()->getID() == IDs::ID::menuPrincipal) || (pEstado->getEstadoAtual()->getID() == IDs::ID::menuPause) || (pEstado->getEstadoAtual()->getID()== IDs::ID::menuFim) || (pEstado->getEstadoAtual()->getID() == IDs::ID::menuJogador)){
                 Estados::EstadoMenu* pEstM = dynamic_cast<Estados::EstadoMenu*>(pEstado->getEstadoAtual());
                 if (pEstM != NULL) {
                     Menus::Menu* pMenu = pEstM->getMenu();
                     if (pMenu != NULL) {
-                        if (tecla == sf::Keyboard::Up || tecla == sf::Keyboard::W) {
+                        if (tecla == sf::Keyboard::Up) {
                             pMenu->selecionaPCima();
                         }
-                        else if (tecla == sf::Keyboard::Down || tecla == sf::Keyboard::S) {
+                        else if (tecla == sf::Keyboard::Down ) {
                             pMenu->selecionaPBaixo();
                         }
                         else if (tecla == sf::Keyboard::Enter) {
@@ -125,6 +126,15 @@ namespace Castelos_e_ruinas{
                         verificaTeclaPressionada(evento.key.code);
                     else if(evento.type == sf::Event::KeyReleased)
                         verificaTeclaSolta(evento.key.code);
+                    else if (evento.type == sf::Event::TextEntered) {
+                        if (pEstado->getEstadoAtual()->getID() == IDs::ID::menuFim) {
+                            Estados::EstadoMenu* pEstM = dynamic_cast<Estados::EstadoMenu*>(pEstado->getEstadoAtual());
+                            if (pEstM != NULL && pEstM->getMenu() != NULL && evento.text.unicode < 128) {
+                                Menus::MenuFim* pMenuFim = static_cast<Menus::MenuFim*>(pEstM->getMenu());
+                                pMenuFim->digitar(static_cast<char>(evento.text.unicode));
+                            }
+                        }
+                    }
                     else if(evento.type == sf::Event::Closed)
                         pGrafico->closeWindow();
                 }

@@ -2,13 +2,31 @@
 #include "BotaoTexto.hpp"
 #include "GerenciadorEstados.hpp"
 #include "GerenciadorGrafico.hpp"
+#include <string>
+#include <stdexcept>
 
 namespace Castelos_e_ruinas{
 
     namespace Menus{
 
-        MenuFim::MenuFim():
-        Menu(sf::Vector2f(0.0f,0.0f),sf::Vector2f(LARGURA_TELA,ALTURA_TELA),IDs::ID::menuFim){
+        MenuFim::MenuFim(Fases::Fase* pF):
+        Menu(sf::Vector2f(0.0f,0.0f),sf::Vector2f(LARGURA_TELA,ALTURA_TELA),IDs::ID::menuFim),textoDigite(*(this->carregarFont("../fontes/MedievalSharp-Regular.ttf")),"Digite seu nome...",50),
+        pontuacao(*(this->carregarFont("../fontes/MedievalSharp-Regular.ttf")),"Pontuacao",40),
+        nomeExibido(*(this->carregarFont("../fontes/arial.ttf")),"",50)
+        {
+            int pontos = 0;
+            if (pF != NULL) {
+                if (pF->getJogador1() != NULL) {
+                    pontos += pF->getJogador1()->getPontos();
+                }
+                if (pF->getJogador2() != NULL) {
+                    pontos += pF->getJogador2()->getPontos();
+                }
+            }
+            pontuacao.setInfo("Pontuacao: " + std::to_string(pontos));
+            textoDigite.setPos(sf::Vector2f(LARGURA_TELA/2.0f - textoDigite.getTam().x, 430.0f));
+            nomeExibido.setPos(sf::Vector2f(LARGURA_TELA / 2.0f, 430.0f));
+            pontuacao.setPos(sf::Vector2f((LARGURA_TELA - pontuacao.getTam().x) / 2.0f, 550.0f));
             criarBotoes();
             criarFundo();
         }
@@ -32,6 +50,42 @@ namespace Castelos_e_ruinas{
             titulo.setTexture(tex);
             titulo.setSize(sf::Vector2f(800.0f,300.0f));
         }
+
+        void MenuFim::salvarColocacao(){
+            try{
+                arquivoEntrada.open("../arquivo/colocacao.txt",std::ios::app);  //ios::app evita sobreescreveer 
+                if (!arquivoEntrada.is_open()){
+                    return;
+                }
+                std::string nome = nomeExibido.getInfo();
+                if(nome == "")
+                    nome = "Sem nome";
+                std::string pontos = pontuacao.getInfo().substr(11,pontuacao.getInfo().length());
+                std::string linha = nome + " " + pontos + " " + "\n";
+                arquivoEntrada << linha;
+                arquivoEntrada.close();
+            }
+            catch (const std::exception& e){
+                cerr<<"falha ao abrir arquivo"<<endl;
+            }
+        }
+
+        void MenuFim::digitar(char caracter){
+            std::string aux = nomeExibido.getInfo();
+            if((caracter >= 'a') && (caracter <= 'z') || 
+            ((caracter >= 'A') && (caracter <= 'Z')) ||
+            ((caracter >= '0') && (caracter <= '9')) ||
+            (caracter == ' ')){
+                aux += caracter;
+                nomeExibido.setInfo(aux);
+            }
+            else if(caracter == '\b'){
+                if(!aux.empty()){
+                    aux.pop_back();
+                    nomeExibido.setInfo(aux);
+                }
+            }
+        }
        
         void MenuFim::selecionar() {
             if (listaBotao.empty()) return;
@@ -42,9 +96,13 @@ namespace Castelos_e_ruinas{
             int indice = std::distance(listaBotao.begin(), it);
             switch (indice) {
                 case 0:
+                    salvarColocacao();
+                    pGEstados->removerEstado();
+                    pGEstados->removerEstado();
                     break;
 
                 case 1:
+                    pGEstados->removerEstado();
                     pGEstados->removerEstado();
                     break;
             }
@@ -55,6 +113,9 @@ namespace Castelos_e_ruinas{
             this->desenhar();
             pGG->desenharTitulo(titulo);
             this->desenharBotoes();
+            pGG->desenharTexto(&textoDigite);
+            pGG->desenharTexto(&nomeExibido);
+            pGG->desenharTexto(&pontuacao);
         }
     }
 }

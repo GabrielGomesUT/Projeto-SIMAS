@@ -6,7 +6,7 @@ namespace Castelos_e_ruinas{
     namespace Menus{
 
         Menu::Menu(const sf::Vector2f pos, const sf::Vector2f tam,IDs::ID ID):
-        Ente(pos,tam,ID),tamBotao(10),titulo(sf::RectangleShape(sf::Vector2f(TAM_TITULO_X,TAM_TITULO_Y))){
+        Ente(pos,tam,ID),titulo(sf::RectangleShape(sf::Vector2f(TAM_TITULO_X,TAM_TITULO_Y))){
             titulo.setPosition(sf::Vector2f(LARGURA_TELA/2.0f - TAM_TITULO_X/2.0f, 100.0f));
         }
 

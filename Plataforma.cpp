@@ -17,12 +17,15 @@ namespace Castelos_e_ruinas{
 
             void Plataforma::executar(){
                 if(coolDown < 0){
-                    float aleatorio = rand() % 1000 * altura;
-                    if(aleatorio < 1)
+                    float aleatorio = rand() % 30000;
+                    if(aleatorio < altura){
                         danoso = true;
+                        coolDown = 1200;
+                    }
                 }
-                //gravidade();
-                //antigravidade();
+                coolDown--;
+                gravidade();
+                antigravidade();
             }
 
             void Plataforma::salvar(){
@@ -33,7 +36,6 @@ namespace Castelos_e_ruinas{
                 if(danoso)
                     p->operator--();
                 danoso = false;
-                coolDown = 600;
             }
         }
     }

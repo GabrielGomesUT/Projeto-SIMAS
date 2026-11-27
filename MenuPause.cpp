@@ -62,6 +62,7 @@ namespace Castelos_e_ruinas{
                 case 2:
                     pGEstados->removerEstado();
                     pGEstados->removerEstado();
+                    pGEstados->removerEstado();
                     break;
             }
         }

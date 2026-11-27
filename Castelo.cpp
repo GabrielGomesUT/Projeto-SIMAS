@@ -8,7 +8,7 @@ namespace Castelos_e_ruinas{
 
     namespace Fases{
 
-        Castelo::Castelo():Fase(IDs::ID::castelo),maxDragoes(1),maxChamas(10){
+        Castelo::Castelo():Fase(IDs::ID::castelo),maxDragoes(4),maxChamas(5){
             criarCenario();
             criarInimigos();
             criarObstaculos();
@@ -22,6 +22,8 @@ namespace Castelos_e_ruinas{
             std::ifstream arquivo;
             std::string linha;
             arquivo.open("../arquivo/castelo.txt");
+            int contCav = 3;
+            int contDragao = 3;
             if(arquivo.is_open()){
                 int j = 0;
                 while(std::getline(arquivo,linha)){
@@ -29,8 +31,17 @@ namespace Castelos_e_ruinas{
                         if(linha[i] == 'C'){
                             criarCavaleiros(sf::Vector2i(i,j));
                         }
-                        else if(linha[i] == 'D')
+                        else if(linha[i] == 'D'){
                             criarDragoes(sf::Vector2i(i,j));
+                        }
+                        else if (linha[i] == 'c' && contCav < maxCavaleiros && (rand() % 2 == 0)) {
+                            criarCavaleiros(sf::Vector2i(i, j));
+                            contCav++;
+                        }
+                        else if (linha[i] == 'd' && contDragao < maxDragoes && (rand() % 2 == 0)) {
+                            criarDragoes(sf::Vector2i(i, j));
+                            contDragao++;
+                        }
                     }
                     j++;
                 }
@@ -41,6 +52,8 @@ namespace Castelos_e_ruinas{
         void Castelo::criarObstaculos(){
             std::ifstream arquivo("../arquivo/castelo.txt");
             std::string linha;
+            int contPlat = 3;
+            int contChamas = 3;
             if (arquivo.is_open()) {
                 int j = 0;
                 while (std::getline(arquivo, linha)) {
@@ -53,6 +66,14 @@ namespace Castelos_e_ruinas{
                         }
                         else if (linha[i] == 'F') {
                             criarChamas(sf::Vector2i(i, j));
+                        }
+                        else if (linha[i] == 'p' && contPlat <= maxPlataformas && (rand() % 2 == 0)) {
+                            criarPlataformas(sf::Vector2i(i, j));
+                            contPlat++;
+                        }
+                        else if (linha[i] == 'f' && contChamas <= maxChamas && (rand() % 2 == 0)) {
+                            criarChamas(sf::Vector2i(i, j));
+                            contChamas++;
                         }
                     }
                     j++;
@@ -67,7 +88,7 @@ namespace Castelos_e_ruinas{
         }
 
         void Castelo::criarChamas(sf::Vector2i pos){
-            Entidades::Obstaculos::LancaChamas* pLC = new Entidades::Obstaculos::LancaChamas(sf::Vector2f(pos.x * TAM_TILE,pos.y * TAM_TILE),sf::Vector2f(160.0f,35.0f));
+            Entidades::Obstaculos::LancaChamas* pLC = new Entidades::Obstaculos::LancaChamas(sf::Vector2f(pos.x * TAM_TILE,pos.y * TAM_TILE),sf::Vector2f(TAM_TILE * 2.0f,TAM_TILE));
             lista_entes.incluirEntidades(static_cast<Entidades::Entidade*>(pLC));
         } 
 

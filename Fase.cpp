@@ -8,7 +8,7 @@ namespace Castelos_e_ruinas{
     namespace Fases{
 
         Fase::Fase(IDs::ID ID):
-        Ente(sf::Vector2f(0.0f,0.0f),sf::Vector2f(LARGURA_TELA,ALTURA_TELA),ID),lista_entes(),GC(),pJog1(NULL),pJog2(NULL),maxCavaleiros(10),maxPlataformas(5),concluida(false)
+        Ente(sf::Vector2f(0.0f,0.0f),sf::Vector2f(LARGURA_TELA,ALTURA_TELA),ID),lista_entes(),GC(),pJog1(NULL),pJog2(NULL),maxCavaleiros(10),maxPlataformas(6),concluida(false)
         {
 
         }

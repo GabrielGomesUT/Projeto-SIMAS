@@ -1,8 +1,8 @@
 #pragma once
 #include "Inimigo.hpp"
 #define VIDA_CAVALEIRO 3
-#define NIVEL_MALDADE_CAVALEIRO 1 
-#define VELOCIDADE_CAVALEIRO_X 100.0f
+#define NIVEL_MALDADE_CAVALEIRO 2 
+#define VELOCIDADE_CAVALEIRO_X 0.7f
 
 namespace Castelos_e_ruinas {
     namespace Entidades {

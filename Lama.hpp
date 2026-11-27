@@ -12,7 +12,6 @@ namespace Castelos_e_ruinas{
             class Lama:public Obstaculo{
             private:
                 float desaceleracao;
-                float largura;
             public:
                 Lama(const sf::Vector2f pos, const sf::Vector2f tam);
                 ~Lama();

@@ -21,6 +21,7 @@ namespace Castelos_e_ruinas{
             dragao,     //13
             lancaChamas,    //14
             menuFim,    //15
+            menuJogador,    //16
         };
     }
 }

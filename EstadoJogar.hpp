@@ -20,7 +20,6 @@ namespace Castelos_e_ruinas{
             Entidades::Personagens::Jogador* getJogador2();
             Fases::Fase* getFase();
             void executar();
-            //void mudarEstadoObserver();
         };
     }
 }

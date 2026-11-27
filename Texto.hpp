@@ -20,6 +20,8 @@ namespace Castelos_e_ruinas{
             sf::Text getTexto() const;
             void setCorTexto(sf::Color corText);
             sf::Vector2f getTam() const;
+            void setInfo(std::string Info);
+            std::string getInfo();
         };
     } 
 }

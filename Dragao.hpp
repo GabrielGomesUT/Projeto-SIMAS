@@ -1,5 +1,9 @@
 #pragma once
 #include "Inimigo.hpp"
+#define VIDA_DRAGAO 7
+#define NIVEL_MALDADE_DRAGAO 10
+#define VELOCIDADE_DRAGAO_X 1.0f
+#define INTERVALO_DISPARO 2.5f
 
 namespace Castelos_e_ruinas {
     namespace Entidades {

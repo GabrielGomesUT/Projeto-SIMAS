@@ -33,10 +33,6 @@ namespace Castelos_e_ruinas{
 
             void Inimigo::mover(){
                 if(jogador != NULL){
-                    dt = relogio.getElapsedTime().asSeconds();
-                    if (dt > 0.05f) {
-                        dt = 0.05f;
-                    }
 
                     sf::Vector2f posJogador = jogador->getSprite().getPosition();
                     sf::Vector2f posInimigo = corpo.getPosition();
@@ -49,7 +45,6 @@ namespace Castelos_e_ruinas{
                     if(podeAndar)
                         atualizaPosicao();
                     gravidade();
-                    relogio.restart();
                 }
                 else
                     cerr<<"Ponteiro para jogador nao inicializado"<<endl;
@@ -62,8 +57,8 @@ namespace Castelos_e_ruinas{
                     else if(moveAleatorio == 1)
                         andar(true);
                     // garante a aleatoriedade do movimento a cada segundo
-                    tempo_acumulado+=dt;
-                    if(tempo_acumulado >= 1.0f){
+                    tempo_acumulado++;
+                    if(tempo_acumulado >= 80.0f){
                         moveAleatorio = rand() % 2;
                         tempo_acumulado = 0.0f;
                     }

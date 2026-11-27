@@ -12,7 +12,7 @@ namespace Castelos_e_ruinas{
         Gerenciador_Estados* Gerenciador_Estados::pEstado = NULL;
 
         Gerenciador_Estados::Gerenciador_Estados():
-        pilhaEstados(),pJog1(NULL),pJog2(NULL)
+        pilhaEstados(),pJog1(NULL),pJog2(NULL),Fase(),solo(true),transicao(false)
         {
 
         }
@@ -41,18 +41,47 @@ namespace Castelos_e_ruinas{
                 if(ID == IDs::ID::cidadeMedieval){
                     if(pJog1 != NULL)
                         pJog1->inicializa();
-                    if(pJog2 != NULL)
+                    if((!solo) && (pJog2 != NULL))
                         pJog2->inicializa();
                 }
+                else if(ID == IDs::ID::castelo){
+                    if((pJog1 != NULL) && (!transicao))
+                        pJog1->recuperaAtributos();
+                    else if(transicao)
+                        pJog1->inicializa();
+
+                    if((!solo) && (pJog2 != NULL) && (!transicao))
+                        pJog2->recuperaAtributos();
+                    else if(transicao)
+                        pJog2->inicializa();
+                }
+                if(solo)
+                    pJog2->setAtivo(false);    
                 pEJ->setJogadores(pJog1,pJog2);
                 pilhaEstados.push(static_cast<Estados::Estado*>(pEJ));
             }
-            else if((ID == IDs::ID::menuPrincipal) || (ID == IDs::ID::menuPause) || (ID == IDs::ID::menuFim)){
+            else if((ID == IDs::ID::menuPrincipal) || (ID == IDs::ID::menuPause) || (ID == IDs::ID::menuFim) || (ID == IDs::ID::menuJogador)){
                 Estados::EstadoMenu* pEM = new Estados::EstadoMenu(ID);
                 pilhaEstados.push(static_cast<Estados::Estado*>(pEM));
             }
             else
                 cerr<<"Nao foi possivel criar Estado"<<endl;
+        }
+
+        void Gerenciador_Estados::setSolo(bool Solo){
+            solo = Solo;
+        }
+
+        void Gerenciador_Estados::setNFase(IDs::ID nFase){
+            Fase = nFase;
+        }
+
+        void Gerenciador_Estados::setTransicao(bool Transicao){
+            transicao = Transicao;
+        }
+
+        IDs::ID Gerenciador_Estados::getNFase(){
+            return Fase;
         }
 
         void Gerenciador_Estados::setJogadores(Entidades::Personagens::Jogador* pJ1,Entidades::Personagens::Jogador* pJ2){
@@ -79,6 +108,7 @@ namespace Castelos_e_ruinas{
         void Gerenciador_Estados::trocarEstado(IDs::ID ID){
             removerEstado();
             adicionarEstado(ID);
+            transicao = false;
         }
 
         Estados::Estado* Gerenciador_Estados::getEstadoAtual(){

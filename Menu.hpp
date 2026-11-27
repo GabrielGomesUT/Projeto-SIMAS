@@ -16,7 +16,6 @@ namespace Castelos_e_ruinas{
         protected:
             list<Botoes::Botao*> listaBotao;
             list<Botoes::Botao*>::iterator it;
-            const int tamBotao;
             sf::RectangleShape titulo;
         public:
             Menu(const sf::Vector2f pos, const sf::Vector2f tam,IDs::ID ID);
