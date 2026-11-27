@@ -69,6 +69,12 @@ namespace Castelos_e_ruinas{
                         this->setVelY(0.0f);
                         this->pular();
                         pIn->operator--();
+                        if(pIn->getID() == IDs::ID::cavaleiro)
+                            setPontos(3);
+                        else if(pIn->getID() == IDs::ID::zumbi)
+                            setPontos(5);
+                        else if(pIn->getID() == IDs::ID::dragao)
+                            setPontos(7);
                     }
                 }
             }
@@ -88,6 +94,10 @@ namespace Castelos_e_ruinas{
                 if(podePular){
                     this->setVelY(VELOCIDADE_PULO);
                 }
+            }
+
+            void Jogador::setPontos(int pTs){
+                pontos+=pTs;
             }
 
             int Jogador::getPontos(){

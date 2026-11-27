@@ -5,6 +5,14 @@
 
 namespace Castelos_e_ruinas{
 
+    namespace Entidades{
+
+        namespace Personagens{
+
+            class Jogador;
+        }
+    }
+
     namespace Botoes{
 
         class Texto;
@@ -21,10 +29,11 @@ namespace Castelos_e_ruinas{
             void criarBotoes();
             void criarFundo();
         public:
-            MenuFim(Fases::Fase* pF);
+            MenuFim();
             ~MenuFim();
             void salvarColocacao(); // codigo adaptado dos videos do monitor Giovane Limas Salvi
             void digitar(char caracter);
+            void setPontos(Entidades::Personagens::Jogador* pJ1,Entidades::Personagens::Jogador* pJ2);
             void selecionar();
             void executar();
         };

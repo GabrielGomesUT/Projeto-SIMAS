@@ -55,7 +55,7 @@ namespace Castelos_e_ruinas{
                 }
             }
 
-            else if ((pEstado->getEstadoAtual()->getID() == IDs::ID::menuPrincipal) || (pEstado->getEstadoAtual()->getID() == IDs::ID::menuPause) || (pEstado->getEstadoAtual()->getID()== IDs::ID::menuFim) || (pEstado->getEstadoAtual()->getID() == IDs::ID::menuJogador)){
+            else if ((pEstado->getEstadoAtual()->getID() == IDs::ID::menuPrincipal) || (pEstado->getEstadoAtual()->getID() == IDs::ID::menuPause) || (pEstado->getEstadoAtual()->getID()== IDs::ID::menuFim) || (pEstado->getEstadoAtual()->getID() == IDs::ID::menuJogador) || (pEstado->getEstadoAtual()->getID() == IDs::ID::menuColocacao)){
                 Estados::EstadoMenu* pEstM = dynamic_cast<Estados::EstadoMenu*>(pEstado->getEstadoAtual());
                 if (pEstM != NULL) {
                     Menus::Menu* pMenu = pEstM->getMenu();

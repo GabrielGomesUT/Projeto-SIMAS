@@ -4,6 +4,7 @@
 #include "EstadoJogar.hpp"
 #include "MenuFim.hpp"
 #include "MenuJogador.hpp"
+#include "MenuColocacao.hpp"
 
 namespace Castelos_e_ruinas {
 
@@ -20,14 +21,6 @@ namespace Castelos_e_ruinas {
                 delete pMenu;
                 pMenu = NULL;
             }
-        }
-
-        Fases::Fase* EstadoMenu::getFase(){
-            if(pMenu->getID() == IDs::ID::menuPause ){
-                Menus::MenuPause* menuFase = dynamic_cast<Menus::MenuPause*>(pMenu);
-                return menuFase->getFase();
-            }
-            return NULL;
         }
 
         void EstadoMenu::criarMenu(){
@@ -64,7 +57,9 @@ namespace Castelos_e_ruinas {
                     delete pMenu;
                     pMenu = NULL;
                 }
-                pMenu = new Menus::MenuFim(pFase);
+                pMenu = new Menus::MenuFim();
+                Menus::MenuFim* menuFim = dynamic_cast<Menus::MenuFim*>(pMenu);
+                menuFim->setPontos(pGEstado->getJogador1(),pGEstado->getJogador2());
             }
 
             else if (this->getID() == IDs::ID::menuJogador){
@@ -74,10 +69,26 @@ namespace Castelos_e_ruinas {
                 }
                 pMenu = new Menus::MenuJogador(); 
             }
+
+            else if (this->getID() == IDs::ID::menuColocacao){
+                if(pMenu != NULL){
+                    delete pMenu;
+                    pMenu = NULL;
+                }
+                pMenu = new Menus::MenuColocacao(); 
+            }
         }
 
         Menus::Menu* EstadoMenu::getMenu() const {
             return pMenu;
+        }
+
+        Fases::Fase* EstadoMenu::getFase(){
+            if(pMenu->getID() == IDs::ID::menuPause ){
+                Menus::MenuPause* menuFase = dynamic_cast<Menus::MenuPause*>(pMenu);
+                return menuFase->getFase();
+            }
+            return NULL;
         }
 
         void EstadoMenu::executar() {

@@ -9,21 +9,11 @@ namespace Castelos_e_ruinas{
 
     namespace Menus{
 
-        MenuFim::MenuFim(Fases::Fase* pF):
+        MenuFim::MenuFim():
         Menu(sf::Vector2f(0.0f,0.0f),sf::Vector2f(LARGURA_TELA,ALTURA_TELA),IDs::ID::menuFim),textoDigite(*(this->carregarFont("../fontes/MedievalSharp-Regular.ttf")),"Digite seu nome...",50),
         pontuacao(*(this->carregarFont("../fontes/MedievalSharp-Regular.ttf")),"Pontuacao",40),
         nomeExibido(*(this->carregarFont("../fontes/arial.ttf")),"",50)
         {
-            int pontos = 0;
-            if (pF != NULL) {
-                if (pF->getJogador1() != NULL) {
-                    pontos += pF->getJogador1()->getPontos();
-                }
-                if (pF->getJogador2() != NULL) {
-                    pontos += pF->getJogador2()->getPontos();
-                }
-            }
-            pontuacao.setInfo("Pontuacao: " + std::to_string(pontos));
             textoDigite.setPos(sf::Vector2f(LARGURA_TELA/2.0f - textoDigite.getTam().x, 430.0f));
             nomeExibido.setPos(sf::Vector2f(LARGURA_TELA / 2.0f, 430.0f));
             pontuacao.setPos(sf::Vector2f((LARGURA_TELA - pontuacao.getTam().x) / 2.0f, 550.0f));
@@ -85,6 +75,17 @@ namespace Castelos_e_ruinas{
                     nomeExibido.setInfo(aux);
                 }
             }
+        }
+
+        void MenuFim::setPontos(Entidades::Personagens::Jogador* pJ1,Entidades::Personagens::Jogador* pJ2){
+            int pontos = 0;
+            if (pJ1 != NULL) {
+                pontos += pJ1->getPontos();
+            }
+            if (pJ2 != NULL) {
+                pontos += pJ2->getPontos();
+            }
+            pontuacao.setInfo("Pontuacao: " + std::to_string(pontos));
         }
        
         void MenuFim::selecionar() {

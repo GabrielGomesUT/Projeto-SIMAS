@@ -8,7 +8,7 @@ namespace Castelos_e_ruinas{
                 sf::Texture* text = carregarText("../assets/piso.png");
                 corpo.setTexture(text);
                 danoso = false;
-                coolDown = 600;
+                coolDown = 1800;
             }
 
             Plataforma::~Plataforma(){
@@ -20,7 +20,7 @@ namespace Castelos_e_ruinas{
                     float aleatorio = rand() % 30000;
                     if(aleatorio < altura){
                         danoso = true;
-                        coolDown = 1200;
+                        coolDown = 1800;
                     }
                 }
                 coolDown--;
